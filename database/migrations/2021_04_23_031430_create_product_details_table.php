@@ -22,12 +22,6 @@ class CreateProductDetailsTable extends Migration
             $table->string('unique_search_id');
             $table->integer('quantity');
             $table->timestamps();
-
-
-            $table->foreign('product_id')
-                ->references('id')
-                ->on('products')
-                ->onDelete('cascade');
         });
     }
 
