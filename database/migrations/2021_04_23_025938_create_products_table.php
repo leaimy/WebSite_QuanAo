@@ -27,11 +27,6 @@ class CreateProductsTable extends Migration
             $table->integer('views');
             $table->integer('available_stock');
             $table->timestamps();
-
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade');
         });
     }
 
