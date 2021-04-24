@@ -28,3 +28,7 @@ Route::post('/admin/categories/store','AdminCategoryController@store')->name('Ad
 Route::get('/admin/categories/edit/{id}','AdminCategoryController@edit')->name('AdminCategory.edit');
 Route::post('/admin/categories/update/{id}','AdminCategoryController@update')->name('AdminCategory.update');
 Route::get('/admin/categories/delete/{id}','AdminCategoryController@delete')->name('AdminCategory.delete');
+
+// Slider
+Route::get('/admin/sliders/create', 'AdminSliderController@create')->name('AdminSlider.create');
+Route::post('/admin/sliders/store', 'AdminSliderController@store')->name('AdminSlider.store');
