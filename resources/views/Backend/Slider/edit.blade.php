@@ -159,6 +159,7 @@
 
                                     <img src="{{ asset($slider->image_path) }}"
                                          id="image_viewer"
+                                         width="300"
                                          alt=""
                                     >
                                 </div>
