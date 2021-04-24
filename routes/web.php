@@ -30,5 +30,9 @@ Route::post('/admin/categories/update/{id}','AdminCategoryController@update')->n
 Route::get('/admin/categories/delete/{id}','AdminCategoryController@delete')->name('AdminCategory.delete');
 
 // Slider
+Route::get('/admin/sliders', 'AdminSliderController@index')->name('AdminSlider.index');
 Route::get('/admin/sliders/create', 'AdminSliderController@create')->name('AdminSlider.create');
 Route::post('/admin/sliders/store', 'AdminSliderController@store')->name('AdminSlider.store');
+Route::get('/admin/sliders/edit/{slider}', 'AdminSliderController@edit')->name('AdminSlider.edit');
+Route::post('/admin/sliders/update/{slider}', 'AdminSliderController@update')->name('AdminSlider.update');
+Route::get('/admin/sliders/delete/{slider}', 'AdminSliderController@delete')->name('AdminSlider.delete');

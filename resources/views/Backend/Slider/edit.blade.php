@@ -95,11 +95,11 @@
                     <div class="col-md-8">
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Nhập thông tin slider</h3>
+                                <h3 class="card-title">Chỉnh sửa thông tin slider</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('AdminSlider.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('AdminSlider.update', [$slider]) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
@@ -108,6 +108,7 @@
                                                name="title"
                                                class="form-control"
                                                id="title"
+                                               value="{{ $slider->title }}"
                                                placeholder="Nhập tiêu đề">
                                     </div>
                                     <div class="form-group">
@@ -116,16 +117,27 @@
                                                   id="content"
                                                   class="form-control"
                                                   placeholder="Nhập mô tả"
-                                                  rows="10"></textarea>
+                                                  rows="10">{{ $slider->content }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="status">Trạng thái hiển thị</label>
                                         <div class="custom-control custom-radio">
-                                            <input checked class="custom-control-input custom-control-input-danger custom-control-input-outline" type="radio" id="status-show" value="1" name="status">
+                                            <input
+                                                class="custom-control-input custom-control-input-danger custom-control-input-outline"
+                                                @if ($slider->status == 1) checked @endif
+                                                type="radio"
+                                                id="status-show"
+                                                value="1"
+                                                name="status">
                                             <label for="status-show" class="custom-control-label">Hiển thị</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input class="custom-control-input custom-control-input-danger custom-control-input-outline" type="radio" id="status-hidden" name="status" value="0">
+                                            <input
+                                                class="custom-control-input custom-control-input-danger custom-control-input-outline"
+                                                @if($slider->status == 0) checked @endif
+                                                type="radio" id="status-hidden"
+                                                name="status"
+                                                value="0">
                                             <label for="status-hidden" class="custom-control-label">Ẩn</label>
                                         </div>
                                     </div>
@@ -140,22 +152,21 @@
                                                        id="image_input">
                                                 <label class="custom-file-label"
                                                        id="image_label"
-                                                       for="image_input">Chọn ảnh</label>
+                                                       for="image_input">{{ $slider->image_name }}</label>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <img src=""
+                                    <img src="{{ asset($slider->image_path) }}"
                                          id="image_viewer"
                                          alt=""
-                                         hidden
                                     >
                                 </div>
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
                                     <button type="submit"
-                                            class="btn btn-primary">Thêm
+                                            class="btn btn-primary">Cập nhật
                                     </button>
                                 </div>
                             </form>
