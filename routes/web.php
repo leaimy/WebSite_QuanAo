@@ -28,3 +28,7 @@ Route::post('/admin/categories/store','AdminCategoryController@store')->name('Ad
 Route::get('/admin/categories/edit/{id}','AdminCategoryController@edit')->name('AdminCategory.edit');
 Route::post('/admin/categories/update/{id}','AdminCategoryController@update')->name('AdminCategory.update');
 Route::get('/admin/categories/delete/{id}','AdminCategoryController@delete')->name('AdminCategory.delete');
+
+//Product
+Route::get('/admin/products','AdminProductController@index')->name('AdminProduct.index');
+Route::get('/admin/products/create','AdminProductController@create')->name('AdminProduct.create');
