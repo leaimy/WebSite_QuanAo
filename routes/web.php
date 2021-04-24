@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Frontend.Home.index');
+    $sliders = \App\Slider::where('status', 1)->get();
+
+    return view('Frontend.Home.index', [
+        'sliders' => $sliders
+    ]);
 });
 
 Route::get('/admin', function () {
