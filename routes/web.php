@@ -18,6 +18,13 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', function () {
-    return view('Backend.Dashboard.index');
+    return view('Backend.index');
 });
 
+//Category
+Route::get('/admin/categories','AdminCategoryController@index')->name('AdminCategory.index');
+Route::get('/admin/categories/create','AdminCategoryController@create')->name('AdminCategory.create');
+Route::post('/admin/categories/store','AdminCategoryController@store')->name('AdminCategory.store');
+Route::get('/admin/categories/edit/{id}','AdminCategoryController@edit')->name('AdminCategory.edit');
+Route::post('/admin/categories/update/{id}','AdminCategoryController@update')->name('AdminCategory.update');
+Route::get('/admin/categories/delete/{id}','AdminCategoryController@delete')->name('AdminCategory.delete');
