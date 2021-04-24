@@ -44,6 +44,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('AdminSlider.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Quản lý slider
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
