@@ -73,22 +73,19 @@
                             <table class="table table-striped projects">
                                 <thead>
                                 <tr>
-                                    <th style="width: 1%">
+                                    <th style="width: 3%">
                                         #
                                     </th>
-                                    <th style="width: 10%">
+                                    <th style="width: 23%">
                                         Tác giả
                                     </th>
-                                    <th style="width: 20%">
+                                    <th style="width: 15%">
                                         Ảnh đại diện
                                     </th>
                                     <th style="width: 40%">
                                         Nội dung
                                     </th>
-                                    <th style="width: 14%" class="text-center">
-                                        Trạng thái
-                                    </th>
-                                    <th style="width: 15%">
+                                    <th style="width: 20%">
                                     </th>
                                 </tr>
                                 </thead>
@@ -110,20 +107,28 @@
                                         <td>
                                             <img src="{{ asset($clientFeedback->image_path) }}"
                                                  alt=""
-                                                 width="165"
+                                                 width="111"
                                             >
                                         </td>
                                         <td>
                                             {{ $clientFeedback->content }}
                                         </td>
-                                        <td class="project-state">
-                                            @if($clientFeedback->status == 1)
-                                                <span class="badge badge-success">Hiển thị</span>
-                                            @else
-                                                <span class="badge badge-warning">Ẩn</span>
-                                            @endif
-                                        </td>
                                         <td class="project-actions text-right">
+
+                                            @if($clientFeedback->status == 1)
+                                                <a class="btn btn-success btn-sm d-inline-block m-1"
+                                                   href=""
+                                                >
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            @else
+                                                <a class="btn btn-warning btn-sm d-inline-block m-1"
+                                                   href=""
+                                                >
+                                                    <i class="fas fa-eye-slash"></i>
+                                                </a>
+                                            @endif
+
                                             <a class="btn btn-info btn-sm d-inline-block m-1"
                                                href="{{ route('AdminClientFeedback.edit', [$clientFeedback]) }}"
                                             >
