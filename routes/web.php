@@ -63,5 +63,6 @@ Route::get('/admin/users/show/{user}', 'AdminUserController@show')->name('AdminU
 Route::get('/admin/users/create', 'AdminUserController@create')->name('AdminUser.create');
 Route::post('/admin/users/store', 'AdminUserController@store')->name('AdminUser.store');
 Route::get('/admin/users/edit/{user}', 'AdminUserController@edit')->name('AdminUser.edit');
+Route::post('/admin/users/update/{user}', 'AdminUserController@update')->name('AdminUser.update');
 Route::get('/admin/users/delete/{user}', 'AdminUserController@delete')->name('AdminUser.delete');
 

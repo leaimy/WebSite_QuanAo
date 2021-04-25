@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use function PHPUnit\Framework\isNull;
 
 class AdminUserController extends Controller
 {
@@ -63,7 +64,37 @@ class AdminUserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        $username = $request->get('username');
+        $email = $request->get('email');
+        $first_name = $request->get('first_name');
+        $last_name = $request->get('last_name');
 
+        $update_array = [
+            'username' => $username,
+            'email' => $email,
+            'first_name' => $first_name,
+            'last_name' => $last_name
+        ];
+
+        if ($request->has('password')) {
+            $password = $request->get('password');
+
+            if ($password != null)
+                $update_array['password'] = $password;
+        }
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $avatar_name = $avatar->getClientOriginalName();
+            $avatar_path = $this->SaveFile($avatar, 'avatar_', 'avatars');
+
+            $update_array['avatar_name'] = $avatar_name;
+            $update_array['avatar_path'] = $avatar_path;
+        }
+
+        $user->update($update_array);
+
+        return redirect()->route('AdminUser.index');
     }
 
     public function delete(User $user)
