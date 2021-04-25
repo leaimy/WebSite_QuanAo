@@ -56,3 +56,6 @@ Route::get('/admin/client-feedbacks/delete/{feedback}', 'AdminClientFeedbackCont
 
 Route::get('admin/client-feedbacks/status/enable/{feedback}', 'AdminClientFeedbackController@setVisible')->name('AdminClientFeedback.setVisible');
 Route::get('admin/client-feedbacks/status/disable/{feedback}', 'AdminClientFeedbackController@setHidden')->name('AdminClientFeedback.setHidden');
+
+// User
+Route::get('/admin/users', );
