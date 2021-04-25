@@ -11,7 +11,7 @@ class AdminClientFeedBackController extends Controller
 {
     public function index()
     {
-        $clientFeebacks = ClientFeedBack::all();
+        $clientFeebacks = ClientFeedBack::paginate(10);
 
         return view('Backend.ClientFeedback.index', [
             'clientFeedbacks' => $clientFeebacks

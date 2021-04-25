@@ -148,6 +148,12 @@
                             </table>
                         </div>
                         <!-- /.card-body -->
+
+                        @if($clientFeedbacks->lastPage() > 1)
+                            <div class="card-footer">
+                                {{ $clientFeedbacks->links() }}
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
