@@ -53,3 +53,6 @@ Route::post('/admin/client-feedbacks/store', 'AdminClientFeedbackController@stor
 Route::get('/admin/client-feedbacks/edit/{feedback}', 'AdminClientFeedbackController@edit')->name('AdminClientFeedback.edit');
 Route::post('/admin/client-feedbacks/update/{feedback}', 'AdminClientFeedbackController@update')->name('AdminClientFeedback.update');
 Route::get('/admin/client-feedbacks/delete/{feedback}', 'AdminClientFeedbackController@delete')->name('AdminClientFeedback.delete');
+
+Route::get('admin/client-feedbacks/status/enable/{feedback}', 'AdminClientFeedbackController@setVisible')->name('AdminClientFeedback.setVisible');
+Route::get('admin/client-feedbacks/status/disable/{feedback}', 'AdminClientFeedbackController@setHidden')->name('AdminClientFeedback.setHidden');
