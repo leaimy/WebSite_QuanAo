@@ -1381,6 +1381,31 @@
         <!--====== Primary Slider ======-->
         <div class="s-skeleton s-skeleton--h-600 s-skeleton--bg-grey">
             <div class="owl-carousel primary-style-1" id="hero-slider">
+                @foreach($sliders as $index=>$slider)
+                    <div style="background-image: url({{ asset($slider->image_path) }});" class="hero-slide hero-slide--{{ $index+1 }}">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="slider-content slider-content--animation">
+
+                                        <span class="content-span-1 u-c-secondary">{{ $slider->title }}</span>
+
+                                        <span class="content-span-2 u-c-secondary">30% Off On Electronics</span>
+
+                                        <span class="content-span-3 u-c-secondary">{{ $slider->content }}</span>
+
+                                        <span class="content-span-4 u-c-secondary">Starting At
+
+                                            <span class="u-c-brand">$1050.00</span></span>
+
+                                        <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+                <!--
                 <div class="hero-slide hero-slide--1">
                     <div class="container">
                         <div class="row">
@@ -1444,6 +1469,8 @@
                         </div>
                     </div>
                 </div>
+                -->
+
             </div>
         </div>
         <!--====== End - Primary Slider ======-->

@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-class AdminSliderController extends Controller
-{
+class AdminSliderController extends Controller {
+
+    public function index()
+    {
+        $sliders = Slider::all();
+
+        return view('Backend.slider.index', [
+            'sliders' => $sliders
+        ]);
+    }
+
     public function create()
     {
         return view('Backend.slider.create');
@@ -13,12 +24,68 @@ class AdminSliderController extends Controller
 
     public function store(Request $request)
     {
-        $image = $request->file('file');
+        $image = $request->file('image');
         $imageName = $image->getClientOriginalName();
-        $imagePath = 'sliders/' . \Hash::make(time()) .'.'. $image->extension();
+        $imagePath = 'slider_' . Str::random(11) . time() . '.' . $image->extension();
 
         $image->move(public_path('sliders'), $imagePath);
+
+        $imageFullPath = 'sliders/' . $imagePath;
+
+        Slider::create([
+            'title' => $request['title'],
+            'content' => $request['content'],
+            'status' => $request['status'],
+            'image_name' => $imageName,
+            'image_path' => $imageFullPath
+        ]);
+
+        return redirect()->route('AdminSlider.index');
     }
 
+    public function edit(Slider $slider)
+    {
+        return view('Backend.Slider.edit', [
+            'slider' => $slider
+        ]);
+    }
+
+    public function update(Request $request, Slider $slider)
+    {
+        if ($request->hasFile('image'))
+        {
+            $image = $request->file('image');
+            $imageName = $image->getClientOriginalName();
+            $imagePath = 'slider_' . Str::random(11) . time() . '.' . $image->extension();
+
+            $image->move(public_path('sliders'), $imagePath);
+
+            $imageFullPath = 'sliders/' . $imagePath;
+
+            $slider->update([
+                'title' => $request['title'],
+                'content' => $request['content'],
+                'status' => $request['status'],
+                'image_name' => $imageName,
+                'image_path' => $imageFullPath
+            ]);
+        } else
+        {
+            $slider->update([
+                'title' => $request['title'],
+                'content' => $request['content'],
+                'status' => $request['status'],
+            ]);
+        }
+
+        return redirect()->route('AdminSlider.index');
+    }
+
+    public function delete(Slider $slider)
+    {
+        $slider->delete();
+
+        return redirect()->route('AdminSlider.index');
+    }
 
 }
