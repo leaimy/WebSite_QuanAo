@@ -45,6 +45,6 @@ Route::get('/admin/sliders/delete/{slider}', 'AdminSliderController@delete')->na
 Route::get('/admin/client-feedbacks', 'AdminClientFeedbackController@index')->name('AdminClientFeedback.index');
 Route::get('/admin/client-feedbacks/create', 'AdminClientFeedbackController@create')->name('AdminClientFeedback.create');
 Route::post('/admin/client-feedbacks/store', 'AdminClientFeedbackController@store')->name('AdminClientFeedback.store');
-Route::get('/admin/client-feedbacks/edit/{clientfeedback}', 'AdminClientFeedbackController@edit')->name('AdminClientFeedback.edit');
-Route::post('/admin/client-feedbacks/update/{clientfeedback}', 'AdminClientFeedbackController@update')->name('AdminClientFeedback.update');
-Route::delete('/admin/client-feedbacks/delete/{clientfeedback}', 'AdminClientFeedbackController@delete')->name('AdminClientFeedback.delete');
+Route::get('/admin/client-feedbacks/edit/{feedback}', 'AdminClientFeedbackController@edit')->name('AdminClientFeedback.edit');
+Route::post('/admin/client-feedbacks/update/{feedback}', 'AdminClientFeedbackController@update')->name('AdminClientFeedback.update');
+Route::delete('/admin/client-feedbacks/delete/{feedback}', 'AdminClientFeedbackController@delete')->name('AdminClientFeedback.delete');

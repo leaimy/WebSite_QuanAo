@@ -27,18 +27,14 @@ class AdminClientFeedBackController extends Controller
     {
         $image = $request->file('image');
         $imageName = $image->getClientOriginalName();
-        $imagePath = 'clientfeedback_' . Str::random(11) . time() . '.' . $image->extension();
-
-        $image->move(public_path('client-feedbacks'), $imagePath);
-
-        $imageFullPath = 'client-feedbacks/' . $imagePath;
+        $imagePath = $this->SaveFile($image, 'clientfeedback_', 'client-feedbacks');
 
         ClientFeedBack::create([
             'author_info' => $request['author_info'],
             'content' => $request['content'],
             'status' => $request['status'],
             'image_name' => $imageName,
-            'image_path' => $imageFullPath
+            'image_path' => $imagePath
         ]);
 
         return redirect()->route('AdminClientFeedback.index');
@@ -46,12 +42,35 @@ class AdminClientFeedBackController extends Controller
 
     public function edit(ClientFeedBack $clientFeedBack)
     {
-
+        return view('Backend.ClientFeedback.edit', [
+            'feedback' => $clientFeedBack
+        ]);
     }
 
     public function update(Request $request, ClientFeedBack $clientFeedBack)
     {
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = $image->getClientOriginalName();
+            $imagePath = $this->SaveFile($image, 'clientfeedback_', 'client-feedbacks');
 
+            $clientFeedBack->update([
+                'author_info' => $request['author_info'],
+                'content' => $request['content'],
+                'status' => $request['status'],
+                'image_name' => $imageName,
+                'image_path' => $imagePath
+            ]);
+        }
+        else {
+            $clientFeedBack->update([
+                'author_info' => $request['author_info'],
+                'content' => $request['content'],
+                'status' => $request['status'],
+            ]);
+        }
+
+        return redirect()->route('AdminClientFeedback.index');
     }
 
     public function delete(ClientFeedBack $clientFeedBack)
@@ -59,4 +78,13 @@ class AdminClientFeedBackController extends Controller
 
     }
 
+    public function SaveFile($file, $prefix, $folder)
+    {
+        $filename = $file->getClientOriginalName();
+        $filepath = $prefix . Str::random(11) . time() . '.' . $file->extension();
+
+        $file->move(public_path($folder), $filepath);
+
+        return $folder . '/' . $filepath;
+    }
 }

@@ -75,12 +75,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Quản lý slider</h1>
+                        <h1 class="m-0">Quản lý phản hồi từ khách hàng</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Quản lý slider</li>
+                            <li class="breadcrumb-item active">Quản lý phản hồi từ khách hàng</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -95,11 +95,13 @@
                     <div class="col-md-8">
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Nhập thông tin phản hồi</h3>
+                                <h3 class="card-title">Chỉnh sửa thông tin phản hồi</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('AdminClientFeedback.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('AdminClientFeedback.update', [$feedback]) }}"
+                                  method="post"
+                                  enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
@@ -108,6 +110,7 @@
                                                name="author_info"
                                                class="form-control"
                                                id="author_info"
+                                               value="{{ $feedback->author_info }}"
                                                placeholder="Nhập thông tin tác giả">
                                     </div>
                                     <div class="form-group">
@@ -116,17 +119,33 @@
                                                   id="content"
                                                   class="form-control"
                                                   placeholder="Nhập nội dung phản hồi"
-                                                  rows="15"></textarea>
+                                                  rows="15">{{ $feedback->content }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="status">Trạng thái hiển thị</label>
                                         <div class="custom-control custom-radio">
-                                            <input checked class="custom-control-input custom-control-input-danger custom-control-input-outline" type="radio" id="status-show" value="1" name="status">
-                                            <label for="status-show" class="custom-control-label">Hiển thị</label>
+                                            <input
+                                                @if($feedback->status == 1) checked
+                                                @endif
+                                                class="custom-control-input custom-control-input-danger custom-control-input-outline"
+                                                type="radio"
+                                                id="status-show"
+                                                value="1"
+                                                name="status">
+                                            <label for="status-show"
+                                                   class="custom-control-label">Hiển thị</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input class="custom-control-input custom-control-input-danger custom-control-input-outline" type="radio" id="status-hidden" name="status" value="0">
-                                            <label for="status-hidden" class="custom-control-label">Ẩn</label>
+                                            <input
+                                                @if($feedback->status == 0) checked
+                                                @endif
+                                                class="custom-control-input custom-control-input-danger custom-control-input-outline"
+                                                type="radio"
+                                                id="status-hidden"
+                                                name="status"
+                                                value="0">
+                                            <label for="status-hidden"
+                                                   class="custom-control-label">Ẩn</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -140,22 +159,24 @@
                                                        id="image_input">
                                                 <label class="custom-file-label"
                                                        id="image_label"
-                                                       for="image_input">Chọn ảnh</label>
+                                                       for="image_input">
+                                                    {{ $feedback->image_name }}
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <img src=""
+                                    <img src="{{ asset($feedback->image_path) }}"
                                          id="image_viewer"
                                          alt=""
-                                         hidden
+                                         width="165"
                                     >
                                 </div>
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
                                     <button type="submit"
-                                            class="btn btn-primary">Thêm
+                                            class="btn btn-primary">Cập nhật
                                     </button>
                                 </div>
                             </form>
