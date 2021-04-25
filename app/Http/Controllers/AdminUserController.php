@@ -99,7 +99,8 @@ class AdminUserController extends Controller
 
     public function delete(User $user)
     {
-
+        $user->delete();
+        return redirect()->route('AdminUser.index');
     }
 
     public function SaveFile($file, $prefix, $folder)
