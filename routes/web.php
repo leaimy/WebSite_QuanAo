@@ -56,3 +56,13 @@ Route::get('/admin/client-feedbacks/delete/{feedback}', 'AdminClientFeedbackCont
 
 Route::get('admin/client-feedbacks/status/enable/{feedback}', 'AdminClientFeedbackController@setVisible')->name('AdminClientFeedback.setVisible');
 Route::get('admin/client-feedbacks/status/disable/{feedback}', 'AdminClientFeedbackController@setHidden')->name('AdminClientFeedback.setHidden');
+
+// User
+Route::get('/admin/users', 'AdminUserController@index')->name('AdminUser.index');
+Route::get('/admin/users/show/{user}', 'AdminUserController@show')->name('AdminUser.show');
+Route::get('/admin/users/create', 'AdminUserController@create')->name('AdminUser.create');
+Route::post('/admin/users/store', 'AdminUserController@store')->name('AdminUser.store');
+Route::get('/admin/users/edit/{user}', 'AdminUserController@edit')->name('AdminUser.edit');
+Route::post('/admin/users/update/{user}', 'AdminUserController@update')->name('AdminUser.update');
+Route::get('/admin/users/delete/{user}', 'AdminUserController@delete')->name('AdminUser.delete');
+
