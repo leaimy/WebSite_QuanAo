@@ -89,4 +89,17 @@ class AdminClientFeedBackController extends Controller
 
         return $folder . '/' . $filepath;
     }
+
+    public function setVisible(ClientFeedBack $clientFeedBack)
+    {
+        $clientFeedBack->setStatusVisible();
+        return redirect()->route('AdminClientFeedback.index');
+    }
+
+    public function setHidden(ClientFeedBack $clientFeedBack)
+    {
+        $clientFeedBack->setStatusHidden();
+        return redirect()->route('AdminClientFeedback.index');
+    }
+
 }

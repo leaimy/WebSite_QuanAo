@@ -117,13 +117,13 @@
 
                                             @if($clientFeedback->status == 1)
                                                 <a class="btn btn-success btn-sm d-inline-block m-1"
-                                                   href=""
+                                                   href="{{ route('AdminClientFeedback.setHidden', [$clientFeedback]) }}"
                                                 >
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                             @else
                                                 <a class="btn btn-warning btn-sm d-inline-block m-1"
-                                                   href=""
+                                                   href="{{ route('AdminClientFeedback.setVisible', [$clientFeedback]) }}"
                                                 >
                                                     <i class="fas fa-eye-slash"></i>
                                                 </a>
