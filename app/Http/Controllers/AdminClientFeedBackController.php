@@ -75,7 +75,9 @@ class AdminClientFeedBackController extends Controller
 
     public function delete(ClientFeedBack $clientFeedBack)
     {
+        $clientFeedBack->delete();
 
+        return redirect()->route('AdminClientFeedback.index');
     }
 
     public function SaveFile($file, $prefix, $folder)
