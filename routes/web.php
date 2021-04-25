@@ -40,3 +40,6 @@ Route::post('/admin/sliders/store', 'AdminSliderController@store')->name('AdminS
 Route::get('/admin/sliders/edit/{slider}', 'AdminSliderController@edit')->name('AdminSlider.edit');
 Route::post('/admin/sliders/update/{slider}', 'AdminSliderController@update')->name('AdminSlider.update');
 Route::get('/admin/sliders/delete/{slider}', 'AdminSliderController@delete')->name('AdminSlider.delete');
+
+Route::get('admin/sliders/status/enable/{slider}', 'AdminSliderController@setVisible')->name('AdminSlider.setVisible');
+Route::get('admin/sliders/status/disable/{slider}', 'AdminSliderController@setHidden')->name('AdminSlider.setHidden');

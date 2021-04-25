@@ -88,4 +88,16 @@ class AdminSliderController extends Controller {
         return redirect()->route('AdminSlider.index');
     }
 
+    public function setVisible(Slider $slider)
+    {
+        $slider->setStatusVisible();
+        return redirect()->route('AdminSlider.index');
+    }
+
+    public function setHidden(Slider $slider)
+    {
+        $slider->setStatusHidden();
+        return redirect()->route('AdminSlider.index');
+    }
 }
+

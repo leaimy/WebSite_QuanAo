@@ -115,13 +115,15 @@
                                         </td>
                                         <td class="project-actions text-right">
                                             @if($slider->status == 1)
-                                                <i class="btn btn-success btn-sm d-inline-block m-1">
+                                                <a href="{{ route('AdminSlider.setHidden', [$slider])}}"
+                                                    class="btn btn-success btn-sm d-inline-block m-1">
                                                     <i class="fas fa-eye"></i>
-                                                </i>
+                                                </a>
                                             @else
-                                                <i class="btn btn-warning btn-sm d-inline-block m-1">
+                                                <a href="{{ route('AdminSlider.setVisible', [$slider]) }}"
+                                                    class="btn btn-warning btn-sm d-inline-block m-1">
                                                     <i class="fas fa-eye-slash"></i>
-                                                </i>
+                                                </a>
                                             @endif
 
                                             <a class="btn btn-info btn-sm d-inline-block m-1"
