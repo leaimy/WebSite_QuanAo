@@ -64,17 +64,22 @@ class AdminUserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $username = $request->get('username');
         $email = $request->get('email');
         $first_name = $request->get('first_name');
         $last_name = $request->get('last_name');
 
         $update_array = [
-            'username' => $username,
             'email' => $email,
             'first_name' => $first_name,
             'last_name' => $last_name
         ];
+
+        if ($request->has('username')) {
+            $username = $request->get('username');
+
+            if ($username != null)
+                $update_array['username'] = $username;
+        }
 
         if ($request->has('password')) {
             $password = $request->get('password');
