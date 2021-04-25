@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $sliders = \App\Slider::where('status', 1)->get();
+    $feedbacks = \App\ClientFeedBack::where('status', 1)->get();
 
     return view('Frontend.Home.index', [
-        'sliders' => $sliders
+        'sliders' => $sliders,
+        'feedbacks' => $feedbacks
     ]);
 });
 
