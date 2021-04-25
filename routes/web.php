@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $sliders = \App\Slider::where('status', 1)->get();
+    $feedbacks = \App\ClientFeedBack::where('status', 1)->get();
 
     return view('Frontend.Home.index', [
-        'sliders' => $sliders
+        'sliders' => $sliders,
+        'feedbacks' => $feedbacks
     ]);
 });
 
@@ -43,3 +45,11 @@ Route::get('/admin/sliders/delete/{slider}', 'AdminSliderController@delete')->na
 
 Route::get('admin/sliders/status/enable/{slider}', 'AdminSliderController@setVisible')->name('AdminSlider.setVisible');
 Route::get('admin/sliders/status/disable/{slider}', 'AdminSliderController@setHidden')->name('AdminSlider.setHidden');
+
+// Client Feeback
+Route::get('/admin/client-feedbacks', 'AdminClientFeedbackController@index')->name('AdminClientFeedback.index');
+Route::get('/admin/client-feedbacks/create', 'AdminClientFeedbackController@create')->name('AdminClientFeedback.create');
+Route::post('/admin/client-feedbacks/store', 'AdminClientFeedbackController@store')->name('AdminClientFeedback.store');
+Route::get('/admin/client-feedbacks/edit/{feedback}', 'AdminClientFeedbackController@edit')->name('AdminClientFeedback.edit');
+Route::post('/admin/client-feedbacks/update/{feedback}', 'AdminClientFeedbackController@update')->name('AdminClientFeedback.update');
+Route::get('/admin/client-feedbacks/delete/{feedback}', 'AdminClientFeedbackController@delete')->name('AdminClientFeedback.delete');

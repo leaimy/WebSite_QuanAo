@@ -3164,9 +3164,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="section__text-wrap">
-                                <h1 class="section__heading u-c-secondary u-s-m-b-12">CLIENTS FEEDBACK</h1>
-
-                                <span class="section__span u-c-silver">WHAT OUR CLIENTS SAY</span>
+                                <h1 class="section__heading u-c-secondary u-s-m-b-12">KHÁCH HÀNG CỦA CHÚNG TÔI</h1>
+                                <span class="section__span u-c-silver">NHỮNG ĐIỀU KHÁCH HÀNG NHẬN XÉT VỀ CHÚNG TÔI</span>
                             </div>
                         </div>
                     </div>
@@ -3182,62 +3181,22 @@
                     <!--====== Testimonial Slider ======-->
                     <div class="slider-fouc">
                         <div class="owl-carousel" id="testimonial-slider">
-                            <div class="testimonial">
-                                <div class="testimonial__img-wrap">
+                            @foreach($feedbacks as $feedback)
+                                <div class="testimonial">
+                                    <div class="testimonial__img-wrap">
 
-                                    <img class="testimonial__img" src="{{ asset('frontend/images/about/test-1.jpg') }}" alt=""></div>
-                                <div class="testimonial__content-wrap">
+                                        <img class="testimonial__img" src="{{ asset($feedback->image_path) }}" alt=""></div>
+                                    <div class="testimonial__content-wrap">
 
-                                    <span class="testimonial__double-quote"><i class="fas fa-quote-right"></i></span>
-                                    <blockquote class="testimonial__block-quote">
-                                        <p>"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."</p>
-                                    </blockquote>
+                                        <span class="testimonial__double-quote"><i class="fas fa-quote-right"></i></span>
+                                        <blockquote class="testimonial__block-quote">
+                                            <p>"{{ $feedback->content }}"</p>
+                                        </blockquote>
 
-                                    <span class="testimonial__author">John D. / DVNTR Inc.</span>
+                                        <span class="testimonial__author">{{ $feedback->author_info }}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="testimonial">
-                                <div class="testimonial__img-wrap">
-
-                                    <img class="testimonial__img" src="{{ asset('frontend/images/about/test-2.jpg') }}" alt=""></div>
-                                <div class="testimonial__content-wrap">
-
-                                    <span class="testimonial__double-quote"><i class="fas fa-quote-right"></i></span>
-                                    <blockquote class="testimonial__block-quote">
-                                        <p>"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."</p>
-                                    </blockquote>
-
-                                    <span class="testimonial__author">John D. / DVNTR Inc.</span>
-                                </div>
-                            </div>
-                            <div class="testimonial">
-                                <div class="testimonial__img-wrap">
-
-                                    <img class="testimonial__img" src="{{ asset('frontend/images/about/test-3.jpg') }}" alt=""></div>
-                                <div class="testimonial__content-wrap">
-
-                                    <span class="testimonial__double-quote"><i class="fas fa-quote-right"></i></span>
-                                    <blockquote class="testimonial__block-quote">
-                                        <p>"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."</p>
-                                    </blockquote>
-
-                                    <span class="testimonial__author">John D. / DVNTR Inc.</span>
-                                </div>
-                            </div>
-                            <div class="testimonial">
-                                <div class="testimonial__img-wrap">
-
-                                    <img class="testimonial__img" src="{{ asset('frontend/images/about/test-4.jpg') }}" alt=""></div>
-                                <div class="testimonial__content-wrap">
-
-                                    <span class="testimonial__double-quote"><i class="fas fa-quote-right"></i></span>
-                                    <blockquote class="testimonial__block-quote">
-                                        <p>"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."</p>
-                                    </blockquote>
-
-                                    <span class="testimonial__author">John D. / DVNTR Inc.</span>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <!--====== End - Testimonial Slider ======-->
