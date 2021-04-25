@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdminUserController extends Controller
 {
@@ -30,7 +31,27 @@ class AdminUserController extends Controller
 
     public function store(Request $request)
     {
+        $avatar = $request->file('avatar');
+        $avatar_name = $avatar->getClientOriginalName();
+        $avatar_path = $this->SaveFile($avatar, 'avatar_', 'avatars');
 
+        $username = $request->get('username');
+        $password = $request->get('password');
+        $email = $request->get('email');
+        $first_name = $request->get('first_name');
+        $last_name = $request->get('last_name');
+
+        User::create([
+            'username' => $username,
+            'password' => \Hash::make($password),
+            'email' => $email,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'avatar_name' => $avatar_name,
+            'avatar_path' => $avatar_path
+        ]);
+
+        return redirect()->route('AdminUser.index');
     }
 
     public function edit(User $user)
@@ -48,5 +69,15 @@ class AdminUserController extends Controller
     public function delete(User $user)
     {
 
+    }
+
+    public function SaveFile($file, $prefix, $folder)
+    {
+        $filename = $file->getClientOriginalName();
+        $filepath = $prefix . Str::random(11) . time() . '.' . $file->extension();
+
+        $file->move(public_path($folder), $filepath);
+
+        return $folder . '/' . $filepath;
     }
 }
