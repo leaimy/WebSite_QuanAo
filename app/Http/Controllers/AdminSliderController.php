@@ -10,7 +10,7 @@ class AdminSliderController extends Controller {
 
     public function index()
     {
-        $sliders = Slider::all();
+        $sliders = Slider::paginate(10);
 
         return view('Backend.slider.index', [
             'sliders' => $sliders
@@ -88,4 +88,16 @@ class AdminSliderController extends Controller {
         return redirect()->route('AdminSlider.index');
     }
 
+    public function setVisible(Slider $slider)
+    {
+        $slider->setStatusVisible();
+        return redirect()->route('AdminSlider.index');
+    }
+
+    public function setHidden(Slider $slider)
+    {
+        $slider->setStatusHidden();
+        return redirect()->route('AdminSlider.index');
+    }
 }
+

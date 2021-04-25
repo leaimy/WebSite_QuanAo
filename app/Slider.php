@@ -17,4 +17,18 @@ class Slider extends Model
         'image_path',
         'status'
     ];
+
+    public function setStatusVisible()
+    {
+        $this->update([
+            'status' => 1
+        ]);
+    }
+
+    public function setStatusHidden()
+    {
+        $this->update([
+            'status' => 0
+        ]);
+    }
 }

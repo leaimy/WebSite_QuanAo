@@ -76,7 +76,7 @@
                                     <th style="width: 1%">
                                         #
                                     </th>
-                                    <th style="width: 20%">
+                                    <th style="width: 30%">
                                         Tiêu đề
                                     </th>
                                     <th style="width: 40%">
@@ -85,10 +85,7 @@
                                     <th style="width: 10%">
                                         Hình ảnh
                                     </th>
-                                    <th style="width: 14%" class="text-center">
-                                        Trạng thái
-                                    </th>
-                                    <th style="width: 15%">
+                                    <th style="width: 20%">
                                     </th>
                                 </tr>
                                 </thead>
@@ -116,14 +113,19 @@
                                                  width="200"
                                             >
                                         </td>
-                                        <td class="project-state">
-                                            @if($slider->status == 1)
-                                                <span class="badge badge-success">Hiển thị</span>
-                                            @else
-                                                <span class="badge badge-warning">Ẩn</span>
-                                            @endif
-                                        </td>
                                         <td class="project-actions text-right">
+                                            @if($slider->status == 1)
+                                                <a href="{{ route('AdminSlider.setHidden', [$slider])}}"
+                                                    class="btn btn-success btn-sm d-inline-block m-1">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            @else
+                                                <a href="{{ route('AdminSlider.setVisible', [$slider]) }}"
+                                                    class="btn btn-warning btn-sm d-inline-block m-1">
+                                                    <i class="fas fa-eye-slash"></i>
+                                                </a>
+                                            @endif
+
                                             <a class="btn btn-info btn-sm d-inline-block m-1"
                                                href="{{ route('AdminSlider.edit', [$slider]) }}"
                                             >
@@ -143,6 +145,11 @@
                             </table>
                         </div>
                         <!-- /.card-body -->
+                        @if ($sliders->lastPage() > 1)
+                            <div class="card-footer">
+                                {{ $sliders->links() }}
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
