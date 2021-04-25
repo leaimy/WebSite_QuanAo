@@ -145,6 +145,11 @@
                             </table>
                         </div>
                         <!-- /.card-body -->
+                        @if ($sliders->lastPage() > 1)
+                            <div class="card-footer">
+                                {{ $sliders->links() }}
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

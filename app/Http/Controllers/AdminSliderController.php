@@ -10,7 +10,7 @@ class AdminSliderController extends Controller {
 
     public function index()
     {
-        $sliders = Slider::all();
+        $sliders = Slider::paginate(10);
 
         return view('Backend.slider.index', [
             'sliders' => $sliders
