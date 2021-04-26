@@ -44,8 +44,11 @@
                             <th style="width: 15%">
                                 Ảnh đại diện
                             </th>
-                            <th style="width: 40%">
+                            <th style="width: 30%">
                                 Nội dung
+                            </th>
+                            <th style="width: 10%">
+                                Trạng thái
                             </th>
                             <th style="width: 20%">
                             </th>
@@ -75,33 +78,35 @@
                                 <td>
                                     {{ $clientFeedback->content }}
                                 </td>
-                                <td class="project-actions text-right">
-
+                                <td class="text-center">
                                     @if($clientFeedback->status == 1)
-                                        <a class="btn btn-success btn-sm d-inline-block m-1"
+                                        <a class="btn badge-btn badge-success"
                                            href="{{ route('AdminClientFeedback.setHidden', [$clientFeedback]) }}"
                                         >
-                                            <i class="fas fa-eye"></i>
+                                            Hiển thị
                                         </a>
                                     @else
-                                        <a class="btn btn-warning btn-sm d-inline-block m-1"
+                                        <a class="btn badge-btn badge-warning"
                                            href="{{ route('AdminClientFeedback.setVisible', [$clientFeedback]) }}"
                                         >
-                                            <i class="fas fa-eye-slash"></i>
+                                            Ẩn
                                         </a>
                                     @endif
-
+                                </td>
+                                <td class="project-actions text-center">
                                     <a class="btn btn-info btn-sm d-inline-block m-1"
                                        href="{{ route('AdminClientFeedback.edit', [$clientFeedback]) }}"
                                     >
                                         <i class="fas fa-pencil-alt">
                                         </i>
+                                        Sửa
                                     </a>
                                     <a class="btn btn-danger btn-sm d-inline-block m-1"
                                        href="{{ route('AdminClientFeedback.delete', [$clientFeedback]) }}"
                                     >
                                         <i class="fas fa-trash">
                                         </i>
+                                        Xóa
                                     </a>
                                 </td>
                             </tr>
