@@ -1,7 +1,7 @@
 @extends('Backend.app')
 
 @section('content-header')
-    Quản lý nhóm sản phẩm
+    Quản lý nhóm sản phẩm ❄
 @endsection
 
 @section('style')
