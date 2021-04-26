@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
 use App\ProductImage;
 use Illuminate\Http\Request;
@@ -10,11 +11,14 @@ use Illuminate\Support\Str;
 class AdminProductController extends Controller
 {
    public function index(){
-       return view('Backend.Product.index');
+       $products = Product::all();
+
+       return view('Backend.Product.index',['products'=>$products]);
    }
 
    public function create(){
-       return view('Backend.Product.create');
+       $categories = Category::where('parent_id','!=',0)->get();
+       return view('Backend.Product.create',['categories'=>$categories]);
    }
 
    public function store(Request $request){
@@ -57,7 +61,7 @@ class AdminProductController extends Controller
                'path'=>$file_anh_chi_tiet_path
            ]);
        }
-
+return redirect()->route('AdminProduct.index');
    }
 
    public  function edit(){

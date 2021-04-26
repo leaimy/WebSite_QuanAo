@@ -73,8 +73,9 @@
                                         <label for="exampleSelectRounded0">Nhóm sản phẩm</label>
                                         <select name="category_id" class="custom-select rounded-0"
                                                 id="exampleSelectRounded0">
-                                            <option value="0">Chọn nhóm cha</option>
-
+                                            @foreach($categories as $item)
+                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 

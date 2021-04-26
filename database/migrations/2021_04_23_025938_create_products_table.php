@@ -24,8 +24,8 @@ class CreateProductsTable extends Migration
             $table->integer('sale_price');
             $table->string('preview_image_name');
             $table->string('preview_image_path');
-            $table->integer('views');
-            $table->integer('available_stock');
+            $table->integer('views')->default(0);
+            $table->integer('available_stock')->default(0);
             $table->timestamps();
         });
     }
