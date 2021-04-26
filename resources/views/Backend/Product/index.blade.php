@@ -50,7 +50,7 @@
 @section('content-body')
     <div class="row">
         <div class="col-12 mb-2">
-            <a href="{{ route('AdminCategory.create') }}"
+            <a href="{{ route('AdminProduct.create') }}"
                class="float-right btn btn-primary">Thêm sản phẩm mới</a>
         </div>
         <div class="col-12">
@@ -65,7 +65,7 @@
                         <tr>
                             <th width="3%">Mã SKU</th>
                             <th>Tên sản phẩm</th>
-                            <th>Nhóm</th>
+                            <th>Nhóm </th>
                             <th>Giá bán</th>
                             <th >Giá nhập</th>
                             <th >Số lượng </th>
