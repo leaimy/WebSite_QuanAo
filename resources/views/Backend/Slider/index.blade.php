@@ -31,15 +31,16 @@
                             <th style="width: 1%">
                                 #
                             </th>
-                            <th style="width: 30%">
+                            <th style="width: 25%">
                                 Tiêu đề
                             </th>
-                            <th style="width: 40%">
+                            <th style="width: 35%">
                                 Nội dung
                             </th>
                             <th style="width: 10%">
                                 Hình ảnh
                             </th>
+                            <th style="width: 10%">Trạng thái</th>
                             <th style="width: 20%">
                             </th>
                         </tr>
@@ -68,31 +69,36 @@
                                          width="200"
                                     >
                                 </td>
-                                <td class="project-actions text-right">
+                                <td class="text-center">
                                     @if($slider->status == 1)
                                         <a href="{{ route('AdminSlider.setHidden', [$slider])}}"
-                                           class="btn btn-success btn-sm d-inline-block m-1">
-                                            <i class="fas fa-eye"></i>
+                                           class="btn badge-btn badge-success m-0">
+                                            Hiển thị
                                         </a>
                                     @else
                                         <a href="{{ route('AdminSlider.setVisible', [$slider]) }}"
-                                           class="btn btn-warning btn-sm d-inline-block m-1">
-                                            <i class="fas fa-eye-slash"></i>
+                                           class="btn badge-btn badge-warning m-0">
+                                            Ẩn
                                         </a>
                                     @endif
-
-                                    <a class="btn btn-info btn-sm d-inline-block m-1"
-                                       href="{{ route('AdminSlider.edit', [$slider]) }}"
-                                    >
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                    </a>
-                                    <a class="btn btn-danger btn-sm d-inline-block m-1"
-                                       href="{{ route('AdminSlider.delete', [$slider]) }}"
-                                    >
-                                        <i class="fas fa-trash">
-                                        </i>
-                                    </a>
+                                </td>
+                                <td class="project-actions text-right">
+                                    <div>
+                                        <a class="btn btn-info btn-sm d-inline-block m-1"
+                                           href="{{ route('AdminSlider.edit', [$slider]) }}"
+                                        >
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Sửa
+                                        </a>
+                                        <a class="btn btn-danger btn-sm d-inline-block m-1"
+                                           href="{{ route('AdminSlider.delete', [$slider]) }}"
+                                        >
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Xóa
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
