@@ -104,13 +104,13 @@
                                         Xem chi tiết
                                     </a>
                                     <a class="btn btn-info btn-sm m-1"
-                                       href="">
+                                       href="{{route('AdminProduct.edit',['id'=>$item->id])}}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Sửa
                                     </a>
                                     <a class="btn btn-danger btn-sm m-1"
-                                       href="">
+                                       href="{{route('AdminProduct.delete',['id'=>$item->id])}}">
                                         <i class="fas fa-trash">
                                         </i>
                                         Xóa
