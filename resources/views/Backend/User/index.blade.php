@@ -22,40 +22,47 @@
                         <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Tên đăng nhập</th>
                             <th>Tên đầy đủ</th>
+                            <th>Email</th>
                             <th>Avatar</th>
                             <th>Vai trò</th>
-                            <th style="width: 15%"></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
 
                         @foreach($users as $user)
                             <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->getFullName() }}</td>
-                                <td>
+                                <td class="text-center align-middle">{{ $user->id }}</td>
+                                <td class="align-middle">{{ $user->username }}</td>
+                                <td class="align-middle">{{ $user->getFullName() }}</td>
+                                <td class="align-middle">{{ $user->email }}</td>
+                                <td class="text-center align-middle">
                                     <img src="{{ asset($user->avatar_path) }}"
                                          alt=""
-                                         width="30"
+                                         width="70"
                                     >
                                 </td>
-                                <td>Admin</td>
-                                <td>
-                                    <a class="m-1 btn btn-warning btn-sm"
-                                       href="{{ route('AdminUser.show', [$user]) }}">
-                                        <i class="fas fa-info-circle">
-                                        </i>
-                                    </a>
+                                <td class="text-center align-middle">Admin</td>
+                                <td class="text-right align-middle">
                                     <a class="m-1 btn btn-info btn-sm"
+                                       href="{{ route('AdminUser.show', [$user]) }}">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        Xem chi tiết
+                                    </a>
+                                    <a class="m-1 btn btn-success btn-sm"
                                        href="{{ route('AdminUser.edit', [$user]) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
+                                        Sửa
                                     </a>
                                     <a class="m-1 btn btn-danger btn-sm"
                                        href="{{ route('AdminUser.delete', [$user]) }}">
                                         <i class="fas fa-trash">
                                         </i>
+                                        Xóa
                                     </a>
                                 </td>
                             </tr>
