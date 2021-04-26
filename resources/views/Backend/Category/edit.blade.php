@@ -9,7 +9,7 @@
         <div class="col-md-8">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Thêm nhóm sản phẩm</h3>
+                    <h3 class="card-title">Cập nhật nhóm sản phẩm</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -55,7 +55,7 @@
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
                     </div>
                 </form>
             </div>

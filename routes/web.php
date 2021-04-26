@@ -24,7 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', function () {
-    return view('Backend.index');
+    return view('Backend.Dashboard.index');
 });
 
 //Category

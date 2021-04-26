@@ -93,7 +93,7 @@
                                     @endif
                                 </td>
                                 <td class="project-actions">
-                                    <a class="btn btn-info btn-sm m-1" href="{{ route('AdminCategory.create', ['id' => $item->id]) }}">
+                                    <a class="btn btn-info btn-sm m-1" href="{{ route('AdminCategory.edit', ['id' => $item->id]) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Sửa
