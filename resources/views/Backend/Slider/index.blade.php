@@ -1,7 +1,7 @@
 @extends('Backend.app')
 
 @section('content-header')
-    Quản lý slider
+    Quản lý slider 🐹
 @endsection
 
 @section('content-body')
