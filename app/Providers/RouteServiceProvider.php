@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\ClientFeedBack;
+use App\Slider;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +35,9 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+
+        Route::model('slider', Slider::class);
+        Route::model('feedback', ClientFeedBack::class);
     }
 
     /**
