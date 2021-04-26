@@ -59,7 +59,7 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{route('AdminCategory.store')}}" method="post">
+                            <form action="{{route('AdminProduct.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="card-body">
@@ -100,11 +100,13 @@
                                         <label for="prieviewproduct">Ảnh đại diện</label>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input name="preview_image_name" type="file" class="custom-file-input" id="prieviewproduct">
-                                                <label class="custom-file-label" for="prieviewproduct"></label>
-                                            </div>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">Upload</span>
+                                                <input
+                                                    onchange="xuLySuKienKhiNguoiDungChonAnhPreview(this)"
+                                                    name="preview_image"
+                                                    type="file"
+                                                    class="custom-file-input"
+                                                    id="prieviewproduct">
+                                                <label class="custom-file-label" id="preview_image_label" for="prieviewproduct">Chọn ảnh đại diện</label>
                                             </div>
                                         </div>
                                     </div>
@@ -113,11 +115,14 @@
                                         <label for="exampleInputFile">Ảnh chi tiết</label>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input name="detail_images[]" type="file" class="custom-file-input" id="exampleInputFile" multiple>
-                                                <label class="custom-file-label" for="exampleInputFile"></label>
-                                            </div>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">Upload</span>
+                                                <input
+                                                    onchange="xuLySuKienKhiNguoiDungChonAnhChiTietSanPham(this)"
+                                                    name="detail_images[]"
+                                                    type="file"
+                                                    class="custom-file-input"
+                                                    id="detail_images"
+                                                    multiple>
+                                                <label class="custom-file-label" id="detail_images_label" for="exampleInputFile">Chọn các ảnh chi tiết</label>
                                             </div>
                                         </div>
                                     </div>
@@ -173,5 +178,32 @@
 <script src="{{ asset('backend/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('backend/dist/js/pages/dashboard2.js') }}"></script>
+
+<script>
+    function xuLySuKienKhiNguoiDungChonAnhPreview(input) {
+        console.log('Nguoi dung vua chon anh preivew');
+
+        // Lay ten anh nguoi dung vua chon
+        console.log(input.files);
+        console.log(input.files[0].name);
+
+        // Hien thi ten anh len man hinh
+        document.getElementById('preview_image_label').innerText = input.files[0].name;
+    }
+
+    function xuLySuKienKhiNguoiDungChonAnhChiTietSanPham(input) {
+        console.log('Nguoi dung chon anh chi tiet san pham');
+        document.getElementById('detail_images_label').innerText = "";
+
+        // Lay cac ten anh nguoi dung vua chon, viet bang ngon ngu Javascript
+    var files = input.files;
+    for (var i=0;i<files.length;i++){
+        document.getElementById('detail_images_label').innerText += files[i].name + ' ; ';
+    }
+
+
+        // Hien thi len man hinh
+    }
+</script>
 </body>
 </html>

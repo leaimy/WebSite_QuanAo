@@ -32,3 +32,4 @@ Route::get('/admin/categories/delete/{id}','AdminCategoryController@delete')->na
 //Product
 Route::get('/admin/products','AdminProductController@index')->name('AdminProduct.index');
 Route::get('/admin/products/create','AdminProductController@create')->name('AdminProduct.create');
+Route::post('/admin/products/store','AdminProductController@store')->name('AdminProduct.store');
