@@ -23,6 +23,14 @@ Route::get('/', function () {
     ]);
 });
 
+// User auth
+Route::get('/admin/login', function () {
+    return view('Backend.Auth.login');
+})->name('auth.login.index');
+Route::post('/admin/login', function (\Illuminate\Http\Request $request) {
+   dd($request);
+})->name('auth.login.login');
+
 Route::get('/admin', function () {
     return view('Backend.Dashboard.index');
 });
