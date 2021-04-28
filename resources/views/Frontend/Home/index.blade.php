@@ -1500,34 +1500,25 @@
             <div class="section__content">
                 <div class="container">
                     <div class="row">
+                        @for($i=0;$i<4;$i++)
+                            @if($i==0 or $i==3)
                         <div class="col-lg-5 col-md-5 u-s-m-b-30">
 
                             <a class="collection" href="shop-side-version-2.html">
                                 <div class="aspect aspect--bg-grey aspect--square">
 
-                                    <img class="aspect__img collection__img" src="{{ asset('frontend/images/collection/coll-1.jpg') }}" alt=""></div>
+                                    <img class="aspect__img collection__img" src="{{ asset($products[$i]->preview_image_path) }}" alt=""></div>
                             </a></div>
+                            @else
                         <div class="col-lg-7 col-md-7 u-s-m-b-30">
 
                             <a class="collection" href="shop-side-version-2.html">
                                 <div class="aspect aspect--bg-grey aspect--1286-890">
 
-                                    <img class="aspect__img collection__img" src="{{ asset('frontend/images/collection/coll-2.jpg') }}" alt=""></div>
+                                    <img class="aspect__img collection__img" src="{{ asset($products[$i]->preview_image_path) }}" alt=""></div>
                             </a></div>
-                        <div class="col-lg-7 col-md-7 u-s-m-b-30">
-
-                            <a class="collection" href="shop-side-version-2.html">
-                                <div class="aspect aspect--bg-grey aspect--1286-890">
-
-                                    <img class="aspect__img collection__img" src="{{ asset('frontend/images/collection/coll-3.jpg') }}" alt=""></div>
-                            </a></div>
-                        <div class="col-lg-5 col-md-5 u-s-m-b-30">
-
-                            <a class="collection" href="shop-side-version-2.html">
-                                <div class="aspect aspect--bg-grey aspect--square">
-
-                                    <img class="aspect__img collection__img" src="{{ asset('frontend/images/collection/coll-4.jpg') }}" alt=""></div>
-                            </a></div>
+                            @endif
+                        @endfor
                     </div>
                 </div>
             </div>

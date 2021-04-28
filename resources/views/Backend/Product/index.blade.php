@@ -98,19 +98,20 @@
                                     <img width="100" src="{{asset($item->preview_image_path)}}" alt="">
                                 </td>
                                 <td class="project-actions">
-                                    <a class="btn btn-primary btn-sm" href="#">
+                                    <a class="btn btn-primary btn-sm" href="{{route('AdminProductDetail.index',['product_id'=>$item->id])}}">
+
                                         <i class="fas fa-folder">
                                         </i>
                                         Xem chi tiết
                                     </a>
                                     <a class="btn btn-info btn-sm m-1"
-                                       href="">
+                                       href="{{route('AdminProduct.edit',['id'=>$item->id])}}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Sửa
                                     </a>
                                     <a class="btn btn-danger btn-sm m-1"
-                                       href="">
+                                       href="{{route('AdminProduct.delete',['id'=>$item->id])}}">
                                         <i class="fas fa-trash">
                                         </i>
                                         Xóa

@@ -16,10 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $sliders = \App\Slider::where('status', 1)->get();
     $feedbacks = \App\ClientFeedBack::where('status', 1)->get();
+    $product = \App\Product::all();
+    $categories = \App\Category::where('status', 1)->where('parent_id', '!=', 0)->get();
+
 
     return view('Frontend.Home.index', [
         'sliders' => $sliders,
-        'feedbacks' => $feedbacks
+        'feedbacks' => $feedbacks,
+        'categories' => $categories,
+        'products' => $product
     ]);
 });
 
@@ -28,17 +33,28 @@ Route::get('/admin', function () {
 });
 
 //Category
-Route::get('/admin/categories','AdminCategoryController@index')->name('AdminCategory.index');
-Route::get('/admin/categories/create','AdminCategoryController@create')->name('AdminCategory.create');
-Route::post('/admin/categories/store','AdminCategoryController@store')->name('AdminCategory.store');
-Route::get('/admin/categories/edit/{id}','AdminCategoryController@edit')->name('AdminCategory.edit');
-Route::post('/admin/categories/update/{id}','AdminCategoryController@update')->name('AdminCategory.update');
-Route::get('/admin/categories/delete/{id}','AdminCategoryController@delete')->name('AdminCategory.delete');
+Route::get('/admin/categories', 'AdminCategoryController@index')->name('AdminCategory.index');
+Route::get('/admin/categories/create', 'AdminCategoryController@create')->name('AdminCategory.create');
+Route::post('/admin/categories/store', 'AdminCategoryController@store')->name('AdminCategory.store');
+Route::get('/admin/categories/edit/{id}', 'AdminCategoryController@edit')->name('AdminCategory.edit');
+Route::post('/admin/categories/update/{id}', 'AdminCategoryController@update')->name('AdminCategory.update');
+Route::get('/admin/categories/delete/{id}', 'AdminCategoryController@delete')->name('AdminCategory.delete');
 
 //Product
-Route::get('/admin/products','AdminProductController@index')->name('AdminProduct.index');
-Route::get('/admin/products/create','AdminProductController@create')->name('AdminProduct.create');
-Route::post('/admin/products/store','AdminProductController@store')->name('AdminProduct.store');
+Route::get('/admin/products', 'AdminProductController@index')->name('AdminProduct.index');
+Route::get('/admin/products/create', 'AdminProductController@create')->name('AdminProduct.create');
+Route::post('/admin/products/store', 'AdminProductController@store')->name('AdminProduct.store');
+Route::get('/admin/products/edit/{id}', 'AdminProductController@edit')->name('AdminProduct.edit');
+Route::post('/admin/products/update/{id}', 'AdminProductController@update')->name('AdminProduct.update');
+Route::get('/admin/products/delete/{id}', 'AdminProductController@delete')->name('AdminProduct.delete');
+
+//Product Detail
+Route::get('/admin/product-detail/create/{product_id}', 'AdminProductDetailController@create')->name('AdminProductDetail.create');
+Route::post('/admin/product-detail/store/{product_id}', 'AdminProductDetailController@store')->name('AdminProductDetail.store');
+Route::get('/admin/product-detail/edit/{product_id}/{id}', 'AdminProductDetailController@edit')->name('AdminProductDetail.edit');
+Route::post('/admin/product-detail/update/{product_id}/{id}', 'AdminProductDetailController@update')->name('AdminProductDetail.update');
+Route::get('/admin/product-detail/delete/{product_id}/{id}', 'AdminProductDetailController@delete')->name('AdminProductDetail.delete');
+Route::get('/admin/product-detail/{product_id}', 'AdminProductDetailController@index')->name('AdminProductDetail.index');
 
 // Slider
 Route::get('/admin/sliders', 'AdminSliderController@index')->name('AdminSlider.index');
