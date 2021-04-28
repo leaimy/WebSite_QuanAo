@@ -25,7 +25,11 @@ class CreateCustomersTable extends Migration
             $table->string('village')->nullable();
             $table->string('district')->nullable();
             $table->string('province')->nullable();
-            $table->timestamps();
+
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+
+            $table->softDeletes();
         });
     }
 

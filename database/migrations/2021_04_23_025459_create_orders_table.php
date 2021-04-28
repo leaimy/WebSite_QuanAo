@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('customer_id');
+            $table->unsignedBigInteger('customer_id');
             $table->integer('total_price');
             $table->integer('discount_percent');
             $table->enum('current_status', [
@@ -29,7 +29,10 @@ class CreateOrdersTable extends Migration
                 'shipping'
             ]);
 
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+
+            $table->softDeletes();
         });
     }
 

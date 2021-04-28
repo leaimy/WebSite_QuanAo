@@ -19,9 +19,12 @@ class CreatePermissionsTable extends Migration
             $table->string('name');
             $table->string('display_name');
             $table->string('key_code');
-            $table->bigInteger('parent_id')->default(0);
+            $table->unsignedBigInteger('parent_id')->default(0);
 
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+
+            $table->softDeletes();
         });
     }
 
