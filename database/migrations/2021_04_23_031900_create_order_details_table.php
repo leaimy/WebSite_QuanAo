@@ -16,11 +16,14 @@ class CreateOrderDetailsTable extends Migration
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('order_id');
-            $table->bigInteger('product_detail_id');
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('product_detail_id');
             $table->integer('quantity');
 
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+
+            $table->softDeletes();
         });
     }
 
