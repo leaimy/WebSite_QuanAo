@@ -98,7 +98,8 @@
                                     <img width="100" src="{{asset($item->preview_image_path)}}" alt="">
                                 </td>
                                 <td class="project-actions">
-                                    <a class="btn btn-primary btn-sm" href="#">
+                                    <a class="btn btn-primary btn-sm" href="{{route('AdminProductDetail.index',['product_id'=>$item->id])}}">
+
                                         <i class="fas fa-folder">
                                         </i>
                                         Xem chi tiết
