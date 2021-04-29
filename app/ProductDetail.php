@@ -8,7 +8,6 @@ class ProductDetail extends Model
 {
     protected $table = 'product_details';
     protected $fillable = [
-        'sku',
         'product_id',
         'size',
         'color',

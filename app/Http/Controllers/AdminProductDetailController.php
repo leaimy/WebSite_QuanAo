@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
 use App\ProductDetail;
 use Illuminate\Http\Request;
 
@@ -12,27 +11,18 @@ class AdminProductDetailController extends Controller
     {
         $productdetails = ProductDetail::where('product_id', $product_id)->get();
 
-
-        //$product= Product::findOrFail($id);
-        //$productdetails = $productdetail->get();
-        //dd($productdetails);
-        //$productdetails = ProductDetail::all();
         return view('Backend.Product.ProductDetail.index', ['productdetails' => $productdetails, 'product_id' => $product_id]);
-//
     }
 
     public function create($product_id)
     {
-
         return view('Backend.Product.ProductDetail.create', ['product_id' => $product_id]);
     }
 
     public function store(Request $request, $product_id)
     {
         $color = $request['color'];
-        $product_id = $product_id;
         $size = $request['size'];
-        $sku = $request['sku'];
         $quantity = $request['quantity'];
 
         $string = strtolower($color . $size);
@@ -42,7 +32,6 @@ class AdminProductDetailController extends Controller
         $unique_search_id = implode($arrayString);
 
         ProductDetail::create([
-            'sku' => $sku,
             'size' => $size,
             'color' => $color,
             'quantity' => $quantity,
@@ -65,13 +54,11 @@ class AdminProductDetailController extends Controller
 
     public function update(Request $request, $product_id, $id)
     {
-        $sku = $request['sku'];
         $quantity = $request['quantity'];
 
         $product_detail = ProductDetail::findOrFail($id);
         $quantity = $product_detail->quantity + $quantity;
         $product_detail->update([
-            'sku' => $sku,
             'quantity' => $quantity
         ]);
 
