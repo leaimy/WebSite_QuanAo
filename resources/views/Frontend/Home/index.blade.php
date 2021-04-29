@@ -1660,7 +1660,7 @@
                                 <div class="filter__category-wrapper">
 
                                     <button class="btn filter__btn filter__btn--style-1 js-checked" type="button"
-                                            data-filter="*">ALL
+                                            data-filter="*">TẤT CẢ
                                     </button>
                                 </div>
 
@@ -1669,7 +1669,7 @@
                                     <div class="filter__category-wrapper">
 
                                         <button class="btn filter__btn filter__btn--style-1" type="button"
-                                                data-filter=".cat-{{ $category->id }}">{{ $category->name }}
+                                                data-filter=".cat-{{ $category->id }}">{{ mb_convert_case($category->name, MB_CASE_UPPER, "UTF-8")  }}
                                         </button>
                                     </div>
 
@@ -1735,7 +1735,7 @@
 
                                                         <span class="product-o__review"><i class="fas fa-eye"></i> {{ $product->views }}</span></div>
 
-                                                    <span class="product-o__price">{{ $product->price }} VND</span>
+                                                    <span class="product-o__price">{{ $product->sale_price }} VND</span>
                                                 </div>
                                             </div>
 
@@ -1748,7 +1748,7 @@
                         <div class="col-lg-12">
                             <div class="load-more">
 
-                                <button class="btn btn--e-brand" type="button">Load More</button>
+                                <button class="btn btn--e-brand" type="button">Xem thêm sản phẩm</button>
                             </div>
                         </div>
                     </div>
@@ -2712,7 +2712,7 @@
 
 
     <!--====== Newsletter Subscribe Modal ======-->
-    
+
     <!--====== End - Newsletter Subscribe Modal ======-->
     <!--====== End - Modal Section ======-->
 </div>
