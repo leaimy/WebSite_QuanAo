@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="{{ asset('frontend/images/favicon.png') }}" rel="shortcut icon">
-    <title>Ludus - Electronics, Apparel, Computers, Books, DVDs & more</title>
+    <title>Shop Bạch Tuyết 🐇 | Cửa hàng quần áo số 1 Việt Nam</title>
 
     <!--====== Google Font ======-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
