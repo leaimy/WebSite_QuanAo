@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard 2</title>
+    <title>Shop Bạch Tuyết 🐇 | Trang quản lý</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -67,7 +67,6 @@
     <!-- /.control-sidebar -->
 
     <!-- Main Footer -->
-    @include('Backend._main-footer')
 </div>
 <!-- ./wrapper -->
 
