@@ -1576,7 +1576,7 @@
         <!--====== End - Primary Slider ======-->
 
 
-        <!--====== Section 1 ======-->
+        <!--====== Section 1 | Danh mục ======-->
         <div class="u-s-p-y-60">
 
             <!--====== Section Intro ======-->
@@ -1630,7 +1630,7 @@
         <!--====== End - Section 1 ======-->
 
 
-        <!--====== Section 2 ======-->
+        <!--====== Section 2 | Xu hướng sản phẩm ======-->
         <div class="u-s-p-b-60">
 
             <!--====== Section Intro ======-->
@@ -1660,6 +1660,7 @@
                                 <div class="filter__category-wrapper">
 
                                     <button class="btn filter__btn filter__btn--style-1 js-checked" type="button"
+                                            id="cat-all"
                                             data-filter="*">TẤT CẢ
                                     </button>
                                 </div>
@@ -1669,6 +1670,7 @@
                                     <div class="filter__category-wrapper">
 
                                         <button class="btn filter__btn filter__btn--style-1" type="button"
+                                                id="cat-{{ $loop->index }}"
                                                 data-filter=".cat-{{ $category->id }}">{{ mb_convert_case($category->name, MB_CASE_UPPER, "UTF-8")  }}
                                         </button>
                                     </div>
@@ -1679,12 +1681,10 @@
                             <div class="filter__grid-wrapper u-s-m-t-30">
                                 <div class="row">
 
-
                                     @foreach($trending_categories as $category)
-                                        @foreach(\App\Product::where('category_id', $category->id)->inRandomOrder()->limit(rand(2, 4))->get() as $product)
+                                        @foreach(\App\Product::where('category_id', $category->id)->inRandomOrder()->limit(4)->get() as $product)
 
-                                            <div
-                                                class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item cat-{{$product->category_id  }}">
+                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item cat-{{$product->category_id  }}">
                                                 <div class="product-o product-o--hover-on product-o--radius">
                                                     <div class="product-o__wrap">
 
@@ -1764,7 +1764,7 @@
         <!--====== End - Section 3 ======-->
 
 
-        <!--====== Section 4 ======-->
+        <!--====== Section 4 | Sản phẩm mới về ======-->
         <div class="u-s-p-b-60">
 
             <!--====== Section Intro ======-->
@@ -1855,7 +1855,7 @@
         <!--====== End - Section 4 ======-->
 
 
-        <!--====== Section 5 ======-->
+        <!--====== Section 5 | Background ======-->
         <div class="banner-bg" style='background-image: url("{{ asset($background_image) }}")'>
 
             <!--====== Section Content ======-->
@@ -1892,7 +1892,7 @@
         <!--====== End - Section 5 ======-->
 
 
-        <!--====== Section 6 ======-->
+        <!--====== Section 6 | Sản phẩm nổi bật ======-->
         <div class="u-s-p-y-60">
 
             <!--====== Section Intro ======-->
@@ -1982,7 +1982,7 @@
         <!--====== End - Section 7 ======-->
 
 
-        <!--====== Section 8 ======-->
+        <!--====== Section 8 | Sản phẩm bán chạy ======-->
         <div class="u-s-p-b-60">
 
             <div class="section__intro u-s-m-b-46">
@@ -2113,7 +2113,7 @@
         <!--====== End - Section 8 ======-->
 
 
-        <!--====== Section 9 ======-->
+        <!--====== Section 9 | Cam kết của cửa hàng ======-->
         <div class="u-s-p-b-60">
 
             <!--====== Section Content ======-->
@@ -2167,7 +2167,7 @@
         <!--====== End - Section 10 ======-->
 
 
-        <!--====== Section 11 ======-->
+        <!--====== Section 11 | Nhận xét của khách hàng ======-->
         <div class="u-s-p-b-90 u-s-m-b-30">
 
             <!--====== Section Intro ======-->
@@ -2222,7 +2222,7 @@
         <!--====== End - Section 11 ======-->
 
 
-        <!--====== Section 12 ======-->
+        <!--====== Section 12 | Logo hãng sản xuất ======-->
         <div class="u-s-p-b-60">
 
             <!--====== Section Content ======-->
@@ -2739,6 +2739,20 @@
 
 <!--====== App ======-->
 <script src="{{ asset('frontend/js/app.js') }}"></script>
+
+<script>
+    // self executing function here
+    (function() {
+        const filterItems = Array.from(document.querySelectorAll('.filter__item'));
+        const heights = filterItems.map(i => i.clientHeight);
+        const maxHeight = Math.max(...heights);
+
+        filterItems.forEach(item => item.setAttribute('style', `${item.getAttribute('style')} height: ${maxHeight}px;`));
+
+        document.getElementById('cat-2').click();
+        document.getElementById('cat-all').click();
+    })();
+</script>
 
 <!--====== Noscript ======-->
 <noscript>
