@@ -978,7 +978,6 @@ Tính thấm hút mồ hôi tốt cũng là một đặc điểm cơ bản của
             INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
             VALUES (73943291952, 9220981350, 'M', 'VÀNG', 'agmnv', 1);
             
-            
             INSERT INTO products (id, sku, name, slug, category_id, unit_price, sale_price, preview_image_name, preview_image_path, views, description)
             VALUES (3554096264, 'SP05001', 'Áo thun Unisex N7 Basic Tee phông trơn nam nữ tay lỡ oversize form rộng 12 màu', 'ao-thun-unisex-n7-basic-tee-phong-tron-nam-nu-tay-lo-oversize-form-rong-12-mau', 5, 109000, 145000, 'SP_3554096264_0.jpg', 'images/products/5/SP_3554096264_0.jpg', 392823, 'Thông tin sản phẩm Áo thun Unisex N7 Basic Tee phông trơn nam nữ tay lỡ oversize form rộng 12 màu:
 - Hàng chuẩn N7 sản xuất, tem mác chuẩn chính hãng.
@@ -8126,90 +8125,6 @@ CHÍNH SÁCH & HẬU MÃI:
             INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
             VALUES (81091067193, 9824797278, ' L ', ' đen ', '    deln', 0);
             
-            INSERT INTO products (id, sku, name, slug, category_id, unit_price, sale_price, preview_image_name, preview_image_path, views, description)
-            VALUES (2131886189, 'SP11009', 'Váy Ôm Body Họa Tiết Hoa Nhí Dáng Ngắn/ Đầm Cổ Vuông Trễ Ngực Cộc Tay Buộc Dây V00113', 'vay-om-body-hoa-tiet-hoa-nhi-dang-ngan/-dam-co-vuong-tre-nguc-coc-tay-buoc-day-v00113', 11, 189000, 198435, 'SP_2131886189_0.jpg', 'images/products/11/SP_2131886189_0.jpg', 548, 'Váy Ôm Body Họa Tiết Hoa Nhí Dáng Ngắn/ Đầm Cổ Vuông Trễ Ngực Cộc Tay Buộc Dây
-
-Kích thước:
-Size S: Eo 64cm/ Ngực 74cm/ Tay dài 31cm/ Váy dài 70cm
-Size M: Eo 68cm/ Ngực 78cm/ Tay dài 32cm/ Váy dài 71cm
-Size L: Eo 72cm/ Ngực 82cm/ Tay dài 33cm/ Váy dài 72cm
-Size XL: Eo 76cm/ Ngực 86cm/ Tay dài 34cm/ Váy dài 73cm
-Size 2XL: Eo 80cm/ Ngực 90cm/ Tay dài 34cm/ Váy dài 74cm
-
-Hàng order 10 ngày
-
-Cam kết đổi trả đối với các sản phẩm nhầm size, nhầm màu, nhầm mẫu, hàng lỗi,... Các khách lưu ý giữ nguyên tem mác của sản phẩm và đổi trả trong vòng 3 ngày kể từ khi nhận được sản phẩm.
-
-#vayxuong #vaythocam #vayxuongtaybo #đầmhọatiết #đầmthêuhoa');
-            
-            INSERT INTO product_images (product_id, name, path) 
-            VALUES (2131886189, 'SP_2131886189_1.jpg', 'images/products/11/SP_2131886189_1.jpg');
-            
-            INSERT INTO product_images (product_id, name, path) 
-            VALUES (2131886189, 'SP_2131886189_2.jpg', 'images/products/11/SP_2131886189_2.jpg');
-            
-            INSERT INTO product_images (product_id, name, path) 
-            VALUES (2131886189, 'SP_2131886189_3.jpg', 'images/products/11/SP_2131886189_3.jpg');
-            
-            INSERT INTO product_images (product_id, name, path) 
-            VALUES (2131886189, 'SP_2131886189_4.jpg', 'images/products/11/SP_2131886189_4.jpg');
-            
-            INSERT INTO product_images (product_id, name, path) 
-            VALUES (2131886189, 'SP_2131886189_5.jpg', 'images/products/11/SP_2131886189_5.jpg');
-            
-            INSERT INTO product_images (product_id, name, path) 
-            VALUES (2131886189, 'SP_2131886189_6.jpg', 'images/products/11/SP_2131886189_6.jpg');
-            
-            INSERT INTO product_images (product_id, name, path) 
-            VALUES (2131886189, 'SP_2131886189_7.jpg', 'images/products/11/SP_2131886189_7.jpg');
-            
-            INSERT INTO product_images (product_id, name, path) 
-            VALUES (2131886189, 'SP_2131886189_8.jpg', 'images/products/11/SP_2131886189_8.jpg');
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382612, 2131886189, 'L', 'Trắng', 'aglnrt', 5);
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382613, 2131886189, 'XL', 'Xanh', 'ahlnxx', 5);
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382614, 2131886189, 'L', 'Đen', 'deln', 5);
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382615, 2131886189, 'L', 'Xanh', 'ahlnx', 5);
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382616, 2131886189, 'S', 'Trắng', 'agnrst', 4);
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382617, 2131886189, '2XL', 'Trắng', '2aglnrtx', 5);
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382618, 2131886189, 'S', 'Xanh', 'ahnsx', 5);
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382619, 2131886189, 'M', 'Xanh', 'ahmnx', 5);
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382620, 2131886189, 'XL', 'Trắng', 'aglnrtx', 5);
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382621, 2131886189, '2XL', 'Xanh', '2ahlnxx', 5);
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382622, 2131886189, 'M', 'Đen', 'demn', 5);
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382623, 2131886189, 'M', 'Trắng', 'agmnrt', 5);
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382624, 2131886189, 'S', 'Đen', 'dens', 5);
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382625, 2131886189, 'XL', 'Đen', 'delnx', 5);
-            
-            INSERT INTO product_details (id, product_id, size, color, unique_search_id, quantity)
-            VALUES (25219382626, 2131886189, '2XL', 'Đen', '2delnx', 5);
             
             INSERT INTO products (id, sku, name, slug, category_id, unit_price, sale_price, preview_image_name, preview_image_path, views, description)
             VALUES (4222569225, 'SP11010', 'Đầm hoa tay dài dáng ngắn voan hoa vintage Hàn Quốc, Váy hoa nhí cổ tim ulzzang nhún eo Hàn Quốc V05 - Peyy Clothing', 'dam-hoa-tay-dai-dang-ngan-voan-hoa-vintage-han-quoc,-vay-hoa-nhi-co-tim-ulzzang-nhun-eo-han-quoc-v05-peyy-clothing', 11, 269000, 329000, 'SP_4222569225_0.jpg', 'images/products/11/SP_4222569225_0.jpg', 3427, '🌺 Thông tin sản phẩm: Đầm hoa tay dài dáng ngắn voan hoa vintage Hàn Quốc, Váy hoa nhí cổ tim ulzzang nhún eo Hàn Quốc
