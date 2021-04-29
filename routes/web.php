@@ -18,13 +18,33 @@ Route::get('/', function () {
     $feedbacks = \App\ClientFeedBack::where('status', 1)->get();
     $product = \App\Product::all();
     $categories = \App\Category::where('status', 1)->where('parent_id', '!=', 0)->get();
+    $latest_products = \App\Product::take(10)->get();
+    $featured_products = \App\Product::orderBy('views', 'desc')->take(8)->get();
 
+    $background_images=glob(public_path('images/backgrounds/*.*'));
+    $index = array_rand($background_images);
+    $background_image = $background_images[$index];
+    $background_image=str_replace(public_path().'\\','',$background_image);
+
+    //TODO DEMO
+    $best_seller_day = \App\Product::inRandomOrder()->limit(3)->get();
+    $best_seller_week = \App\Product::inRandomOrder()->limit(3)->get();
+    $best_seller_month = \App\Product::inRandomOrder()->limit(3)->get();
+
+    $trending_categories = \App\Category::where('parent_id', '!=', 0)->inRandomOrder()->limit(4)->get();
 
     return view('Frontend.Home.index', [
         'sliders' => $sliders,
         'feedbacks' => $feedbacks,
         'categories' => $categories,
-        'products' => $product
+        'products' => $product,
+        'latest_products' => $latest_products,
+        'featured_products' => $featured_products,
+        'background_image'=>$background_image,
+        'best_seller_day'=>$best_seller_day,
+        'best_seller_week'=>$best_seller_week,
+        'best_seller_month'=>$best_seller_month,
+        'trending_categories' => $trending_categories
     ]);
 });
 
