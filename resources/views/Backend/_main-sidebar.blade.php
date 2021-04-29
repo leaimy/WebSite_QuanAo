@@ -37,7 +37,7 @@
 
                 <li class="nav-item">
                     <a href="{{route('AdminCategory.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="fas fa-snowflake"></i>
                         <p>
                             Quản lý nhóm sản phẩm
                         </p>
@@ -45,7 +45,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('AdminProduct.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="fab fa-canadian-maple-leaf"></i>
                         <p>
                             Quản lý sản phẩm
                         </p>
