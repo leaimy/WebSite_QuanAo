@@ -63,11 +63,10 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th width="3%">Mã SKU</th>
-                            <th>Màu sắc</th>
-                            <th>Size </th>
-                            <th >Số lượng </th>
-                            <th width="25%"></th>
+                            <th class="text-center align-middle">Màu sắc</th>
+                            <th class="text-center align-middle">Size </th>
+                            <th class="text-center align-middle">Số lượng </th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -75,8 +74,7 @@
                         @foreach($productdetails as $item)
 
                             <tr>
-                                <td>{{ $item->sku }}</td>
-                                <td>
+                                <td class="text-left align-middle">
                                     <a>
                                         {{ $item->color }}
                                     </a>
@@ -86,11 +84,11 @@
                                     </small>
                                 </td>
 
-                                <td>{{$item->size}}</td>
+                                <td class="text-center align-middle">{{$item->size}}</td>
 
-                                <td>{{$item->quantity}}</td>
+                                <td class="text-center align-middle">{{$item->quantity}}</td>
 
-                                <td class="project-actions">
+                                <td class="project-actions text-center align-middle">
                                     <a class="btn btn-info btn-sm m-1"
                                        href="{{route('AdminProductDetail.edit',['product_id'=>$product_id,'id'=>$item->id])}}">
                                         <i class="fas fa-pencil-alt">

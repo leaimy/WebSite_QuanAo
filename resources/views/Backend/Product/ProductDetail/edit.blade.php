@@ -20,12 +20,6 @@
 
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="skuproduct">Mã SKU</label>
-                            <input value="{{$product_detail->sku}}" name="sku" type="text" class="form-control" id="skuproduct"
-                                   placeholder="Nhập mã sku">
-                        </div>
-
-                        <div class="form-group">
                             <label for="colorproduct">Màu sắc</label>
                             <input disabled value="{{$product_detail->color}}" name="color" type="text" class="form-control" id="colorproduct"
                                  >
