@@ -21,12 +21,12 @@
                            class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Tên đăng nhập</th>
-                            <th>Tên đầy đủ</th>
-                            <th>Email</th>
-                            <th>Avatar</th>
-                            <th>Vai trò</th>
+                            <th class="text-center align-middle">ID</th>
+                            <th class="text-center align-middle">Tên đăng nhập</th>
+                            <th class="text-center align-middle">Tên đầy đủ</th>
+                            <th class="text-center align-middle">Email</th>
+                            <th class="text-center align-middle">Avatar</th>
+                            <th class="text-center align-middle">Vai trò</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -35,7 +35,15 @@
                         @foreach($users as $user)
                             <tr>
                                 <td class="text-center align-middle">{{ $user->id }}</td>
-                                <td class="align-middle">{{ $user->username }}</td>
+                                <td class="text-left align-middle">
+                                    <a href="{{ route('AdminUser.show', [$user]) }}">
+                                        {{ $user->username }}
+                                    </a>
+                                    <br>
+                                    <small>
+                                        Đã tạo: {{ $user->created_at }}
+                                    </small>
+                                </td>
                                 <td class="align-middle">{{ $user->getFullName() }}</td>
                                 <td class="align-middle">{{ $user->email }}</td>
                                 <td class="text-center align-middle">

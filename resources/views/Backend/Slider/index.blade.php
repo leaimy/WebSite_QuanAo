@@ -52,9 +52,9 @@
                                     {{ $loop->index+1 }}
                                 </td>
                                 <td>
-                                    <a>
+                                    <span>
                                         {{ $slider->title }}
-                                    </a>
+                                    </span>
                                     <br>
                                     <small>
                                         Đã tạo: {{ $slider->created_at }}

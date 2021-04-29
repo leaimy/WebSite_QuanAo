@@ -61,9 +61,9 @@
                                     {{ $loop->index+1 }}
                                 </td>
                                 <td>
-                                    <a>
+                                    <span>
                                         {{ $clientFeedback->author_info }}
-                                    </a>
+                                    </span>
                                     <br>
                                     <small>
                                         Đã tạo: {{ $clientFeedback->created_at }}

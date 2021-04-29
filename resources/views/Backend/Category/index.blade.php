@@ -81,10 +81,14 @@
 
                             <tr>
                                 <td class="text-center align-middle">{{ $item->id }}</td>
-                                <td class="text-center align-middle">
-                                    <a>
+                                <td class="text-left align-middle">
+                                    <span>
                                         {{mb_convert_case($item->name, MB_CASE_TITLE, "UTF-8") }}
-                                    </a>
+                                    </span>
+                                    <br>
+                                    <small>
+                                        Đã tạo: {{ $item->created_at }}
+                                    </small>
                                 </td>
                                 <td class="text-center align-middle">0</td>
                                 <td class="project-state text-center align-middle">

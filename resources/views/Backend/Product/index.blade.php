@@ -80,12 +80,12 @@
                             <tr>
                                 <td class="text-center align-middle">{{ $item->sku }}</td>
                                 <td class="text-left align-middle">
-                                    <a>
+                                    <a href="{{route('AdminProductDetail.index',['product_id'=>$item->id])}}">
                                         {{ $item->name }}
                                     </a>
                                     <br>
                                     <small>
-                                        Đã tạo {{ $item->created_at }}
+                                        Đã tạo: {{ $item->created_at }}
                                     </small>
                                 </td>
                                 <td class="text-center align-middle">

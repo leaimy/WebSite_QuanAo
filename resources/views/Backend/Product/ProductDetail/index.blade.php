@@ -80,7 +80,7 @@
                                     </a>
                                     <br>
                                     <small>
-                                        Đã tạo {{ $item->created_at }}
+                                        Đã tạo: {{ $item->created_at }}
                                     </small>
                                 </td>
 
