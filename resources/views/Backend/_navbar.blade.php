@@ -16,6 +16,12 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="/admin" class="nav-link">Hóa đơn</a>
         </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="{{ route('AdminUser.index') }}" class="nav-link">Khách hàng</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="{{ route('AdminUser.index') }}" class="nav-link">Người dùng</a>
+        </li>
     </ul>
 
     <!-- Right navbar links -->
