@@ -64,13 +64,13 @@
                         <thead>
                         <tr>
                             <th width="3%">Mã SKU</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Nhóm </th>
-                            <th>Giá bán</th>
-                            <th >Giá nhập</th>
-                            <th >Số lượng </th>
-                            <th width="12%">Ảnh đại diện</th>
-                            <th width="25%"></th>
+                            <th class="text-center align-middle" >Tên sản phẩm</th>
+                            <th class="text-center align-middle">Nhóm </th>
+                            <th class="text-center align-middle">Giá bán</th>
+                            <th class="text-center align-middle">Giá nhập</th>
+                            <th class="text-center align-middle">Số lượng </th>
+                            <th class="text-center align-middle">Ảnh đại diện</th>
+                            <th width="20%"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -78,8 +78,8 @@
                         @foreach($products as $item)
 
                             <tr>
-                                <td>{{ $item->sku }}</td>
-                                <td>
+                                <td class="text-center align-middle">{{ $item->sku }}</td>
+                                <td class="text-left align-middle">
                                     <a>
                                         {{ $item->name }}
                                     </a>
@@ -88,16 +88,16 @@
                                         Đã tạo {{ $item->created_at }}
                                     </small>
                                 </td>
-                                <td>
-                                    {{ \App\Category::find($item->category_id)->name }}
+                                <td class="text-center align-middle">
+                                    {{ mb_convert_case( \App\Category::find($item->category_id)->name , MB_CASE_TITLE, "UTF-8") }}
                                 </td>
-                                <td>{{$item->sale_price}}</td>
-                                <td>{{$item->unit_price}}</td>
-                                <td>{{$item->available_stock}}</td>
-                                <td>
+                                <td class="text-left align-middle">{{$item->sale_price}}</td>
+                                <td class="text-left align-middle">{{$item->unit_price}}</td>
+                                <td class="text-center align-middle">{{$item->available_stock}}</td>
+                                <td class="text-center align-middle">
                                     <img width="100" src="{{asset($item->preview_image_path)}}" alt="">
                                 </td>
-                                <td class="project-actions">
+                                <td class="project-actions text-center align-middle">
                                     <a class="btn btn-primary btn-sm" href="{{route('AdminProductDetail.index',['product_id'=>$item->id])}}">
 
                                         <i class="fas fa-folder">
