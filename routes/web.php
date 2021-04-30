@@ -51,6 +51,7 @@ Route::get('/', function () {
 // User auth
 Route::get('/admin/auth/login', 'AuthController@renderLoginForm')->name('auth.login.index');
 Route::post('/admin/auth/login', 'AuthController@logUserIn')->name('auth.login.login');
+Route::get('/admin/auth/logout', 'AuthController@logUserOut')->name('auth.logout.logout');
 
 // Dashboard admin
 Route::get('/admin', function () {

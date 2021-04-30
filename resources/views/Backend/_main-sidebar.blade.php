@@ -152,7 +152,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('auth.logout.logout') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/dove.png') }}" width="20"
                                  alt="">
