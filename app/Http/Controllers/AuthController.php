@@ -8,6 +8,10 @@ class AuthController extends Controller
 {
     public function renderLoginForm()
     {
+        if (auth()->viaRemember()) {
+            return redirect('/admin');
+        }
+
         if (auth()->check()) {
             return redirect('/admin');
         }

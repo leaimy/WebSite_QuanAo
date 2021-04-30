@@ -21,7 +21,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('Admin.home') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/starfish.png') }}" width="20"
                                  alt="">
@@ -58,7 +58,7 @@
 
                 <li class="nav-header">BÁN HÀNG</li>
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('Admin.home') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/dolphin.png') }}" width="20"
                                  alt="">
@@ -70,7 +70,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('Admin.home') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/mushroom.png') }}" width="20"
                                  alt="">
@@ -84,7 +84,7 @@
 
                 <li class="nav-header">GIAO DIỆN</li>
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('Admin.home') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/butterfly.png') }}" width="20"
                                  alt="">
@@ -119,7 +119,7 @@
 
                 <li class="nav-header">HỆ THỐNG</li>
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('Admin.home') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/crab.png') }}" width="20"
                                  alt="">
@@ -141,7 +141,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('Admin.home') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/whale.png') }}" width="20"
                                  alt="">
@@ -165,7 +165,7 @@
 
                 <li class="nav-header">LẬP TRÌNH VIÊN</li>
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('Admin.home') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/squirrel.png') }}" width="20"
                                  alt="">
