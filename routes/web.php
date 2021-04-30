@@ -132,4 +132,13 @@ Route::middleware('auth')->group(function () {
         Route::get('delete/{user}', 'AdminUserController@delete')->name('AdminUser.delete');
     });
 
+    /**
+     * Quản lý danh sách vai trò
+     */
+    Route::prefix('/admin/roles')->group(function () {
+        Route::get('/', 'AdminRoleController@index')->name('AdminRole.index');
+        Route::get('create', 'AdminRoleController@create')->name('AdminRole.create');
+        Route::post('store', 'AdminController@store')->name('AdminRole.store');
+    });
+
 });

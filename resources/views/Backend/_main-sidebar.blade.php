@@ -119,7 +119,7 @@
 
                 <li class="nav-header">HỆ THỐNG</li>
                 <li class="nav-item">
-                    <a href="{{ route('Admin.home') }}" class="nav-link">
+                    <a href="{{ route('AdminRole.index') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/crab.png') }}" width="20"
                                  alt="">
