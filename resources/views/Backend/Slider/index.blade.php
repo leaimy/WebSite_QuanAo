@@ -28,16 +28,16 @@
                     <table class="table table-striped projects">
                         <thead>
                         <tr>
-                            <th style="width: 3%">
+                            <th class="text-center align-middle" style="width: 3%">
                                 #
                             </th>
-                            <th>
+                            <th class="text-left align-middle">
                                 Tiêu đề
                             </th>
-                            <th>
+                            <th class="text-center align-middle">
                                 Hình ảnh
                             </th>
-                            <th>Trạng thái</th>
+                            <th class="text-center align-middle">Trạng thái</th>
                             <th>
                             </th>
                         </tr>
@@ -45,10 +45,10 @@
                         <tbody>
                         @foreach($sliders as $slider)
                             <tr>
-                                <td>
+                                <td class="text-center align-middle">
                                     {{ $loop->index+1 }}
                                 </td>
-                                <td>
+                                <td class="text-left align-middle">
                                     <span>
                                         {{ $slider->title }}
                                     </span>
@@ -57,13 +57,13 @@
                                         Đã tạo: {{ $slider->created_at }}
                                     </small>
                                 </td>
-                                <td>
+                                <td class="text-center align-middle">
                                     <img src="{{ asset($slider->image_path) }}"
                                          alt=""
                                          width="200"
                                     >
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center align-middle">
                                     @if($slider->status == 1)
                                         <a href="{{ route('AdminSlider.setHidden', [$slider])}}"
                                            class="btn badge-btn badge-success m-0">
@@ -76,7 +76,7 @@
                                         </a>
                                     @endif
                                 </td>
-                                <td class="project-actions text-right">
+                                <td class="project-actions text-center">
                                     <div>
                                         <a class="btn btn-info btn-sm d-inline-block m-1"
                                            href="{{ route('AdminSlider.edit', [$slider]) }}"
