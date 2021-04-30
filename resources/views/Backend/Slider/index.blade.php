@@ -28,20 +28,17 @@
                     <table class="table table-striped projects">
                         <thead>
                         <tr>
-                            <th style="width: 1%">
+                            <th style="width: 3%">
                                 #
                             </th>
-                            <th style="width: 25%">
+                            <th>
                                 Tiêu đề
                             </th>
-                            <th style="width: 35%">
-                                Nội dung
-                            </th>
-                            <th style="width: 10%">
+                            <th>
                                 Hình ảnh
                             </th>
-                            <th style="width: 10%">Trạng thái</th>
-                            <th style="width: 20%">
+                            <th>Trạng thái</th>
+                            <th>
                             </th>
                         </tr>
                         </thead>
@@ -59,9 +56,6 @@
                                     <small>
                                         Đã tạo: {{ $slider->created_at }}
                                     </small>
-                                </td>
-                                <td>
-                                    {{ $slider->content }}
                                 </td>
                                 <td>
                                     <img src="{{ asset($slider->image_path) }}"
