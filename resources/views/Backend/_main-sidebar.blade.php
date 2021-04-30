@@ -10,10 +10,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('images/avatars/avatar3.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ asset(auth()->user()->avatar_path) }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Nguyễn Thị Hà</a>
+                <a href="{{ route('AdminUser.show', [auth()->user()]) }}" class="d-block">{{ auth()->user()->getFullName() }}</a>
             </div>
         </div>
 
@@ -141,7 +141,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('Admin.home') }}" class="nav-link">
+                    <a href="{{ route('AdminUser.show', [auth()->user()]) }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/whale.png') }}" width="20"
                                  alt="">
