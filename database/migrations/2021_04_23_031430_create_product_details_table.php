@@ -15,13 +15,14 @@ class CreateProductDetailsTable extends Migration
     {
         Schema::create('product_details', function (Blueprint $table) {
             $table->id();
-            $table->string('sku')->unique();
-            $table->bigInteger('product_id');
+            $table->unsignedBigInteger('product_id');
             $table->string('size');
             $table->string('color');
             $table->string('unique_search_id');
             $table->integer('quantity');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->softDeletes();
         });
     }
 

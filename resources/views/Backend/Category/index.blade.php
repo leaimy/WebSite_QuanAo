@@ -6,9 +6,12 @@
 
 @section('style')
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endsection
 
 @section('script')
@@ -59,14 +62,17 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table id="example1"
+                           class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th width="3%">ID</th>
-                            <th>Tên nhóm sản phẩm</th>
-                            <th>Số lượng sản phẩm</th>
-                            <th width="12%">Trạng thái</th>
-                            <th width="15%"></th>
+                            <th width="3%"
+                                class="text-center">ID
+                            </th>
+                            <th class="text-center">Tên nhóm sản phẩm</th>
+                            <th class="text-center">Số lượng sản phẩm</th>
+                            <th class="text-center">Trạng thái</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -74,31 +80,33 @@
                         @foreach($category as $item)
 
                             <tr>
-                                <td>{{ $item->id }}</td>
-                                <td>
-                                    <a>
-                                        {{ $item->name }}
-                                    </a>
+                                <td class="text-center align-middle">{{ $item->id }}</td>
+                                <td class="text-left align-middle">
+                                    <span>
+                                        {{mb_convert_case($item->name, MB_CASE_TITLE, "UTF-8") }}
+                                    </span>
                                     <br>
                                     <small>
-                                        Đã tạo {{ $item->created_at }}
+                                        Đã tạo: {{ $item->created_at }}
                                     </small>
                                 </td>
-                                <td>0</td>
-                                <td class="project-state">
+                                <td class="text-center align-middle">0</td>
+                                <td class="project-state text-center align-middle">
                                     @if($item->status == 1)
-                                        <span class="badge badge-success">Hiển thị</span>
+                                        <span class="btn badge-btn badge-success">Hiển thị</span>
                                     @else
-                                        <span class="badge badge-danger">Ẩn</span>
+                                        <span class="btn badge-btn badge-danger">Ẩn</span>
                                     @endif
                                 </td>
-                                <td class="project-actions">
-                                    <a class="btn btn-info btn-sm m-1" href="{{ route('AdminCategory.edit', ['id' => $item->id]) }}">
+                                <td class="project-actions text-center align-middle">
+                                    <a class="btn btn-info btn-sm m-1"
+                                       href="{{ route('AdminCategory.edit', ['id' => $item->id]) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Sửa
                                     </a>
-                                    <a class="btn btn-danger btn-sm m-1" href="{{ route('AdminCategory.delete', ['id' => $item->id]) }}">
+                                    <a class="btn btn-danger btn-sm m-1"
+                                       href="{{ route('AdminCategory.delete', ['id' => $item->id]) }}">
                                         <i class="fas fa-trash">
                                         </i>
                                         Xóa

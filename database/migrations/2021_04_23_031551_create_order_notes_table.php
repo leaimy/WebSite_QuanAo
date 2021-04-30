@@ -16,8 +16,8 @@ class CreateOrderNotesTable extends Migration
         Schema::create('order_notes', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('order_id');
-            $table->bigInteger('user_id');
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('user_id');
             $table->enum('order_status', [
                 'cancelled', 'new web order', 'new phone order',
                 'approved', 'packed', 'ready for delivery',
@@ -25,7 +25,10 @@ class CreateOrderNotesTable extends Migration
             ]);
             $table->text('note')->nullable();
 
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+
+            $table->softDeletes();
         });
     }
 
