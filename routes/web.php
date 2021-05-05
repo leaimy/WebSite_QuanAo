@@ -52,6 +52,9 @@ Route::get('/admin', function () {
     return view('Backend.Dashboard.index');
 });
 
+//SnowWhite
+Route::get('/admin/website', 'AdminWebsiteController@index')->name('AdminWebsite.index');
+
 //Category
 Route::get('/admin/categories', 'AdminCategoryController@index')->name('AdminCategory.index');
 Route::get('/admin/categories/create', 'AdminCategoryController@create')->name('AdminCategory.create');
