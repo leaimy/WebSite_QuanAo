@@ -55,7 +55,6 @@
                                  id="image_viewer"
                                  alt=""
                                  width="165"
-                                 hidden
                             >
                         </div>
                     </div>
@@ -88,7 +87,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phonenumber">Số điện thoại *</label>
-                            <input value="{{$phone_number}}" name="phonenumber"
+                            <input value="{{$phone_number}}" name="phone_number"
                                    type="text"
                                    id="phonenumber"
                                    class="form-control"
