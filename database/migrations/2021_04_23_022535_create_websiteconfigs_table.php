@@ -23,6 +23,14 @@ class CreateWebsiteconfigsTable extends Migration
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->softDeletes();
         });
+        $data_keys = ['SHOP_NAME','LOGO_IMAGE','ADDRESS','PHONE_NUMBER','EMAIL','FACEBOOK','YOUTUBE','INSTAGRAM'];
+        foreach ($data_keys as $data_key) {
+            DB::table('websiteconfigs')->insert([
+                'config_key' => $data_key,
+                'config_value'=>'',
+            ]);
+        }
+
     }
 
     /**
@@ -34,4 +42,6 @@ class CreateWebsiteconfigsTable extends Migration
     {
         Schema::dropIfExists('websiteconfigs');
     }
+
+
 }

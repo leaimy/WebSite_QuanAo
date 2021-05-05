@@ -54,6 +54,7 @@ Route::get('/admin', function () {
 
 //SnowWhite
 Route::get('/admin/website', 'AdminWebsiteController@index')->name('AdminWebsite.index');
+Route::post('/admin/website/update', 'AdminWebsiteController@update')->name('AdminWebsite.update');
 
 //Category
 Route::get('/admin/categories', 'AdminCategoryController@index')->name('AdminCategory.index');

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content-body')
-    <form action="{{ route('AdminUser.store') }}"
+    <form action="{{ route('AdminWebsite.update') }}"
           method="POST"
           enctype="multipart/form-data">
         @csrf
@@ -27,7 +27,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="first_name">Tên cửa hàng *</label>
-                            <input name="name_store"
+                            <input value="{{$shop_name}}" name="name_store"
                                    type="text"
                                    id="first_name"
                                    class="form-control"
@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="form-group text-center">
-                            <img src=""
+                            <img  src="{{asset($logo_image)}}"
                                  id="image_viewer"
                                  alt=""
                                  width="165"
@@ -80,7 +80,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="address">Địa chỉ cửa hàng *</label>
-                            <input name="address"
+                            <input value="{{$address}}" name="address"
                                    type="text"
                                    id="address"
                                    class="form-control"
@@ -88,7 +88,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phonenumber">Số điện thoại *</label>
-                            <input name="phonenumber"
+                            <input value="{{$phone_number}}" name="phonenumber"
                                    type="text"
                                    id="phonenumber"
                                    class="form-control"
@@ -96,7 +96,7 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Email *</label>
-                            <input name="email"
+                            <input value="{{$email}}" name="email"
                                    type="text"
                                    id="email"
                                    class="form-control"
@@ -104,7 +104,7 @@
                         </div>
                         <div class="form-group">
                             <label for="facebook">Facebook</label>
-                            <input name="facebook"
+                            <input value="{{$facebook}}" name="facebook"
                                    type="text"
                                    id="facebook"
                                    class="form-control"
@@ -112,7 +112,7 @@
                         </div>
                         <div class="form-group">
                             <label for="youtube">Youtube</label>
-                            <input name="youtube"
+                            <input value="{{$youtube}}" name="youtube"
                                    type="text"
                                    id="youtube"
                                    class="form-control"
@@ -120,7 +120,7 @@
                         </div>
                         <div class="form-group">
                             <label for="instagram">Instagram</label>
-                            <input name="instagram"
+                            <input value="{{$instagram}}" name="instagram"
                                    type="text"
                                    id="instagram"
                                    class="form-control"
