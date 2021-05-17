@@ -21,6 +21,9 @@
 
     <!--====== App ======-->
     <link rel="stylesheet" href="{{ asset('frontend/css/app.css') }}">
+
+    <!--===== Custom ====-->
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 </head>
 <body class="config">
 <div class="preloader is-active">
@@ -1843,32 +1846,30 @@
 
 
         <!--====== Section 5 | Background ======-->
-        <div class="banner-bg" style='background-image: url("{{ asset($background_image) }}")'>
+        <div class="banner-bg banner-modal-wrapper" style='background-image: url("{{ asset($background_image) }}")'>
+
+            <!-- ===== Gray Modal ===== -->
+            <div class="banner-modal"></div>
 
             <!--====== Section Content ======-->
             <div class="section__content">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="banner-bg__countdown">
-                                <div class="countdown countdown--style-banner" data-countdown="2020/05/01"></div>
-                            </div>
                             <div class="banner-bg__wrap">
                                 <div class="banner-bg__text-1">
-
-                                    <span class="u-c-white">Global</span>
-
-                                    <span class="u-c-secondary">Offers</span></div>
+                                    <span class="u-c-white">Shop Bạch Tuyết</span>
+                                </div>
                                 <div class="banner-bg__text-2">
+                                    <span class="u-c-white">Mua ngay hôm nay</span>
+                                </div>
+                                <span class="banner-bg__text-block banner-bg__text-3 u-c-white">
+                                    Cửa hàng bán quần áo uy tín số 1 Việt Nam
+                                </span>
 
-                                    <span class="u-c-secondary">Official Launch</span>
-
-                                    <span class="u-c-white">Don't Miss!</span></div>
-
-                                <span class="banner-bg__text-block banner-bg__text-3 u-c-secondary">Enjoy Free Shipping when you buy 2 items and above!</span>
-
-                                <a class="banner-bg__shop-now btn--e-secondary" href="shop-side-version-2.html">Shop
-                                    Now</a>
+                                <a class="banner-bg__shop-now btn--e-white-brand" href="shop-side-version-2.html">
+                                    Xem sản phẩm
+                                </a>
                             </div>
                         </div>
                     </div>

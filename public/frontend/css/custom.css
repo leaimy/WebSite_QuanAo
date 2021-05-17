@@ -1,0 +1,21 @@
+.banner-modal-wrapper {
+    position: relative;
+}
+
+.banner-modal {
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+    bottom: 3rem;
+    right: 3rem;
+    z-index: 0;
+
+    border-radius: 50px;
+
+    background-color: #333;
+    opacity: .5;
+}
+
+.banner-content {
+    z-index: 100;
+}
