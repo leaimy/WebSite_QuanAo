@@ -44,7 +44,7 @@
                                         Đã tạo: {{ $user->created_at }}
                                     </small>
                                 </td>
-                                <td class="align-middle">{{ $user->getFullName() }}</td>
+                                <td class="align-middle">{{ $user->getFullNameWithComma() }}</td>
                                 <td class="align-middle">{{ $user->email }}</td>
                                 <td class="text-center align-middle">
                                     <img src="{{ asset($user->avatar_path) }}"

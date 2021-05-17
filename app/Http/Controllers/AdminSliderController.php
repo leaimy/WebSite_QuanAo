@@ -28,9 +28,9 @@ class AdminSliderController extends Controller {
         $imageName = $image->getClientOriginalName();
         $imagePath = 'slider_' . Str::random(11) . time() . '.' . $image->extension();
 
-        $image->move(public_path('sliders'), $imagePath);
+        $image->move(public_path('storage/sliders'), $imagePath);
 
-        $imageFullPath = 'sliders/' . $imagePath;
+        $imageFullPath = 'storage/sliders/' . $imagePath;
 
         Slider::create([
             'title' => $request['title'],

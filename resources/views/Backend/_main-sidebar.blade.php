@@ -10,10 +10,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('images/avatars/avatar3.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ asset(auth()->user()->avatar_path) }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Nguyễn Thị Hà</a>
+                <a href="{{ route('AdminUser.show', [auth()->user()]) }}" class="d-block">{{ auth()->user()->getFullName() }}</a>
             </div>
         </div>
 
@@ -21,7 +21,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('Admin.home') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/starfish.png') }}" width="20"
                                  alt="">
@@ -71,7 +71,7 @@
 
                 <li class="nav-header">BÁN HÀNG</li>
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('Admin.home') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/dolphin.png') }}" width="20"
                                  alt="">
@@ -83,7 +83,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('Admin.home') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/mushroom.png') }}" width="20"
                                  alt="">
@@ -97,7 +97,7 @@
 
                 <li class="nav-header">GIAO DIỆN</li>
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('Admin.home') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/butterfly.png') }}" width="20"
                                  alt="">
@@ -132,7 +132,7 @@
 
                 <li class="nav-header">HỆ THỐNG</li>
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('AdminRole.index') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/crab.png') }}" width="20"
                                  alt="">
@@ -154,7 +154,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('AdminUser.show', [auth()->user()]) }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/whale.png') }}" width="20"
                                  alt="">
@@ -165,7 +165,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('auth.logout.logout') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/dove.png') }}" width="20"
                                  alt="">
@@ -178,7 +178,7 @@
 
                 <li class="nav-header">LẬP TRÌNH VIÊN</li>
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link">
+                    <a href="{{ route('Admin.home') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/squirrel.png') }}" width="20"
                                  alt="">

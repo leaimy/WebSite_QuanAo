@@ -11,3 +11,7 @@ INSERT INTO categories (id, name, slug, status, parent_id) VALUES (10, 'váy dà
 INSERT INTO categories (id, name, slug, status, parent_id) VALUES (11, 'váy ngắn', 'vay-ngan', 1, 3);
 INSERT INTO categories (id, name, slug, status, parent_id) VALUES (12, 'chân váy', 'chan-vay', 1, 3);
 
+INSERT INTO users(id, first_name, last_name, username, email, password, avatar_name, avatar_path)
+VALUES (1, 'Hiếu', 'Nguyễn Trọng', 'tronghieu', 'hieuntctk42@gmail.com', '$2y$10$goP9dyeKfbaRZeVzqfdXhehPFasiEo0FMnvZIB1WJHgWrQQwqZys2', 'avatar1.jpg', 'images/avatars/avatar1.jpg');
+INSERT INTO users(id, first_name, last_name, username, email, password, avatar_name, avatar_path)
+VALUES (2, 'Hà', 'Nguyễn Thị', 'thiha', 'hantctk42@gmail.com', '$2y$10$6phFUH9t5GSlnd50i0YS8ugYKwfEik9uwgXTxmrsFP9tfwdWKcKXa', 'avatar2.jpg', 'images/avatars/avatar2.jpg');
