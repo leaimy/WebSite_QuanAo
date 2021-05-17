@@ -21,6 +21,9 @@
 
     <!--====== App ======-->
     <link rel="stylesheet" href="{{ asset('frontend/css/app.css') }}">
+
+    <!--===== Custom ====-->
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 </head>
 <body class="config">
 <div class="preloader is-active">
@@ -750,8 +753,8 @@
             <div class="section__content">
                 <div class="container">
                     <div class="row">
-                        @for($i=0;$i<4;$i++)
-                            @if($i==0 or $i==3)
+                        @for($i=0;$i<3;$i++)
+                            @if($i==0)
                                 <div class="col-lg-5 col-md-5 u-s-m-b-30">
 
                                     <a class="collection" href="shop-side-version-2.html">
@@ -761,7 +764,7 @@
                                                  src="{{ asset($products[$i]->preview_image_path) }}" alt=""></div>
                                     </a></div>
                             @else
-                                <div class="col-lg-7 col-md-7 u-s-m-b-30">
+                                <div style="margin-left: auto; margin-right: auto;" class="col-lg-7 col-md-7 u-s-m-b-30">
 
                                     <a class="collection" href="shop-side-version-2.html">
                                         <div class="aspect aspect--bg-grey aspect--1286-890">
@@ -987,32 +990,30 @@
 
 
         <!--====== Section 5 | Background ======-->
-        <div class="banner-bg" style='background-image: url("{{ asset($background_image) }}")'>
+        <div class="banner-bg banner-modal-wrapper" style='background-image: url("{{ asset($background_image) }}")'>
+
+            <!-- ===== Gray Modal ===== -->
+            <div class="banner-modal"></div>
 
             <!--====== Section Content ======-->
             <div class="section__content">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="banner-bg__countdown">
-                                <div class="countdown countdown--style-banner" data-countdown="2020/05/01"></div>
-                            </div>
                             <div class="banner-bg__wrap">
                                 <div class="banner-bg__text-1">
-
-                                    <span class="u-c-white">Global</span>
-
-                                    <span class="u-c-secondary">Offers</span></div>
+                                    <span class="u-c-white">Shop Bạch Tuyết</span>
+                                </div>
                                 <div class="banner-bg__text-2">
+                                    <span class="u-c-white">Mua ngay hôm nay</span>
+                                </div>
+                                <span class="banner-bg__text-block banner-bg__text-3 u-c-white">
+                                    Cửa hàng bán quần áo uy tín số 1 Việt Nam
+                                </span>
 
-                                    <span class="u-c-secondary">Official Launch</span>
-
-                                    <span class="u-c-white">Don't Miss!</span></div>
-
-                                <span class="banner-bg__text-block banner-bg__text-3 u-c-secondary">Enjoy Free Shipping when you buy 2 items and above!</span>
-
-                                <a class="banner-bg__shop-now btn--e-secondary" href="shop-side-version-2.html">Shop
-                                    Now</a>
+                                <a class="banner-bg__shop-now btn--e-white-brand" href="shop-side-version-2.html">
+                                    Xem sản phẩm
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -1246,24 +1247,24 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-6 u-s-m-b-30">
                             <div class="service u-h-100">
-                                <div class="service__icon"><i class="fas fa-truck"></i></div>
+                                <div class="service__icon"><i class="fas fa-balance-scale"></i></div>
                                 <div class="service__info-wrap">
 
-                                    <span class="service__info-text-1">Free Shipping</span>
+                                    <span class="service__info-text-1">Uy tín</span>
 
                                     <span
-                                        class="service__info-text-2">Free shipping on all US order or order above $200</span>
+                                        class="service__info-text-2">Sản phầm quần áo uy tín, chất lượng, có nguồn gốc xuất xứ rõ ràng</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 u-s-m-b-30">
                             <div class="service u-h-100">
-                                <div class="service__icon"><i class="fas fa-redo"></i></div>
+                                <div class="service__icon"><i class="fas fa-truck"></i></div>
                                 <div class="service__info-wrap">
 
-                                    <span class="service__info-text-1">Shop with Confidence</span>
+                                    <span class="service__info-text-1">Nhanh chóng</span>
 
-                                    <span class="service__info-text-2">Our Protection covers your purchase from click to delivery</span>
+                                    <span class="service__info-text-2">Giao hàng nhanh chóng, tận nơi, tiện lợi</span>
                                 </div>
                             </div>
                         </div>
@@ -1272,9 +1273,9 @@
                                 <div class="service__icon"><i class="fas fa-headphones-alt"></i></div>
                                 <div class="service__info-wrap">
 
-                                    <span class="service__info-text-1">24/7 Help Center</span>
+                                    <span class="service__info-text-1">Hỗ trợ khách hàng</span>
 
-                                    <span class="service__info-text-2">Round-the-clock assistance for a smooth shopping experience</span>
+                                    <span class="service__info-text-2">Nhân viên hỗ trợ khách hàng 24/7, tận tâm, nhiệt tình</span>
                                 </div>
                             </div>
                         </div>
