@@ -195,22 +195,22 @@
                                 @foreach($parent_categories as $parent_category)
 
                                     @if (\App\Category::where('parent_id', $parent_category->id)->count() > 0)
-                                    <li class="has-dropdown">
+                                        <li class="has-dropdown">
 
-                                    <a>{{ mb_convert_case($parent_category->name, MB_CASE_UPPER, "UTF-8") }} <i class="fas fa-angle-down u-s-m-l-6"></i></a>
+                                            <a>{{ mb_convert_case($parent_category->name, MB_CASE_UPPER, "UTF-8") }} <i class="fas fa-angle-down u-s-m-l-6"></i></a>
 
-                                    <!--====== Dropdown ======-->
+                                            <!--====== Dropdown ======-->
 
-                                    <span class="js-menu-toggle"></span>
-                                    <ul style="width:200px">
-                                        @foreach(\App\Category::where('parent_id', $parent_category->id)->get() as $category)
-                                            <li>
-                                                <a href="blog-left-sidebar.html">{{ mb_convert_case($category->name, MB_CASE_UPPER, "UTF-8") }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                    <!--====== End - Dropdown ======-->
-                                </li>
+                                            <span class="js-menu-toggle"></span>
+                                            <ul style="width:200px">
+                                                @foreach(\App\Category::where('parent_id', $parent_category->id)->get() as $category)
+                                                    <li>
+                                                        <a href="blog-left-sidebar.html">{{ mb_convert_case($category->name, MB_CASE_UPPER, "UTF-8") }}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                            <!--====== End - Dropdown ======-->
+                                        </li>
                                     @endif
 
                                 @endforeach
@@ -250,7 +250,7 @@
 
                                     <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
 
-                                        <span class="total-item-round">2</span></a>
+                                        <span class="total-item-round" id="mini-cart-item-count">0</span></a>
 
                                     <!--====== Dropdown ======-->
 
@@ -258,126 +258,10 @@
                                     <div class="mini-cart">
 
                                         <!--====== Mini Product Container ======-->
-                                        <div class="mini-product-container gl-scroll u-s-m-b-15">
-
-                                            <!--====== Card for mini cart ======-->
-                                            <div class="card-mini-product">
-                                                <div class="mini-product">
-                                                    <div class="mini-product__image-wrapper">
-
-                                                        <a class="mini-product__link" href="product-detail.html">
-
-                                                            <img class="u-img-fluid"
-                                                                 src="{{ asset('frontend/images/product/electronic/product3.jpg') }}"
-                                                                 alt=""></a></div>
-                                                    <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                                        <span class="mini-product__name">
-
-                                                                <a href="product-detail.html">Yellow Wireless Headphone</a></span>
-
-                                                        <span class="mini-product__quantity">1 x</span>
-
-                                                        <span class="mini-product__price">$8</span></div>
-                                                </div>
-
-                                                <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                            </div>
-                                            <!--====== End - Card for mini cart ======-->
+                                        <div id="mini-product-container" class="mini-product-container gl-scroll u-s-m-b-15">
 
 
-                                            <!--====== Card for mini cart ======-->
-                                            <div class="card-mini-product">
-                                                <div class="mini-product">
-                                                    <div class="mini-product__image-wrapper">
 
-                                                        <a class="mini-product__link" href="product-detail.html">
-
-                                                            <img class="u-img-fluid"
-                                                                 src="{{ asset('frontend/images/product/electronic/product18.jpg') }}"
-                                                                 alt=""></a></div>
-                                                    <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                                        <span class="mini-product__name">
-
-                                                                <a href="product-detail.html">Nikon DSLR Camera 4k</a></span>
-
-                                                        <span class="mini-product__quantity">1 x</span>
-
-                                                        <span class="mini-product__price">$8</span></div>
-                                                </div>
-
-                                                <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                            </div>
-                                            <!--====== End - Card for mini cart ======-->
-
-
-                                            <!--====== Card for mini cart ======-->
-                                            <div class="card-mini-product">
-                                                <div class="mini-product">
-                                                    <div class="mini-product__image-wrapper">
-
-                                                        <a class="mini-product__link" href="product-detail.html">
-
-                                                            <img class="u-img-fluid"
-                                                                 src="{{ asset('frontend/images/product/women/product8.jpg') }}"
-                                                                 alt=""></a></div>
-                                                    <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.html">Women Clothing</a></span>
-
-                                                        <span class="mini-product__name">
-
-                                                                <a href="product-detail.html">New Dress D Nice Elegant</a></span>
-
-                                                        <span class="mini-product__quantity">1 x</span>
-
-                                                        <span class="mini-product__price">$8</span></div>
-                                                </div>
-
-                                                <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                            </div>
-                                            <!--====== End - Card for mini cart ======-->
-
-
-                                            <!--====== Card for mini cart ======-->
-                                            <div class="card-mini-product">
-                                                <div class="mini-product">
-                                                    <div class="mini-product__image-wrapper">
-
-                                                        <a class="mini-product__link" href="product-detail.html">
-
-                                                            <img class="u-img-fluid"
-                                                                 src="{{ asset('frontend/images/product/men/product8.jpg') }}"
-                                                                 alt=""></a></div>
-                                                    <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.html">Men Clothing</a></span>
-
-                                                        <span class="mini-product__name">
-
-                                                                <a href="product-detail.html">New Fashion D Nice Elegant</a></span>
-
-                                                        <span class="mini-product__quantity">1 x</span>
-
-                                                        <span class="mini-product__price">$8</span></div>
-                                                </div>
-
-                                                <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                            </div>
-                                            <!--====== End - Card for mini cart ======-->
                                         </div>
                                         <!--====== End - Mini Product Container ======-->
 
@@ -386,16 +270,14 @@
                                         <div class="mini-product-stat">
                                             <div class="mini-total">
 
-                                                <span class="subtotal-text">SUBTOTAL</span>
+                                                <span class="subtotal-text">THÀNH TIỀN</span>
 
-                                                <span class="subtotal-value">$16</span></div>
+                                                <span class="subtotal-value"><span id="mini-cart-subtotal"></span> VND</span></div>
                                             <div class="mini-action">
 
-                                                <a class="mini-link btn--e-brand-b-2" href="checkout.html">PROCEED TO
-                                                    CHECKOUT</a>
+                                                <a class="mini-link btn--e-brand-b-2" href="checkout.html">THANH TOÁN</a>
 
-                                                <a class="mini-link btn--e-transparent-secondary-b-2" href="cart.html">VIEW
-                                                    CART</a></div>
+                                                <a class="mini-link btn--e-transparent-secondary-b-2" href="cart.html">XEM GIỎ HÀNG</a></div>
                                         </div>
                                         <!--====== End - Mini Product Statistics ======-->
                                     </div>
@@ -433,7 +315,7 @@
                             </div>
                         </div>
                     </div>
-            @endforeach
+                @endforeach
             </div>
         </div>
         <!--====== End - Primary Slider ======-->
@@ -567,8 +449,8 @@
                                                                        title="Xem chi tiết"><i
                                                                             class="fas fa-search-plus"></i></a></li>
                                                                 <li>
-
-                                                                    <a data-modal="modal" data-modal-id="#add-to-cart"
+                                                                    <a data-modal="modal"
+                                                                       onclick="handleOnAddToCartClick({{ $product->id }}, '{{ $category->name }}', '{{ $product->name }}', '{{ asset($product->preview_image_path) }}', 1, {{ $product->sale_price }})"
                                                                        data-tooltip="tooltip" data-placement="top"
                                                                        title="Thêm vào giỏ hàng"><i
                                                                             class="fas fa-plus-circle"></i></a></li>
@@ -1067,36 +949,13 @@
                     <!--====== Brand Slider ======-->
                     <div class="slider-fouc">
                         <div class="owl-carousel" id="brand-slider" data-item="5">
-                            <div class="brand-slide">
 
-                                <a href="shop-side-version-2.html">
+                            @for($i = 1; $i <= 8; $i++)
+                                <div class="brand-slide">
+                                    <img src="{{ asset('images/brands/brand' . $i . '.jpg' ) }}" alt="">
+                                </div>
+                            @endfor
 
-                                    <img src="{{ asset('frontend/images/brand/b1.png') }}" alt=""></a></div>
-                            <div class="brand-slide">
-
-                                <a href="shop-side-version-2.html">
-
-                                    <img src="{{ asset('frontend/images/brand/b2.png') }}" alt=""></a></div>
-                            <div class="brand-slide">
-
-                                <a href="shop-side-version-2.html">
-
-                                    <img src="{{ asset('frontend/images/brand/b3.png') }}" alt=""></a></div>
-                            <div class="brand-slide">
-
-                                <a href="shop-side-version-2.html">
-
-                                    <img src="{{ asset('frontend/images/brand/b4.png') }}" alt=""></a></div>
-                            <div class="brand-slide">
-
-                                <a href="shop-side-version-2.html">
-
-                                    <img src="{{ asset('frontend/images/brand/b5.png') }}" alt=""></a></div>
-                            <div class="brand-slide">
-
-                                <a href="shop-side-version-2.html">
-
-                                    <img src="{{ asset('frontend/images/brand/b6.png') }}" alt=""></a></div>
                         </div>
                     </div>
                     <!--====== End - Brand Slider ======-->
@@ -1424,45 +1283,45 @@
 
 
     <!--====== Add to Cart Modal ======-->
-    <div class="modal fade" id="add-to-cart">
+    <div class="modal fade" id="add-to-cart-modal">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-radius modal-shadow">
 
-                <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal"></button>
+                <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal" id="atc-close" onclick="closeAddToCartModal()"></button>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-6 col-md-12">
                             <div class="success u-s-m-b-30">
                                 <div class="success__text-wrap"><i class="fas fa-check"></i>
 
-                                    <span>Item is added successfully!</span></div>
+                                    <span>Đã thêm vào giỏ hàng!</span></div>
                                 <div class="success__img-wrap">
 
-                                    <img class="u-img-fluid"
-                                         src="{{ asset('frontend/images/product/electronic/product1.jpg') }}" alt="">
+                                    <img class="u-img-fluid" id="atc-modal-image"
+                                         src="" alt="">
                                 </div>
                                 <div class="success__info-wrap">
 
-                                    <span class="success__name">Beats Bomb Wireless Headphone</span>
+                                    <span class="success__name" id="atc-modal-name"></span>
 
-                                    <span class="success__quantity">Quantity: 1</span>
+                                    <span class="success__quantity">Số lượng: <span id="atc-modal-quantity"></span></span>
 
-                                    <span class="success__price">$170.00</span></div>
+                                    <span class="success__price"><span id="atc-modal-price"></span> VND</span></div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12">
                             <div class="s-option">
-
-                                <span class="s-option__text">1 item (s) in your cart</span>
                                 <div class="s-option__link-box">
 
-                                    <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE
-                                        SHOPPING</a>
+                                    <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">
+                                        TIẾP TỤC MUA HÀNG
+                                    </a>
 
-                                    <a class="s-option__link btn--e-white-brand-shadow" href="cart.html">VIEW CART</a>
+                                    <a class="s-option__link btn--e-white-brand-shadow" href="cart.html">XEM GIỎ HÀNG</a>
 
-                                    <a class="s-option__link btn--e-brand-shadow" href="checkout.html">PROCEED TO
-                                        CHECKOUT</a></div>
+                                    <a class="s-option__link btn--e-brand-shadow" href="checkout.html">
+                                        THANH TOÁN
+                                    </a></div>
                             </div>
                         </div>
                     </div>
@@ -1479,6 +1338,8 @@
     <!--====== End - Modal Section ======-->
 </div>
 <!--====== End - Main App ======-->
+
+<div id="modal-overlay" class=""></div>
 
 
 <!--====== Google Analytics: change UA-XXXXX-Y to be your site's ID ======-->
@@ -1501,6 +1362,9 @@
 
 <!--====== App ======-->
 <script src="{{ asset('frontend/js/app.js') }}"></script>
+
+<!--===== Cart ====-->
+<script src="{{ asset('frontend/js/cart.js') }}"></script>
 
 <script>
     // self executing function here
