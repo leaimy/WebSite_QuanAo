@@ -20,6 +20,8 @@ Route::get('/', function () {
     $categories = \App\Category::where('status', 1)->where('parent_id', '!=', 0)->get();
     $latest_products = \App\Product::take(10)->get();
     $featured_products = \App\Product::orderBy('views', 'desc')->take(8)->get();
+    //cua hang
+    $websiteconfig = \App\Website::all();
 
     $background_images=glob(public_path('images/backgrounds/*.*'));
     $index = array_rand($background_images);
@@ -33,7 +35,11 @@ Route::get('/', function () {
 
     $trending_categories = \App\Category::where('parent_id', '!=', 0)->inRandomOrder()->limit(4)->get();
 
+//    dd($websiteconfig);
+
+
     return view('Frontend.Home.index', [
+        'websiteconfig'=>$websiteconfig,
         'sliders' => $sliders,
         'feedbacks' => $feedbacks,
         'categories' => $categories,
