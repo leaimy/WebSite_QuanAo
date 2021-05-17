@@ -7,6 +7,7 @@ Route::get('/', function () {
     $feedbacks = \App\ClientFeedBack::where('status', 1)->get();
     $product = \App\Product::all();
     $categories = \App\Category::where('status', 1)->where('parent_id', '!=', 0)->get();
+    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
     $latest_products = \App\Product::take(10)->get();
     $featured_products = \App\Product::orderBy('views', 'desc')->take(8)->get();
     //cua hang
@@ -24,13 +25,14 @@ Route::get('/', function () {
 
     $trending_categories = \App\Category::where('parent_id', '!=', 0)->inRandomOrder()->limit(4)->get();
 
-//    dd($websiteconfig);
+//    dd($parent_categories);
 
 
     return view('Frontend.Home.index', [
         'websiteconfig'=>$websiteconfig,
         'sliders' => $sliders,
         'feedbacks' => $feedbacks,
+        'parent_categories' => $parent_categories,
         'categories' => $categories,
         'products' => $product,
         'latest_products' => $latest_products,
@@ -58,10 +60,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', function () {
         return view('Backend.Dashboard.index');
     })->name('Admin.home');
- 
+
     /**
      * Quản lý cửa hàng
-     */    
+     */
     Route::get('/admin/website', 'AdminWebsiteController@index')->name('AdminWebsite.index');
     Route::post('/admin/website/update', 'AdminWebsiteController@update')->name('AdminWebsite.update');
 
