@@ -179,268 +179,45 @@
 
                             <!--====== List ======-->
                             <ul class="ah-list ah-list--design2 ah-list--link-color-secondary">
+
                                 <li>
-
-                                    <a href="shop-side-version-2.html">NEW ARRIVALS</a></li>
-                                <li class="has-dropdown">
-
-                                    <a>PAGES<i class="fas fa-angle-down u-s-m-l-6"></i></a>
-
-                                    <!--====== Dropdown ======-->
-
-                                    <span class="js-menu-toggle"></span>
-                                    <ul style="width:170px">
-                                        <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                            <a>Home<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                            <!--====== Dropdown ======-->
-
-                                            <span class="js-menu-toggle"></span>
-                                            <ul style="width:118px">
-                                                <li>
-
-                                                    <a href="index.html">Home 1</a></li>
-                                                <li>
-
-                                                    <a href="index-2.html">Home 2</a></li>
-                                                <li>
-
-                                                    <a href="index-3.html">Home 3</a></li>
-                                            </ul>
-                                            <!--====== End - Dropdown ======-->
-                                        </li>
-                                        <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                            <a>Account<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                            <!--====== Dropdown ======-->
-
-                                            <span class="js-menu-toggle"></span>
-                                            <ul style="width:200px">
-                                                <li>
-
-                                                    <a href="signin.html">Signin / Already Registered</a></li>
-                                                <li>
-
-                                                    <a href="signup.html">Signup / Register</a></li>
-                                                <li>
-
-                                                    <a href="lost-password.html">Lost Password</a></li>
-                                            </ul>
-                                            <!--====== End - Dropdown ======-->
-                                        </li>
-                                        <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                            <a href="dashboard.html">Dashboard<i
-                                                    class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                            <!--====== Dropdown ======-->
-
-                                            <span class="js-menu-toggle"></span>
-                                            <ul style="width:200px">
-                                                <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                                    <a href="dashboard.html">Manage My Account<i
-                                                            class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                                    <!--====== Dropdown ======-->
-
-                                                    <span class="js-menu-toggle"></span>
-                                                    <ul style="width:180px">
-                                                        <li>
-
-                                                            <a href="dash-edit-profile.html">Edit Profile</a></li>
-                                                        <li>
-
-                                                            <a href="dash-address-book.html">Edit Address Book</a></li>
-                                                        <li>
-
-                                                            <a href="dash-manage-order.html">Manage Order</a></li>
-                                                    </ul>
-                                                    <!--====== End - Dropdown ======-->
-                                                </li>
-                                                <li>
-
-                                                    <a href="dash-my-profile.html">My Profile</a></li>
-                                                <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                                    <a href="dash-address-book.html">Address Book<i
-                                                            class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                                    <!--====== Dropdown ======-->
-
-                                                    <span class="js-menu-toggle"></span>
-                                                    <ul style="width:180px">
-                                                        <li>
-
-                                                            <a href="dash-address-make-default.html">Address Make
-                                                                Default</a></li>
-                                                        <li>
-
-                                                            <a href="dash-address-add.html">Add New Address</a></li>
-                                                        <li>
-
-                                                            <a href="dash-address-edit.html">Edit Address Book</a></li>
-                                                    </ul>
-                                                    <!--====== End - Dropdown ======-->
-                                                </li>
-                                                <li>
-
-                                                    <a href="dash-track-order.html">Track Order</a></li>
-                                                <li>
-
-                                                    <a href="dash-my-order.html">My Orders</a></li>
-                                                <li>
-
-                                                    <a href="dash-payment-option.html">My Payment Options</a></li>
-                                                <li>
-
-                                                    <a href="dash-cancellation.html">My Returns & Cancellations</a></li>
-                                            </ul>
-                                            <!--====== End - Dropdown ======-->
-                                        </li>
-                                        <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                            <a>Empty<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                            <!--====== Dropdown ======-->
-
-                                            <span class="js-menu-toggle"></span>
-                                            <ul style="width:200px">
-                                                <li>
-
-                                                    <a href="empty-search.html">Empty Search</a></li>
-                                                <li>
-
-                                                    <a href="empty-cart.html">Empty Cart</a></li>
-                                                <li>
-
-                                                    <a href="empty-wishlist.html">Empty Wishlist</a></li>
-                                            </ul>
-                                            <!--====== End - Dropdown ======-->
-                                        </li>
-                                        <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                            <a>Product Details<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                            <!--====== Dropdown ======-->
-
-                                            <span class="js-menu-toggle"></span>
-                                            <ul style="width:200px">
-                                                <li>
-
-                                                    <a href="product-detail.html">Product Details</a></li>
-                                                <li>
-
-                                                    <a href="product-detail-variable.html">Product Details Variable</a>
-                                                </li>
-                                                <li>
-
-                                                    <a href="product-detail-affiliate.html">Product Details
-                                                        Affiliate</a></li>
-                                            </ul>
-                                            <!--====== End - Dropdown ======-->
-                                        </li>
-                                        <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                            <a>Shop Grid Layout<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                            <!--====== Dropdown ======-->
-
-                                            <span class="js-menu-toggle"></span>
-                                            <ul style="width:200px">
-                                                <li>
-
-                                                    <a href="shop-grid-left.html">Shop Grid Left Sidebar</a></li>
-                                                <li>
-
-                                                    <a href="shop-grid-right.html">Shop Grid Right Sidebar</a></li>
-                                                <li>
-
-                                                    <a href="shop-grid-full.html">Shop Grid Full Width</a></li>
-                                                <li>
-
-                                                    <a href="shop-side-version-2.html">Shop Side Version 2</a></li>
-                                            </ul>
-                                            <!--====== End - Dropdown ======-->
-                                        </li>
-                                        <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                            <a>Shop List Layout<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                            <!--====== Dropdown ======-->
-
-                                            <span class="js-menu-toggle"></span>
-                                            <ul style="width:200px">
-                                                <li>
-
-                                                    <a href="shop-list-left.html">Shop List Left Sidebar</a></li>
-                                                <li>
-
-                                                    <a href="shop-list-right.html">Shop List Right Sidebar</a></li>
-                                                <li>
-
-                                                    <a href="shop-list-full.html">Shop List Full Width</a></li>
-                                            </ul>
-                                            <!--====== End - Dropdown ======-->
-                                        </li>
-                                        <li>
-
-                                            <a href="cart.html">Cart</a></li>
-                                        <li>
-
-                                            <a href="wishlist.html">Wishlist</a></li>
-                                        <li>
-
-                                            <a href="checkout.html">Checkout</a></li>
-                                        <li>
-
-                                            <a href="faq.html">FAQ</a></li>
-                                        <li>
-
-                                            <a href="about.html">About us</a></li>
-                                        <li>
-
-                                            <a href="contact.html">Contact</a></li>
-                                        <li>
-
-                                            <a href="404.html">404</a></li>
-                                    </ul>
-                                    <!--====== End - Dropdown ======-->
+                                    <a href="#product-trending">XU HƯỚNG</a>
                                 </li>
-                                <li class="has-dropdown">
 
-                                    <a>BLOG<i class="fas fa-angle-down u-s-m-l-6"></i></a>
+                                <li>
+                                    <a href="#new-products">SẢN PHẨM MỚI</a>
+                                </li>
+
+                                <li>
+                                    <a href="#top-selling-product">SẢN PHẨM BÁN CHẠY</a>
+                                </li>
+
+                                @foreach($parent_categories as $parent_category)
+
+                                    @if (\App\Category::where('parent_id', $parent_category->id)->count() > 0)
+                                    <li class="has-dropdown">
+
+                                    <a>{{ mb_convert_case($parent_category->name, MB_CASE_UPPER, "UTF-8") }} <i class="fas fa-angle-down u-s-m-l-6"></i></a>
 
                                     <!--====== Dropdown ======-->
 
                                     <span class="js-menu-toggle"></span>
                                     <ul style="width:200px">
-                                        <li>
-
-                                            <a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                        <li>
-
-                                            <a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                                        <li>
-
-                                            <a href="blog-sidebar-none.html">Blog Sidebar None</a></li>
-                                        <li>
-
-                                            <a href="blog-masonry.html">Blog Masonry</a></li>
-                                        <li>
-
-                                            <a href="blog-detail.html">Blog Details</a></li>
+                                        @foreach(\App\Category::where('parent_id', $parent_category->id)->get() as $category)
+                                            <li>
+                                                <a href="blog-left-sidebar.html">{{ mb_convert_case($category->name, MB_CASE_UPPER, "UTF-8") }}</a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                     <!--====== End - Dropdown ======-->
                                 </li>
-                                <li>
+                                    @endif
 
-                                    <a href="shop-side-version-2.html">VALUE OF THE DAY</a></li>
-                                <li>
+                                @endforeach
 
-                                    <a href="shop-side-version-2.html">GIFT CARDS</a></li>
+                                <li>
+                                    <a href="#footer">LIÊN HỆ</a>
+                                </li>
                             </ul>
                             <!--====== End - List ======-->
                         </div>
@@ -657,73 +434,6 @@
                         </div>
                     </div>
             @endforeach
-
-            <!--
-                <div class="hero-slide hero-slide--1">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="slider-content slider-content--animation">
-
-                                    <span class="content-span-1 u-c-secondary">Latest Update Stock</span>
-
-                                    <span class="content-span-2 u-c-secondary">30% Off On Electronics</span>
-
-                                    <span class="content-span-3 u-c-secondary">Find electronics on best prices, Also Discover most selling products of electronics</span>
-
-                                    <span class="content-span-4 u-c-secondary">Starting At
-
-                                            <span class="u-c-brand">$1050.00</span></span>
-
-                                    <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-slide hero-slide--2">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="slider-content slider-content--animation">
-
-                                    <span class="content-span-1 u-c-white">Find Top Brands</span>
-
-                                    <span class="content-span-2 u-c-white">10% Off On Electronics</span>
-
-                                    <span class="content-span-3 u-c-white">Find electronics on best prices, Also Discover most selling products of electronics</span>
-
-                                    <span class="content-span-4 u-c-white">Starting At
-
-                                            <span class="u-c-brand">$380.00</span></span>
-
-                                    <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-slide hero-slide--3">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="slider-content slider-content--animation">
-
-                                    <span class="content-span-1 u-c-secondary">Find Top Brands</span>
-
-                                    <span class="content-span-2 u-c-secondary">10% Off On Electronics</span>
-
-                                    <span class="content-span-3 u-c-secondary">Find electronics on best prices, Also Discover most selling products of electronics</span>
-
-                                    <span class="content-span-4 u-c-secondary">Starting At
-
-                                            <span class="u-c-brand">$550.00</span></span>
-
-                                    <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                -->
-
             </div>
         </div>
         <!--====== End - Primary Slider ======-->
@@ -784,7 +494,7 @@
 
 
         <!--====== Section 2 | Xu hướng sản phẩm ======-->
-        <div class="u-s-p-b-60">
+        <div class="u-s-p-b-60" id="product-trending">
 
             <!--====== Section Intro ======-->
             <div class="section__intro u-s-m-b-16">
@@ -909,7 +619,7 @@
 
 
         <!--====== Section 4 | Sản phẩm mới về ======-->
-        <div class="u-s-p-b-60">
+        <div class="u-s-p-b-60" id="new-products">
 
             <!--====== Section Intro ======-->
             <div class="section__intro u-s-m-b-46">
@@ -1108,7 +818,7 @@
 
 
         <!--====== Section 8 | Sản phẩm bán chạy ======-->
-        <div class="u-s-p-b-60">
+        <div class="u-s-p-b-60" id="top-selling-product">
 
             <div class="section__intro u-s-m-b-46">
                 <div class="container">
@@ -1400,7 +1110,7 @@
 
 
     <!--====== Main Footer ======-->
-    <footer>
+    <footer id="footer">
         <div class="outer-footer">
             <div class="container">
                 <div class="row">
@@ -1481,7 +1191,7 @@
                                 @endforeach
                             </div>
 
-                            
+
                         </div>
                     </div>
                 </div>
