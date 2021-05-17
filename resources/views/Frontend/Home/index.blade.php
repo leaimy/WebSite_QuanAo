@@ -1067,36 +1067,13 @@
                     <!--====== Brand Slider ======-->
                     <div class="slider-fouc">
                         <div class="owl-carousel" id="brand-slider" data-item="5">
+
+                            @for($i = 1; $i <= 8; $i++)
                             <div class="brand-slide">
+                                <img src="{{ asset('images/brands/brand' . $i . '.jpg' ) }}" alt="">
+                            </div>
+                            @endfor
 
-                                <a href="shop-side-version-2.html">
-
-                                    <img src="{{ asset('frontend/images/brand/b1.png') }}" alt=""></a></div>
-                            <div class="brand-slide">
-
-                                <a href="shop-side-version-2.html">
-
-                                    <img src="{{ asset('frontend/images/brand/b2.png') }}" alt=""></a></div>
-                            <div class="brand-slide">
-
-                                <a href="shop-side-version-2.html">
-
-                                    <img src="{{ asset('frontend/images/brand/b3.png') }}" alt=""></a></div>
-                            <div class="brand-slide">
-
-                                <a href="shop-side-version-2.html">
-
-                                    <img src="{{ asset('frontend/images/brand/b4.png') }}" alt=""></a></div>
-                            <div class="brand-slide">
-
-                                <a href="shop-side-version-2.html">
-
-                                    <img src="{{ asset('frontend/images/brand/b5.png') }}" alt=""></a></div>
-                            <div class="brand-slide">
-
-                                <a href="shop-side-version-2.html">
-
-                                    <img src="{{ asset('frontend/images/brand/b6.png') }}" alt=""></a></div>
                         </div>
                     </div>
                     <!--====== End - Brand Slider ======-->
