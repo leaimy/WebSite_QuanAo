@@ -32,6 +32,19 @@
                     </a>
                 </li>
 
+                <li class="nav-header">CỬA HÀNG</li>
+                <li class="nav-item">
+                    <a href="{{route('AdminWebsite.index')}}" class="nav-link">
+                        <i class="mx-1">
+                            <img src="{{ asset('images/icons/pink-cosmos.png') }}" width="20"
+                                 alt="">
+                        </i>
+                        <p>
+                            Quản lý cửa hàng
+                        </p>
+                    </a>
+                </li>
+
                 <li class="nav-header">SẢN PHẨM</li>
                 <li class="nav-item">
                     <a href="{{route('AdminCategory.index')}}" class="nav-link">

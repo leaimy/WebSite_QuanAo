@@ -52,6 +52,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', function () {
         return view('Backend.Dashboard.index');
     })->name('Admin.home');
+ 
+    /**
+     * Quản lý cửa hàng
+     */    
+    Route::get('/admin/website', 'AdminWebsiteController@index')->name('AdminWebsite.index');
+    Route::post('/admin/website/update', 'AdminWebsiteController@update')->name('AdminWebsite.update');
 
     /**
      * Quản lý nhóm sản phẩm
@@ -140,5 +146,4 @@ Route::middleware('auth')->group(function () {
         Route::get('create', 'AdminRoleController@create')->name('AdminRole.create');
         Route::post('store', 'AdminController@store')->name('AdminRole.store');
     });
-
 });

@@ -103,7 +103,7 @@
                                 <div class="custom-file">
                                     <input
                                         onchange="xuLySuKienKhiNguoiDungChonAnhChiTietSanPham(this)"
-                                        name="detail_images[]"
+                                        name="S"
                                         type="file"
                                         class="custom-file-input"
                                         id="detail_images"
