@@ -547,7 +547,8 @@
                                                     </li>
                                                     <li>
 
-                                                        <a data-modal="modal" data-modal-id="#add-to-cart"
+                                                        <a data-modal="modal"
+                                                           onclick="handleOnAddToCartClick({{ $product->id }}, '{{ \App\Category::find($product->category_id)->name }}', '{{ $product->name }}', '{{ asset($product->preview_image_path) }}', 1, {{ $product->sale_price }})"
                                                            data-tooltip="tooltip" data-placement="top"
                                                            title="Thêm vào giỏ hàng"><i class="fas fa-plus-circle"></i></a>
                                                     </li>
@@ -659,7 +660,8 @@
                                                             class="fas fa-search-plus"></i></a></li>
                                                 <li>
 
-                                                    <a data-modal="modal" data-modal-id="#add-to-cart"
+                                                    <a data-modal="modal"
+                                                       onclick="handleOnAddToCartClick({{ $product->id }}, '{{ \App\Category::find($product->category_id)->name }}', '{{ $product->name }}', '{{ asset($product->preview_image_path) }}', 1, {{ $product->sale_price }})"
                                                        data-tooltip="tooltip" data-placement="top"
                                                        title="Thêm vào giỏ hàng"><i class="fas fa-plus-circle"></i></a>
                                                 </li>
