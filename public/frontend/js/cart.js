@@ -18,7 +18,7 @@ class MiniProduct {
 }
 
 // Init
-if (window.localStorage.getItem(localStorageKey) === "undefined") {
+if (!window.localStorage.getItem(localStorageKey) || window.localStorage.getItem(localStorageKey) === "undefined") {
     console.log('Init cart');
     window.localStorage.setItem(localStorageKey, JSON.stringify({}));
 }
