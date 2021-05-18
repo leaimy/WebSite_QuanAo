@@ -52,6 +52,16 @@ Route::get('/gio-hang', function () {
     ]);
 })->name('frontend.cart');
 
+Route::get('/thanh-toan', function () {
+    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+    $websiteconfig = \App\Website::all();
+
+    return view('Frontend.checkout', [
+        'websiteconfig'=>$websiteconfig,
+        'parent_categories' => $parent_categories,
+    ]);
+})->name('frontend.checkout');
+
 /**
  * Authenticate người dùng
  */
