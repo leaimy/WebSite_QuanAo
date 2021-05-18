@@ -44,6 +44,26 @@ Route::get('/', function () {
         'trending_categories' => $trending_categories
     ]);
 });
+Route::get('/chi-tiet-san-pham/{slug}',function ($slug){
+    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+    $websiteconfig = \App\Website::all();
+    $product = \App\Product::where('slug',$slug)->get()[0];
+
+    $productimages = \App\ProductImage::where('product_id',$product->id)->get();
+    $productdetails = \App\ProductDetail::where('product_id',$product->id)->get();
+
+
+
+   return view('Frontend.Home.chi-tiet-san-pham',[
+       'websiteconfig'=>$websiteconfig,
+       'parent_categories' => $parent_categories,
+       'product'=>$product,
+       'productimages'=>$productimages,
+       'productdetails'=>$productdetails
+   ]);
+
+
+})->name('chitietsanpham');
 
 /**
  * Authenticate người dùng
