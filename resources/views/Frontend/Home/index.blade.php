@@ -10,6 +10,20 @@
 @endsection
 
 @section('script')
+    <script>
+        // self executing function here
+        (function () {
+            const filterItems = Array.from(document.querySelectorAll('.filter__item'));
+            const heights = filterItems.map(i => i.clientHeight);
+            const maxHeight = Math.max(...heights);
+
+            filterItems.forEach(item => item.setAttribute('style', `${item.getAttribute('style')} height: ${maxHeight}px;`));
+
+            document.getElementById('cat-2').click();
+            document.getElementById('cat-all').click();
+        })();
+    </script>
+
     <!--===== Cart ====-->
     <script src="{{ asset('frontend/js/cart.js') }}"></script>
 @endsection

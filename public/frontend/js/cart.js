@@ -164,3 +164,18 @@ function closeAddToCartModal() {
 
     modalOverlay.setAttribute('class', '');
 }
+
+// CART PAGE
+(function () {
+    const emptyCartElement = document.getElementById('empty-cart');
+    const fullCartElement = document.getElementById('full-cart');
+
+    const products = loadLocalStorage();
+
+    if (Object.keys(products).length === 0) {
+        emptyCartElement.removeAttribute('hidden');
+    }
+    else {
+        fullCartElement.removeAttribute('hidden');
+    }
+})()
