@@ -25,9 +25,6 @@ Route::get('/', function () {
 
     $trending_categories = \App\Category::where('parent_id', '!=', 0)->inRandomOrder()->limit(4)->get();
 
-//    dd($parent_categories);
-
-
     return view('Frontend.Home.index', [
         'websiteconfig'=>$websiteconfig,
         'sliders' => $sliders,
@@ -43,6 +40,7 @@ Route::get('/', function () {
         'best_seller_month' => $best_seller_month,
         'trending_categories' => $trending_categories
     ]);
+<<<<<<< HEAD
 });
 Route::get('/chi-tiet-san-pham/{slug}',function ($slug){
     $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
@@ -64,6 +62,29 @@ Route::get('/chi-tiet-san-pham/{slug}',function ($slug){
 
 
 })->name('chitietsanpham');
+=======
+})->name('frontend.index');
+
+Route::get('/gio-hang', function () {
+    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+    $websiteconfig = \App\Website::all();
+
+    return view('Frontend.cart', [
+        'websiteconfig'=>$websiteconfig,
+        'parent_categories' => $parent_categories,
+    ]);
+})->name('frontend.cart');
+
+Route::get('/thanh-toan', function () {
+    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+    $websiteconfig = \App\Website::all();
+
+    return view('Frontend.checkout', [
+        'websiteconfig'=>$websiteconfig,
+        'parent_categories' => $parent_categories,
+    ]);
+})->name('frontend.checkout');
+>>>>>>> 2ca92a1d794fc775fc4a5e832592fef0e8328f87
 
 /**
  * Authenticate người dùng
