@@ -78,7 +78,7 @@
                             <div class="aspect aspect--bg-grey aspect--square">
 
                                 <img class="aspect__img collection__img"
-                                     src="{{ asset('images/anhbia/bia1.jpg') }}" alt=""></div>
+                                     src="{{ asset('images/anhbia/category1.jpg') }}" alt=""></div>
                         </a>
                     </div>
                     <div style="margin-left: auto; margin-right: auto;" class="col-lg-7 col-md-7 u-s-m-b-30">
@@ -87,7 +87,7 @@
                             <div class="aspect aspect--bg-grey aspect--1286-890">
 
                                 <img class="aspect__img collection__img"
-                                     src="{{ asset('images/anhbia/bia3.jpg') }}" alt=""></div>
+                                     src="{{ asset('images/anhbia/category2.jpg') }}" alt=""></div>
                         </a>
                     </div>
                     <div style="margin-left: auto; margin-right: auto;" class="col-lg-7 col-md-7 u-s-m-b-30">
@@ -96,7 +96,7 @@
                             <div class="aspect aspect--bg-grey aspect--1286-890">
 
                                 <img class="aspect__img collection__img"
-                                     src="{{ asset('images/anhbia/bia2.jpg') }}" alt=""></div>
+                                     src="{{ asset('images/anhbia/category3.jpg') }}" alt=""></div>
                         </a>
                     </div>
 
