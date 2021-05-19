@@ -187,7 +187,7 @@
                                                     <span class="product-o__review"><i class="fas fa-eye"></i> {{ $product->views }}</span>
                                                 </div>
 
-                                                <span class="product-o__price">{{ $product->sale_price }} VND</span>
+                                                <span class="product-o__price">{{number_format($product->sale_price,0,'','.')}} VNĐ</span>
                                             </div>
                                         </div>
 
@@ -244,7 +244,7 @@
                                     <div class="product-o__wrap">
 
                                         <a class="aspect aspect--bg-grey aspect--square u-d-block"
-                                           href="product-detail.html">
+                                           href="{{ route('chitietsanpham',['slug' => $product->slug]) }}">
 
                                             <img class="aspect__img" src="{{ asset($product->preview_image_path) }}"
                                                  alt=""></a>
@@ -256,12 +256,12 @@
 
                                     <span class="product-o__name">
 
-                                        <a href="product-detail.html">{{$product->name}}</a></span>
+                                        <a href="{{ route('chitietsanpham',['slug' => $product->slug]) }}">{{$product->name}}</a></span>
                                     <div class="product-o__rating gl-rating-style">
                                         <span class="product-o__review"><i class="far fa-eye"></i> {{$product->views}}</span>
                                     </div>
 
-                                    <span class="product-o__price">{{ $product->sale_price }} VND</span>
+                                    <span class="product-o__price">{{number_format($product->sale_price,0,'','.')}} VNĐ</span>
                                 </div>
                             </div>
 
@@ -341,7 +341,7 @@
                                 <div class="product-o__wrap">
 
                                     <a class="aspect aspect--bg-grey aspect--square u-d-block"
-                                       href="product-detail.html">
+                                       href="{{ route('chitietsanpham',['slug' => $product->slug]) }}">
 
                                         <img class="aspect__img" src="{{ asset($product->preview_image_path) }}"
                                              alt=""></a>
@@ -353,14 +353,14 @@
 
                                 <span class="product-o__name">
 
-                                    <a href="product-detail.html">{{$product->name}}</a></span>
+                                    <a href="{{ route('chitietsanpham',['slug' => $product->slug]) }}">{{$product->name}}</a></span>
                                 <div class="product-o__rating gl-rating-style">
 
                                     <span class="product-o__review"><i
                                             class="fas fa-eye"></i> {{$product->views}}</span>
                                 </div>
 
-                                <span class="product-o__price">{{$product->sale_price}} VND</span>
+                                <span class="product-o__price">{{number_format($product->sale_price,0,'','.')}} VNĐ</span>
                             </div>
                         </div>
                     @endforeach
@@ -405,7 +405,7 @@
                                             <div class="product-l__img-wrap">
 
                                                 <a class="aspect aspect--bg-grey aspect--square u-d-block product-l__link"
-                                                   href="product-detail.html">
+                                                   href="{{ route('chitietsanpham',['slug' => $product->slug]) }}">
 
                                                     <img class="aspect__img"
                                                          src="{{ asset($product->preview_image_path) }}"
@@ -418,9 +418,9 @@
 
                                                 <span class="product-l__name">
 
-                                                    <a href="product-detail.html">{{$product->name}}</a></span>
+                                                    <a href="{{ route('chitietsanpham',['slug' => $product->slug]) }}">{{$product->name}}</a></span>
 
-                                                <span class="product-l__price">{{$product->sale_price}} VND</span>
+                                                <span class="product-l__price">{{number_format($product->sale_price,0,'','.')}} VNĐ</span>
                                             </div>
                                         </div>
                                     </li>
@@ -439,7 +439,7 @@
                                             <div class="product-l__img-wrap">
 
                                                 <a class="aspect aspect--bg-grey aspect--square u-d-block product-l__link"
-                                                   href="product-detail.html">
+                                                   href="{{ route('chitietsanpham',['slug' => $product->slug]) }}">
 
                                                     <img class="aspect__img"
                                                          src="{{ asset($product->preview_image_path) }}"
@@ -452,9 +452,9 @@
 
                                                 <span class="product-l__name">
 
-                                                    <a href="product-detail.html">{{$product->name}}</a></span>
+                                                    <a href="{{ route('chitietsanpham',['slug' => $product->slug]) }}">{{$product->name}}</a></span>
 
-                                                <span class="product-l__price">{{$product->sale_price}} VND</span>
+                                                <span class="product-l__price">{{number_format($product->sale_price,0,'','.')}} VNĐ</span>
                                             </div>
                                         </div>
                                     </li>
@@ -473,7 +473,7 @@
                                             <div class="product-l__img-wrap">
 
                                                 <a class="aspect aspect--bg-grey aspect--square u-d-block product-l__link"
-                                                   href="product-detail.html">
+                                                   href="{{ route('chitietsanpham',['slug' => $product->slug]) }}">
 
                                                     <img class="aspect__img"
                                                          src="{{ asset($product->preview_image_path) }}"
@@ -486,9 +486,9 @@
 
                                                 <span class="product-l__name">
 
-                                                    <a href="product-detail.html">{{$product->name}}</a></span>
+                                                    <a href="{{ route('chitietsanpham',['slug' => $product->slug]) }}">{{$product->name}}</a></span>
 
-                                                <span class="product-l__price">{{$product->sale_price}} VND</span>
+                                                <span class="product-l__price">{{number_format($product->sale_price,0,'','.')}} VNĐ</span>
                                             </div>
                                         </div>
                                     </li>

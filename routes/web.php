@@ -26,7 +26,7 @@ Route::get('/', function () {
     $trending_categories = \App\Category::where('parent_id', '!=', 0)->inRandomOrder()->limit(4)->get();
 
     return view('Frontend.Home.index', [
-        'websiteconfig'=>$websiteconfig,
+        'websiteconfig' => $websiteconfig,
         'sliders' => $sliders,
         'feedbacks' => $feedbacks,
         'parent_categories' => $parent_categories,
@@ -40,37 +40,117 @@ Route::get('/', function () {
         'best_seller_month' => $best_seller_month,
         'trending_categories' => $trending_categories
     ]);
-<<<<<<< HEAD
-});
-Route::get('/chi-tiet-san-pham/{slug}',function ($slug){
+})->name('frontend.index');
+
+Route::get('/chi-tiet-san-pham/{slug}', function ($slug) {
     $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
     $websiteconfig = \App\Website::all();
-    $product = \App\Product::where('slug',$slug)->get()[0];
+    $product = \App\Product::where('slug', $slug)->get()[0];
+    $categories = \App\Category::where('status', 1)->where('parent_id', '!=', 0)->get();
 
-    $productimages = \App\ProductImage::where('product_id',$product->id)->get();
-    $productdetails = \App\ProductDetail::where('product_id',$product->id)->get();
+    $productimages = \App\ProductImage::where('product_id', $product->id)->get();
+    $productdetails = \App\ProductDetail::where('product_id', $product->id)->get();
+
+    $unique_colors = TrichXuatColor($productdetails);
+    $unique_sizes = TrichXuatSize($productdetails);
+
+    // $productcategories =
+    //
+    $category_id = $product->category_id;
+
+    $random_products = \App\Product::where('category_id', $category_id)->get(); // chon product thuoc nhom $category_id ngau nhien, khong bao gom san pham hien tai
+    $products = LaySanPhamNgauNhien($random_products,$product->id);
 
 
-
-   return view('Frontend.Home.chi-tiet-san-pham',[
-       'websiteconfig'=>$websiteconfig,
-       'parent_categories' => $parent_categories,
-       'product'=>$product,
-       'productimages'=>$productimages,
-       'productdetails'=>$productdetails
-   ]);
-
-
+    return view('Frontend.Home.chi-tiet-san-pham', [
+        'websiteconfig' => $websiteconfig,
+        'parent_categories' => $parent_categories,
+        'product' => $product,
+        'productimages' => $productimages,
+        'productdetails' => $productdetails,
+        'unique_sizes' => $unique_sizes,
+        'unique_colors' => $unique_colors,
+        'products'=>$products
+    ]);
 })->name('chitietsanpham');
-=======
-})->name('frontend.index');
+
+function LaySanPhamNgauNhien($array,$id){
+    $newarray = [];
+    foreach ($array as $item) {
+        if ($item->id!=$id){
+            array_push($newarray,$item);
+        }
+    }
+
+    shuffle($newarray);
+
+    $results = [];
+    $i = 0;
+
+    foreach ($newarray as $item) {
+        array_push($results, $item);
+        $i++;
+
+        if ($i == 6) break;
+    }
+
+    return $results;
+}
+
+function TrichXuatColor($array)
+{
+    $colors = [];
+    $unique_colors = [];
+    foreach ($array as $item) {
+        $color = $item->color;
+        array_push($colors, $color);
+    }
+
+    foreach ($colors as $mau) {
+        $kiemtra = KiemTraTonTai($unique_colors, $mau);
+        if ($kiemtra == false)
+            array_push($unique_colors, $mau);
+    }
+
+    return $unique_colors;
+}
+
+function TrichXuatSize($array)
+{
+    $sizes = [];
+    $unique_sizes = [];
+    foreach ($array as $item) {
+        $size = $item->size;
+        array_push($sizes, $size);
+    }
+
+    foreach ($sizes as $kichthuoc) {
+        $kiemtra = KiemTraTonTai($unique_sizes, $kichthuoc);
+        if ($kiemtra == false)
+            array_push($unique_sizes, $kichthuoc);
+    }
+
+    return $unique_sizes;
+}
+
+function KiemTraTonTai($array, $str)
+{
+    $tontai = false;
+    foreach ($array as $newstr) {
+        if ($newstr == $str) {
+            $tontai = true;
+            break;
+        }
+    }
+    return $tontai;
+}
 
 Route::get('/gio-hang', function () {
     $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
     $websiteconfig = \App\Website::all();
 
     return view('Frontend.cart', [
-        'websiteconfig'=>$websiteconfig,
+        'websiteconfig' => $websiteconfig,
         'parent_categories' => $parent_categories,
     ]);
 })->name('frontend.cart');
@@ -80,11 +160,10 @@ Route::get('/thanh-toan', function () {
     $websiteconfig = \App\Website::all();
 
     return view('Frontend.checkout', [
-        'websiteconfig'=>$websiteconfig,
+        'websiteconfig' => $websiteconfig,
         'parent_categories' => $parent_categories,
     ]);
 })->name('frontend.checkout');
->>>>>>> 2ca92a1d794fc775fc4a5e832592fef0e8328f87
 
 /**
  * Authenticate người dùng
