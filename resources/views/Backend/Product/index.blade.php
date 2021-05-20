@@ -70,7 +70,7 @@
                             <th class="text-center align-middle">Giá nhập</th>
                             <th class="text-center align-middle">Số lượng </th>
                             <th class="text-center align-middle">Ảnh đại diện</th>
-                            <th width="20%"></th>
+                            <th width="10%"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -98,23 +98,20 @@
                                     <img width="100" src="{{asset($item->preview_image_path)}}" alt="">
                                 </td>
                                 <td class="project-actions text-center align-middle">
-                                    <a class="btn btn-primary btn-sm" href="{{route('AdminProductDetail.index',['product_id'=>$item->id])}}">
+                                    <a title="Xem chi tiết" class="btn btn-primary btn-sm" href="{{route('AdminProductDetail.index',['product_id'=>$item->id])}}">
 
                                         <i class="fas fa-folder">
                                         </i>
-                                        Xem chi tiết
                                     </a>
-                                    <a class="btn btn-info btn-sm m-1"
+                                    <a title="Sửa" class="btn btn-info btn-sm m-1"
                                        href="{{route('AdminProduct.edit',['id'=>$item->id])}}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
-                                        Sửa
                                     </a>
-                                    <a class="btn btn-danger btn-sm m-1"
+                                    <a title="Xoá" class="btn btn-danger btn-sm m-1"
                                        href="{{route('AdminProduct.delete',['id'=>$item->id])}}">
                                         <i class="fas fa-trash">
                                         </i>
-                                        Xóa
                                     </a>
                                 </td>
                             </tr>

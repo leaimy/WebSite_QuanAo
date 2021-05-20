@@ -72,7 +72,7 @@
                             <th class="text-center">Tên nhóm sản phẩm</th>
                             <th class="text-center">Số lượng sản phẩm</th>
                             <th class="text-center">Trạng thái</th>
-                            <th></th>
+                            <th style="width: 13%;"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -103,13 +103,11 @@
                                        href="{{ route('AdminCategory.edit', ['id' => $item->id]) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
-                                        Sửa
                                     </a>
                                     <a class="btn btn-danger btn-sm m-1"
                                        href="{{ route('AdminCategory.delete', ['id' => $item->id]) }}">
                                         <i class="fas fa-trash">
                                         </i>
-                                        Xóa
                                     </a>
                                 </td>
                             </tr>
