@@ -257,7 +257,7 @@
                                     <!--====== Dropdown ======-->
 
                                     <span class="js-menu-toggle"></span>
-                                    <div class="mini-cart">
+                                    <div class="mini-cart" id="mini-cart-box">
 
                                         <!--====== Mini Product Container ======-->
                                         <div id="mini-product-container"
@@ -269,7 +269,7 @@
 
 
                                         <!--====== Mini Product Statistics ======-->
-                                        <div class="mini-product-stat">
+                                        <div class="mini-product-stat" id="mini-cart-statistic-box">
                                             <div class="mini-total">
 
                                                 <span class="subtotal-text">THÀNH TIỀN</span>

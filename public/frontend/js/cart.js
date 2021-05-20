@@ -3,6 +3,8 @@ const localStorageKey = 'shopping-cart';
 const productContainerElement = document.getElementById('mini-product-container');
 const addToCartModalElement = document.getElementById('add-to-cart-modal');
 const modalOverlay = document.getElementById('modal-overlay');
+const miniCartBox = document.getElementById('mini-cart-box');
+const miniCartStatisticBox = document.getElementById('mini-cart-statistic-box');
 const miniCartTotalItemElement = document.getElementById('mini-cart-item-count');
 const miniCartSubTotal = document.getElementById('mini-cart-subtotal');
 
@@ -86,6 +88,15 @@ function calculateTotal() {
 
 function renderMiniCart() {
     const products = loadLocalStorage();
+    if (Object.keys(products).length === 0) {
+        productContainerElement.innerHTML = `
+            <h5>Giỏ hàng trống</h5>
+        `;
+        miniCartStatisticBox.hidden = true;
+        return;
+    }
+
+    miniCartStatisticBox.hidden = false;
     const HTMLs = Object.keys(products).map(key => {
         const { id, name, category, image, quantity, price } = products[key];
         return createMiniProductHTML(id, category, name, image, quantity, price);
@@ -95,7 +106,12 @@ function renderMiniCart() {
 }
 
 function renderCountItems() {
-    miniCartTotalItemElement.innerHTML = countItems().toString();
+    if (countItems() > 0) {
+        miniCartTotalItemElement.innerHTML = countItems().toString();
+        miniCartTotalItemElement.hidden = false;
+    }
+    else
+        miniCartTotalItemElement.hidden = true;
 }
 
 function renderSubTotal() {
@@ -169,6 +185,8 @@ function closeAddToCartModal() {
 (function () {
     const emptyCartElement = document.getElementById('empty-cart');
     const fullCartElement = document.getElementById('full-cart');
+
+    if (!emptyCartElement || !fullCartElement) return;
 
     const products = loadLocalStorage();
 
