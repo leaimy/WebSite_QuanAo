@@ -1,6 +1,6 @@
-INSERT INTO categories (id, name, slug, status, parent_id) VALUES (1, 'áo', 'ao', 0, 0);
-INSERT INTO categories (id, name, slug, status, parent_id) VALUES (2, 'quần', 'quan', 0, 0);
-INSERT INTO categories (id, name, slug, status, parent_id) VALUES (3, 'váy', 'vay', 0, 0);
+INSERT INTO categories (id, name, slug, status, parent_id) VALUES (1, 'áo', 'ao', 1, 0);
+INSERT INTO categories (id, name, slug, status, parent_id) VALUES (2, 'quần', 'quan', 1, 0);
+INSERT INTO categories (id, name, slug, status, parent_id) VALUES (3, 'váy', 'vay', 1, 0);
 INSERT INTO categories (id, name, slug, status, parent_id) VALUES (4, 'áo sơ mi', 'ao-so-mi', 1, 1);
 INSERT INTO categories (id, name, slug, status, parent_id) VALUES (5, 'áo thun', 'ao-thun', 1, 1);
 INSERT INTO categories (id, name, slug, status, parent_id) VALUES (6, 'áo len', 'ao-len', 1, 1);
@@ -33,3 +33,21 @@ INSERT INTO sliders(title, content, image_name, image_path)
 VALUES ('Đơn hàng đầu tiên ✨', '<div class="slider-content slider-content--animation"> <span class="content-span-1 u-c-white" id="template-content-1"> Đơn hàng đầu tiên ✨ </span> <span class="content-span-2 u-c-white" id="template-content-2"> Mỗi ngày 10K cho đơn hàng đầu tiên 😘 </span> <span class="content-span-3 u-c-white" id="template-content-3"> Trở thành chủ nhân của đơn hàng đầu tiên trong ngày để nhận ưu đãi hấp dẫn </span> <span class="content-span-4 u-c-white"> <i id="template-content-4">Áp dụng cho mọi đơn hàng</i> <span class="u-c-brand" id="template-content-5"> </span> </span> <a id="template-content-6" class="shop-now-link btn--e-brand" href="http://localhost:8000/categories/ao-thun"> MUA NGAY </a> </div>', 'slider2.jpg', 'images/sliders/slider2.jpg');
 INSERT INTO sliders(title, content, image_name, image_path)
 VALUES ('Miễn phí vận chuyển 🚀', '<div class="slider-content slider-content--animation"> <span class="content-span-1 u-c-white" id="template-content-1"> Miễn phí vận chuyển 🚀 </span> <span class="content-span-2 u-c-white" id="template-content-2"> Mua sắm thả ga, không lo vận chuyển 😆 </span> <span class="content-span-3 u-c-white" id="template-content-3"> Không còn phải bận tâm về chi phí vận chuyển </span> <span class="content-span-4 u-c-white"> <i id="template-content-4">Áp dụng cho đơn hàng từ</i> <span class="u-c-brand" id="template-content-5"> 300K </span> </span> <a id="template-content-6" class="shop-now-link btn--e-brand" href="http://localhost:8000/categories/ao-thun"> MUA NGAY </a> </div>', 'slider3.jpg', 'images/sliders/slider3.jpg');
+
+INSERT INTO websiteconfigs(config_key, config_value)
+VALUES ('SHOP_NAME', 'Shop Bạch Tuyết');
+INSERT INTO websiteconfigs(config_key, config_value)
+VALUES ('LOGO_IMAGE', 'images/logos/logo1.jpg');
+INSERT INTO websiteconfigs(config_key, config_value)
+VALUES ('ADDRESS', '1 Phù Đổng Thiên Vương, Phường 8, Thành phố Đà Lạt, tỉnh Lâm Đồng');
+INSERT INTO websiteconfigs(config_key, config_value)
+VALUES ('PHONE_NUMBER', '0702383675');
+INSERT INTO websiteconfigs(config_key, config_value)
+VALUES ('EMAIL', 'shopbachtuyet@gmail.com');
+INSERT INTO websiteconfigs(config_key, config_value)
+VALUES ('FACEBOOK', 'https://www.facebook.com/groups/2174657075895703');
+INSERT INTO websiteconfigs(config_key, config_value)
+VALUES ('YOUTUBE', 'https://www.youtube.com/channel/UCOmHUn--16B90oW2L6FRR3A');
+INSERT INTO websiteconfigs(config_key, config_value)
+VALUES ('INSTAGRAM', 'https://www.instagram.com/nancyjewel_mcdonie_');
+

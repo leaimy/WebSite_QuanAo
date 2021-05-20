@@ -327,7 +327,7 @@
                                 @if($item->config_key=='PHONE_NUMBER')
                                     <div class="outer-footer__text-wrap"><i class="fas fa-phone-volume"></i>
 
-                                        <span>(+0) {{$item->config_value}}</span></div>
+                                        <span>{{$item->config_value}}</span></div>
                                 @endif
                                 @if($item->config_key=='EMAIL')
                                     <div class="outer-footer__text-wrap"><i class="far fa-envelope"></i>
@@ -340,7 +340,7 @@
                                             <li>
                                                 <a class="s-fb--color-hover" href="{{$item->config_value}}">
                                                     <i style="width: 20px;" class="fab fa-facebook-f"></i>
-                                                    <span>{{$item->config_value}}</span>
+                                                    Facebook
                                                 </a>
                                             </li>
                                         @endif
@@ -350,7 +350,7 @@
 
                                                 <a class="s-youtube--color-hover" href="{{$item->config_value}}">
                                                     <i style="width: 20px;" class="fab fa-youtube"></i>
-                                                    {{$item->config_value}}
+                                                    Youtube
                                                 </a>
                                             </li>
                                         @endif
@@ -359,7 +359,7 @@
 
                                                 <a class="s-insta--color-hover" href="{{$item->config_value}}">
                                                     <i style="width: 20px;" class="fab fa-instagram"></i>
-                                                    {{$item->config_value}}
+                                                    Instagram
                                                 </a>
                                             </li>
                                         @endif
