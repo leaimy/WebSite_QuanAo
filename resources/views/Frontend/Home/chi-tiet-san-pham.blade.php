@@ -6,16 +6,40 @@
         const productModels = (@json($productdetails));
         const modelQuantity = document.getElementById('model-quantity');
         const totalQuantity = document.getElementById('total-quantity');
+        const modelAvaiable = document.getElementById('avaiable-product-count');
+
+        const sizeElementBoxes = Array.from(document.querySelectorAll('.size-element'));
+        const colorElementBoxes = Array.from(document.querySelectorAll('.color-element'));
 
         console.log(productModels);
 
-        let currentSize = productModels[0].size;
-        let currentColor = productModels[0].color;
+        let currentColor = document.querySelector('input[name="color"]:checked').value;
+        let currentSize = null;
 
         totalQuantity.innerHTML = getTotalQuantity();
-        modelQuantity.innerHTML = getModelQuantity(currentSize, currentColor);
-
+        renderModelAvaiable();
+        renderSizeBoxesStatus();
         attachEventListener();
+
+        function renderModelAvaiable() {
+            if (!currentColor) {
+                modelAvaiable.innerHTML = 'Vui lòng chọn màu sắc';
+                return;
+            }
+
+            if (!currentSize) {
+                modelAvaiable.innerHTML = 'Vui lòng chọn kích thước';
+                return;
+            }
+
+            const quantity = getModelQuantity(currentSize, currentColor);
+            if (quantity === 0) {
+                modelAvaiable.innerHTML = 'Sản phẩm không có sẵn';
+            }
+            else {
+                modelAvaiable.innerHTML = quantity + ' sản phẩm có sẵn';
+            }
+        }
 
         function attachEventListener() {
             const allSizeElements = Array.from(document.querySelectorAll('input[name="size"]'));
@@ -25,17 +49,39 @@
                 e.addEventListener('click', () => {
                     currentSize = document.querySelector('input[name="size"]:checked').value;
                     modelQuantity.innerHTML = getModelQuantity(currentSize, currentColor);
+                    renderModelAvaiable();
                 });
             })
             allColorElements.forEach(e => {
                 e.addEventListener('click', () => {
                     currentColor = document.querySelector('input[name="color"]:checked').value;
                     modelQuantity.innerHTML = getModelQuantity(currentSize, currentColor);
+                    renderSizeBoxesStatus();
+                    renderModelAvaiable();
                 });
             })
         }
 
+        function renderSizeBoxesStatus() {
+
+            if (!currentColor) return;
+
+            for (const element of sizeElementBoxes) {
+                const size = element.querySelector('input').value;
+
+                const quantity = getModelQuantity(size, currentColor);
+                if (quantity === 0) {
+                    element.querySelector('label').style.backgroundColor = '#eee';
+                }
+                else {
+                    element.querySelector('label').style.backgroundColor = '#fff';
+                }
+            }
+        }
+
         function getModelQuantity(size, color) {
+            if (!size || !color) return 0;
+
             const uniqueStr = getUniqueSearchString(size, color);
             const model = productModels.find(m => m.unique_search_id === uniqueStr);
 
@@ -192,13 +238,15 @@
 
                                             <div class="size__radio size-element">
                                                 <input type="radio" id="size-{{ $loop->index }}" name="size" value="{{ $size }}"
-                                                       @if ($loop->index == 0) checked @endif
                                                 >
                                                 <label class="size__radio-label" for="size-{{ $loop->index }}">{{$size}}</label>
                                             </div>
 
                                         @endforeach
                                     </div>
+                                </div>
+                                <div class="u-s-m-b-15">
+                                    <span style="font-size: 14px; color: #757575;" id="avaiable-product-count"></span>
                                 </div>
                                 <div class="pd-detail-inline-2">
                                     <div class="u-s-m-b-15">
