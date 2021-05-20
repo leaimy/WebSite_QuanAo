@@ -47,7 +47,7 @@
 
                     <!--====== Main Logo ======-->
 
-                    <a class="main-logo" href="index.html">
+                    <a class="main-logo" href="{{ route('frontend.index') }}">
                         @foreach($websiteconfig as $item)
                             @if($item->config_key=='LOGO_IMAGE')
                                 <img src="{{ asset($item->config_value) }}" alt="">
@@ -182,15 +182,15 @@
                             <ul class="ah-list ah-list--design2 ah-list--link-color-secondary">
 
                                 <li>
-                                    <a href="#product-trending">XU HƯỚNG</a>
+                                    <a href="@if(url()->current() === route('frontend.index')) #product-trending @else {{ route('frontend.index') . '#product-trending' }} @endif">XU HƯỚNG</a>
                                 </li>
 
                                 <li>
-                                    <a href="#new-products">SẢN PHẨM MỚI</a>
+                                    <a href="@if(url()->current() === route('frontend.index')) #new-products @else {{ route('frontend.index') . '#new-products' }} @endif">SẢN PHẨM MỚI</a>
                                 </li>
 
                                 <li>
-                                    <a href="#top-selling-product">SẢN PHẨM BÁN CHẠY</a>
+                                    <a href="@if(url()->current() === route('frontend.index')) #top-selling-product @else {{ route('frontend.index') . '#top-selling-product' }} @endif">SẢN PHẨM BÁN CHẠY</a>
                                 </li>
 
                                 @foreach($parent_categories as $parent_category)
