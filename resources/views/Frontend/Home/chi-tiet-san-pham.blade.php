@@ -1,12 +1,36 @@
 @extends('Frontend.app')
 
+@section('style')
+    <style>
+        #btn-add-to-cart {
+            transition-duration: 500ms;
+        }
+
+        #btn-add-to-cart:disabled {
+            background-color: #333;
+            border-color: #333;
+            cursor: not-allowed;
+        }
+
+        #product-counter-box {
+            transition: opacity;
+            transition-duration: 500ms;
+        }
+    </style>
+@endsection
+
 @section('script')
+
+    <script src="{{ asset('frontend/js/cart.js') }}"></script>
 
     <script>
         const productModels = (@json($productdetails));
         const modelQuantity = document.getElementById('model-quantity');
         const totalQuantity = document.getElementById('total-quantity');
         const modelAvaiable = document.getElementById('avaiable-product-count');
+
+        const btnAddToCart = document.getElementById('btn-add-to-cart');
+        const productCounterBox = document.getElementById('product-counter-box');
 
         const sizeElementBoxes = Array.from(document.querySelectorAll('.size-element'));
         const colorElementBoxes = Array.from(document.querySelectorAll('.color-element'));
@@ -20,6 +44,9 @@
         renderModelAvaiable();
         renderSizeBoxesStatus();
         attachEventListener();
+
+        btnAddToCart.disabled = true;
+        productCounterBox.style.opacity = '0';
 
         function renderModelAvaiable() {
             if (!currentColor) {
@@ -35,30 +62,64 @@
             const quantity = getModelQuantity(currentSize, currentColor);
             if (quantity === 0) {
                 modelAvaiable.innerHTML = 'Sản phẩm không có sẵn';
+                productCounterBox.style.opacity = '0';
             }
             else {
                 modelAvaiable.innerHTML = quantity + ' sản phẩm có sẵn';
+                productCounterBox.style.opacity = '1';
             }
         }
 
         function attachEventListener() {
             const allSizeElements = Array.from(document.querySelectorAll('input[name="size"]'));
             const allColorElements = Array.from(document.querySelectorAll('input[name="color"]'));
+            const btnIncrease = document.getElementById('btn-increase');
+            const btnDescrease = document.getElementById('btn-decrease');
+            const inputCounter = document.getElementById('product-counter');
 
             allSizeElements.forEach(e => {
                 e.addEventListener('click', () => {
                     currentSize = document.querySelector('input[name="size"]:checked').value;
-                    modelQuantity.innerHTML = getModelQuantity(currentSize, currentColor);
+                    const quantity = getModelQuantity(currentSize, currentColor);
+                    modelQuantity.innerHTML = quantity;
                     renderModelAvaiable();
+
+                    if (quantity > 0) {
+                        btnAddToCart.disabled = false;
+                    }
+                    else {
+                        btnAddToCart.disabled = true;
+                    }
+
+                    const currentValue = inputCounter.value*1;
+                    btnAddToCart.disabled = currentValue > getModelQuantity(currentSize, currentColor);
                 });
             })
             allColorElements.forEach(e => {
                 e.addEventListener('click', () => {
                     currentColor = document.querySelector('input[name="color"]:checked').value;
-                    modelQuantity.innerHTML = getModelQuantity(currentSize, currentColor);
+                    const quantity = getModelQuantity(currentSize, currentColor);
                     renderSizeBoxesStatus();
                     renderModelAvaiable();
+
+                    if (quantity > 0) {
+                        btnAddToCart.disabled = false;
+                    }
+                    else {
+                        btnAddToCart.disabled = true;
+                    }
+
+                    const currentValue = inputCounter.value*1;
+                    btnAddToCart.disabled = currentValue > getModelQuantity(currentSize, currentColor);
                 });
+            })
+            btnIncrease.addEventListener('click', () => {
+                const currentValue = inputCounter.value*1;
+                btnAddToCart.disabled = currentValue > getModelQuantity(currentSize, currentColor);
+            });
+            btnDescrease.addEventListener('click', () => {
+                const currentValue = inputCounter.value*1;
+                btnAddToCart.disabled = currentValue > getModelQuantity(currentSize, currentColor);
             })
         }
 
@@ -118,10 +179,13 @@
             str = str.replace(/\u02C6|\u0306|\u031B/g, ""); // Â, Ê, Ă, Ơ, Ư
             return str;
         }
+
+        // ADD TO CART
+        btnAddToCart.addEventListener('click', () => {
+
+        });
     </script>
 
-    <script src="{{ asset('frontend/js/cart.js') }}"></script>
-    <script src="{{ asset('frontend/js/product-detail.js') }}"></script>
 @endsection
 
 @section('content')
@@ -252,19 +316,19 @@
                                     <div class="u-s-m-b-15">
 
                                         <!--====== Input Counter ======-->
-                                        <div class="input-counter">
+                                        <div class="input-counter" id="product-counter-box">
 
-                                            <span class="input-counter__minus fas fa-minus"></span>
+                                            <span id="btn-increase" class="input-counter__minus fas fa-minus"></span>
 
                                             <input id="product-counter" class="input-counter__text input-counter--text-primary-style"
                                                    type="text" value="1" data-min="1" data-max="1000">
 
-                                            <span class="input-counter__plus fas fa-plus"></span></div>
+                                            <span id="btn-decrease" class="input-counter__plus fas fa-plus"></span></div>
                                         <!--====== End - Input Counter ======-->
                                     </div>
                                     <div class="u-s-m-b-15">
 
-                                        <button onclick='handleOnAddToCartClick(@json($product), @json($productdetails[0]), "{{ \App\Category::find($product->category_id)->name }}", "{{ asset($product->preview_image_path) }}")' class="btn btn--e-brand-b-2" type="submit">Thêm vào giỏ hàng</button>
+                                        <button id="btn-add-to-cart" class="btn btn--e-brand-b-2">Thêm vào giỏ hàng</button>
                                     </div>
                                 </div>
                             </div>
