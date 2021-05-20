@@ -91,7 +91,7 @@
                                     <!--====== Dropdown ======-->
 
                                     <span class="js-menu-toggle"></span>
-                                    <ul style="width:120px">
+                                    <ul style="width:200px">
                                         <li>
 
                                             <a href="dashboard.html"><i class="fas fa-user-circle u-s-m-r-6"></i>
