@@ -419,6 +419,9 @@
                                                 <span class="product-l__name">
 
                                                     <a href="{{ route('chitietsanpham',['slug' => $product->slug]) }}">{{$product->name}}</a></span>
+                                                <div class="product-o__rating gl-rating-style">
+                                                    <span class="product-o__review"><i class="far fa-eye"></i> {{$product->views}}</span>
+                                                </div>
 
                                                 <span class="product-l__price">{{number_format($product->sale_price,0,'','.')}} VNĐ</span>
                                             </div>
@@ -453,6 +456,9 @@
                                                 <span class="product-l__name">
 
                                                     <a href="{{ route('chitietsanpham',['slug' => $product->slug]) }}">{{$product->name}}</a></span>
+                                                <div class="product-o__rating gl-rating-style">
+                                                    <span class="product-o__review"><i class="far fa-eye"></i> {{$product->views}}</span>
+                                                </div>
 
                                                 <span class="product-l__price">{{number_format($product->sale_price,0,'','.')}} VNĐ</span>
                                             </div>
@@ -487,6 +493,9 @@
                                                 <span class="product-l__name">
 
                                                     <a href="{{ route('chitietsanpham',['slug' => $product->slug]) }}">{{$product->name}}</a></span>
+                                                <div class="product-o__rating gl-rating-style">
+                                                    <span class="product-o__review"><i class="far fa-eye"></i> {{$product->views}}</span>
+                                                </div>
 
                                                 <span class="product-l__price">{{number_format($product->sale_price,0,'','.')}} VNĐ</span>
                                             </div>
