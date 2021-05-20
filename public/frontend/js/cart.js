@@ -144,30 +144,6 @@ function removeFromCart(id) {
     renderSubTotal();
 }
 
-function handleOnAddToCartClick(productID, productCategory, productName, productImage, productQuantity, productPrice) {
-    showAddToCartModal(productName, productImage, productQuantity, productPrice);
-    addToCart(productID, productCategory, productName, productImage, productQuantity, productPrice);
-}
-
-function showAddToCartModal(productName, productImage, productQuantity, productPrice) {
-    addToCartModalElement.querySelector('#atc-modal-name').innerHTML = productName;
-    addToCartModalElement.querySelector('#atc-modal-image').setAttribute('src', productImage);
-    addToCartModalElement.querySelector('#atc-modal-quantity').innerHTML = productQuantity;
-    addToCartModalElement.querySelector('#atc-modal-price').innerHTML = productPrice;
-
-    document.body.classList.add('modal-open');
-    document.body.style.paddingRight = '17px';
-
-    addToCartModalElement.classList.add('show');
-    addToCartModalElement.setAttribute('aria-modal', 'true');
-    addToCartModalElement.style.display = 'block';
-    addToCartModalElement.style.paddingRight = '17px';
-
-    modalOverlay.classList.add('modal-backdrop', 'fade', 'show');
-    if (!modalOverlay.onclick);
-        modalOverlay.onclick = closeAddToCartModal;
-}
-
 function closeAddToCartModal() {
     document.body.classList.remove('modal-open');
     document.body.setAttribute('style', '');
@@ -196,4 +172,5 @@ function closeAddToCartModal() {
     else {
         fullCartElement.removeAttribute('hidden');
     }
-})()
+})();
+

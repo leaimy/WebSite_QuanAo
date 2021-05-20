@@ -1,5 +1,83 @@
 @extends('Frontend.app')
 
+@section('script')
+
+    <script>
+        const productModels = (@json($productdetails));
+        const modelQuantity = document.getElementById('model-quantity');
+        const totalQuantity = document.getElementById('total-quantity');
+
+        console.log(productModels);
+
+        let currentSize = productModels[0].size;
+        let currentColor = productModels[0].color;
+
+        totalQuantity.innerHTML = getTotalQuantity();
+        modelQuantity.innerHTML = getModelQuantity(currentSize, currentColor);
+
+        attachEventListener();
+
+        function attachEventListener() {
+            const allSizeElements = Array.from(document.querySelectorAll('input[name="size"]'));
+            const allColorElements = Array.from(document.querySelectorAll('input[name="color"]'));
+
+            allSizeElements.forEach(e => {
+                e.addEventListener('click', () => {
+                    currentSize = document.querySelector('input[name="size"]:checked').value;
+                    modelQuantity.innerHTML = getModelQuantity(currentSize, currentColor);
+                });
+            })
+            allColorElements.forEach(e => {
+                e.addEventListener('click', () => {
+                    currentColor = document.querySelector('input[name="color"]:checked').value;
+                    modelQuantity.innerHTML = getModelQuantity(currentSize, currentColor);
+                });
+            })
+        }
+
+        function getModelQuantity(size, color) {
+            const uniqueStr = getUniqueSearchString(size, color);
+            const model = productModels.find(m => m.unique_search_id === uniqueStr);
+
+            if (model) return model.quantity;
+            return 0;
+        }
+
+        function getTotalQuantity() {
+            return productModels.reduce((acc, cur, idx) => {
+                return acc + cur.quantity;
+            }, 0);
+        }
+
+        function getUniqueSearchString(size, color) {
+            size = nonAccentVietnamese(size);
+            color = nonAccentVietnamese(color);
+
+            let str = size + color;
+            str = str.split('').sort().join('');
+            return str;
+        }
+
+        function nonAccentVietnamese(str) {
+            str = str.toLowerCase();
+            str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+            str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+            str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+            str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+            str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+            str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+            str = str.replace(/đ/g, "d");
+            // Some system encode vietnamese combining accent as individual utf-8 characters
+            str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, ""); // Huyền sắc hỏi ngã nặng
+            str = str.replace(/\u02C6|\u0306|\u031B/g, ""); // Â, Ê, Ă, Ơ, Ư
+            return str;
+        }
+    </script>
+
+    <script src="{{ asset('frontend/js/cart.js') }}"></script>
+    <script src="{{ asset('frontend/js/product-detail.js') }}"></script>
+@endsection
+
 @section('content')
     <div class="u-s-p-t-90">
         <div class="container">
@@ -37,7 +115,7 @@
 
                             </div>
 
-                            <span class="pd-text">Click for larger zoom</span>
+                            <span class="pd-text">Nhấp vào để phóng to hình</span>
                         </div>
                         <div class="u-s-m-t-15">
                             <div class="slider-fouc">
@@ -77,24 +155,24 @@
                         <div class="u-s-m-b-15">
                             <div class="pd-detail__inline">
 
-                                <span class="pd-detail__stock">{{$product->available_stock}}</span>
+                                <span class="pd-detail__stock" id="total-quantity">{{$product->available_stock}}</span>
 
-                                <span class="pd-detail__left">{{$productdetails[0]->quantity}}</span></div>
+                                <span class="pd-detail__left" id="model-quantity">{{$productdetails[0]->quantity}}</span></div>
                         </div>
                         <div class="u-s-m-b-15">
 
                             <span class="pd-detail__preview-desc">{{$product->description}}</span>
                         </div>
                         <div class="u-s-m-b-15">
-                            <form class="pd-detail__form">
+                            <div class="pd-detail__form">
                                 <div class="u-s-m-b-15">
 
                                     <span class="pd-detail__label u-s-m-b-8">Màu sắc:</span>
                                     <div class="pd-detail__color">
                                         @foreach($unique_colors as $color)
 
-                                            <div class="size__radio">
-                                                <input type="radio" id="color-{{ $loop->index }}" name="color"
+                                            <div class="size__radio color-element">
+                                                <input type="radio" id="color-{{ $loop->index }}" name="color" value="{{ $color }}"
                                                        @if ($loop->index == 0) checked @endif
                                                 >
                                                 <label class="size__radio-label" for="color-{{ $loop->index }}">{{$color}}</label>
@@ -112,8 +190,8 @@
 
                                         @foreach($unique_sizes as $size)
 
-                                            <div class="size__radio">
-                                                <input type="radio" id="size-{{ $loop->index }}" name="size"
+                                            <div class="size__radio size-element">
+                                                <input type="radio" id="size-{{ $loop->index }}" name="size" value="{{ $size }}"
                                                        @if ($loop->index == 0) checked @endif
                                                 >
                                                 <label class="size__radio-label" for="size-{{ $loop->index }}">{{$size}}</label>
@@ -130,7 +208,7 @@
 
                                             <span class="input-counter__minus fas fa-minus"></span>
 
-                                            <input class="input-counter__text input-counter--text-primary-style"
+                                            <input id="product-counter" class="input-counter__text input-counter--text-primary-style"
                                                    type="text" value="1" data-min="1" data-max="1000">
 
                                             <span class="input-counter__plus fas fa-plus"></span></div>
@@ -138,10 +216,10 @@
                                     </div>
                                     <div class="u-s-m-b-15">
 
-                                        <button class="btn btn--e-brand-b-2" type="submit">Thêm vào giỏ hàng</button>
+                                        <button onclick='handleOnAddToCartClick(@json($product), @json($productdetails[0]), "{{ \App\Category::find($product->category_id)->name }}", "{{ asset($product->preview_image_path) }}")' class="btn btn--e-brand-b-2" type="submit">Thêm vào giỏ hàng</button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                         <div class="u-s-m-b-15">
 
