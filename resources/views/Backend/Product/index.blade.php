@@ -99,7 +99,6 @@
                                 </td>
                                 <td class="project-actions text-center align-middle">
                                     <a title="Xem chi tiết" class="btn btn-primary btn-sm" href="{{route('AdminProductDetail.index',['product_id'=>$item->id])}}">
-
                                         <i class="fas fa-folder">
                                         </i>
                                     </a>

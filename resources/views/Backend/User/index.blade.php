@@ -54,23 +54,20 @@
                                 </td>
                                 <td class="text-center align-middle">Admin</td>
                                 <td class="text-right align-middle">
-                                    <a class="m-1 btn btn-info btn-sm"
+                                    <a title="Xem chi tiết" class="m-1 btn btn-info btn-sm"
                                        href="{{ route('AdminUser.show', [$user]) }}">
                                         <i class="fas fa-folder">
                                         </i>
-                                        Xem chi tiết
                                     </a>
-                                    <a class="m-1 btn btn-success btn-sm"
+                                    <a title="Sửa" class="m-1 btn btn-success btn-sm"
                                        href="{{ route('AdminUser.edit', [$user]) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
-                                        Sửa
                                     </a>
-                                    <a class="m-1 btn btn-danger btn-sm"
+                                    <a title="Xóa" class="m-1 btn btn-danger btn-sm"
                                        href="{{ route('AdminUser.delete', [$user]) }}">
                                         <i class="fas fa-trash">
                                         </i>
-                                        Xóa
                                     </a>
                                 </td>
                             </tr>

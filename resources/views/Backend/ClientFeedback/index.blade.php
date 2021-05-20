@@ -50,7 +50,7 @@
                             <th style="width: 10%">
                                 Trạng thái
                             </th>
-                            <th style="width: 20%">
+                            <th>
                             </th>
                         </tr>
                         </thead>
@@ -94,19 +94,17 @@
                                     @endif
                                 </td>
                                 <td class="project-actions text-center">
-                                    <a class="btn btn-info btn-sm d-inline-block m-1"
+                                    <a title="Sửa" class="btn btn-info btn-sm d-inline-block m-1"
                                        href="{{ route('AdminClientFeedback.edit', [$clientFeedback]) }}"
                                     >
                                         <i class="fas fa-pencil-alt">
                                         </i>
-                                        Sửa
                                     </a>
-                                    <a class="btn btn-danger btn-sm d-inline-block m-1"
+                                    <a title="Xóa" class="btn btn-danger btn-sm d-inline-block m-1"
                                        href="{{ route('AdminClientFeedback.delete', [$clientFeedback]) }}"
                                     >
                                         <i class="fas fa-trash">
                                         </i>
-                                        Xóa
                                     </a>
                                 </td>
                             </tr>

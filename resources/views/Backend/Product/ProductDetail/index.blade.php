@@ -89,17 +89,15 @@
                                 <td class="text-center align-middle">{{$item->quantity}}</td>
 
                                 <td class="project-actions text-center align-middle">
-                                    <a class="btn btn-info btn-sm m-1"
+                                    <a title="Sửa" class="btn btn-info btn-sm m-1"
                                        href="{{route('AdminProductDetail.edit',['product_id'=>$product_id,'id'=>$item->id])}}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
-                                        Sửa
                                     </a>
-                                    <a class="btn btn-danger btn-sm m-1"
+                                    <a title="Xóa" class="btn btn-danger btn-sm m-1"
                                        href="{{route('AdminProductDetail.delete',['product_id'=>$product_id,'id'=>$item->id])}}">
                                         <i class="fas fa-trash">
                                         </i>
-                                        Xóa
                                     </a>
                                 </td>
                             </tr>

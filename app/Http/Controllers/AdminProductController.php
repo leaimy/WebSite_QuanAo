@@ -14,7 +14,9 @@ class AdminProductController extends Controller
     {
         $products = Product::all();
 
-        return view('Backend.Product.index', ['products' => $products]);
+        return view('Backend.Product.index', [
+            'products' => $products,
+        ]);
     }
 
     public function create()

@@ -32,20 +32,6 @@
                     </a>
                 </li>
 
-                <li class="nav-header">CỬA HÀNG</li>
-                <li class="nav-item">
-                    <a href="{{route('AdminWebsite.index')}}" class="nav-link">
-                        <i class="mx-1">
-                            <img src="{{ asset('images/icons/pink-cosmos.png') }}" width="20"
-                                 alt="">
-                        </i>
-                        <p>
-                            Quản lý cửa hàng
-                        </p>
-                    </a>
-                </li>
-
-                <li class="nav-header">SẢN PHẨM</li>
                 <li class="nav-item">
                     <a href="{{route('AdminCategory.index')}}" class="nav-link">
                         <i class="mx-1">
@@ -53,7 +39,7 @@
                                  alt="">
                         </i>
                         <p>
-                            Quản lý nhóm sản phẩm
+                            Nhóm sản phẩm
                         </p>
                     </a>
                 </li>
@@ -64,12 +50,11 @@
                                  alt="">
                         </i>
                         <p>
-                            Quản lý sản phẩm
+                            Sản phẩm
                         </p>
                     </a>
                 </li>
 
-                <li class="nav-header">BÁN HÀNG</li>
                 <li class="nav-item">
                     <a href="{{ route('Admin.home') }}" class="nav-link">
                         <i class="mx-1">
@@ -77,7 +62,7 @@
                                  alt="">
                         </i>
                         <p>
-                            Quản lý hóa đơn
+                            Bán hàng
                             <span class="badge badge-info right">3</span>
                         </p>
                     </a>
@@ -89,48 +74,10 @@
                                  alt="">
                         </i>
                         <p>
-                            Quản lý khách hàng
+                            Khách hàng
                         </p>
                     </a>
                 </li>
-
-
-                <li class="nav-header">GIAO DIỆN</li>
-                <li class="nav-item">
-                    <a href="{{ route('Admin.home') }}" class="nav-link">
-                        <i class="mx-1">
-                            <img src="{{ asset('images/icons/butterfly.png') }}" width="20"
-                                 alt="">
-                        </i>
-                        <p>
-                            Quản lý cửa hàng
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('AdminSlider.index')}}" class="nav-link">
-                        <i class="mx-1">
-                            <img src="{{ asset('images/icons/hamster.png') }}" width="20"
-                                 alt="">
-                        </i>
-                        <p>
-                            Quản lý slider
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('AdminClientFeedback.index')}}" class="nav-link">
-                        <i class="mx-1">
-                            <img src="{{ asset('images/icons/kitty.png') }}" width="20"
-                                 alt="">
-                        </i>
-                        <p>
-                            Quản lý phản hồi
-                        </p>
-                    </a>
-                </li>
-
-                <li class="nav-header">HỆ THỐNG</li>
                 <li class="nav-item">
                     <a href="{{ route('AdminRole.index') }}" class="nav-link">
                         <i class="mx-1">
@@ -138,7 +85,7 @@
                                  alt="">
                         </i>
                         <p>
-                            Quản lý vai trò
+                            Vai trò
                         </p>
                     </a>
                 </li>
@@ -149,7 +96,40 @@
                                  alt="">
                         </i>
                         <p>
-                            Quản lý người dùng
+                            Người dùng
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('AdminWebsite.index')}}" class="nav-link">
+                        <i class="mx-1">
+                            <img src="{{ asset('images/icons/pink-cosmos.png') }}" width="20"
+                                 alt="">
+                        </i>
+                        <p>
+                            Cửa hàng
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('AdminSlider.index')}}" class="nav-link">
+                        <i class="mx-1">
+                            <img src="{{ asset('images/icons/hamster.png') }}" width="20"
+                                 alt="">
+                        </i>
+                        <p>
+                            Slider
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('AdminClientFeedback.index')}}" class="nav-link">
+                        <i class="mx-1">
+                            <img src="{{ asset('images/icons/kitty.png') }}" width="20"
+                                 alt="">
+                        </i>
+                        <p>
+                            Nhận xét
                         </p>
                     </a>
                 </li>
@@ -176,7 +156,6 @@
                     </a>
                 </li>
 
-                <li class="nav-header">LẬP TRÌNH VIÊN</li>
                 <li class="nav-item">
                     <a href="{{ route('Admin.home') }}" class="nav-link">
                         <i class="mx-1">

@@ -78,19 +78,17 @@
                                 </td>
                                 <td class="project-actions text-center">
                                     <div>
-                                        <a class="btn btn-info btn-sm d-inline-block m-1"
+                                        <a title="Sửa" class="btn btn-info btn-sm d-inline-block m-1"
                                            href="{{ route('AdminSlider.edit', [$slider]) }}"
                                         >
                                             <i class="fas fa-pencil-alt">
                                             </i>
-                                            Sửa
                                         </a>
-                                        <a class="btn btn-danger btn-sm d-inline-block m-1"
+                                        <a title="Xóa" class="btn btn-danger btn-sm d-inline-block m-1"
                                            href="{{ route('AdminSlider.delete', [$slider]) }}"
                                         >
                                             <i class="fas fa-trash">
                                             </i>
-                                            Xóa
                                         </a>
                                     </div>
                                 </td>
