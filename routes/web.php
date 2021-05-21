@@ -54,12 +54,10 @@ Route::get('/chi-tiet-san-pham/{slug}', function ($slug) {
     $unique_colors = TrichXuatColor($productdetails);
     $unique_sizes = TrichXuatSize($productdetails);
 
-    // $productcategories =
-    //
     $category_id = $product->category_id;
 
-    $random_products = \App\Product::where('category_id', $category_id)->get(); // chon product thuoc nhom $category_id ngau nhien, khong bao gom san pham hien tai
-    $products = LaySanPhamNgauNhien($random_products,$product->id);
+    $random_products = \App\Product::where('category_id', $category_id)->get();
+    $products = LaySanPhamNgauNhien($random_products, $product->id);
 
 
     return view('Frontend.Home.chi-tiet-san-pham', [
@@ -70,15 +68,17 @@ Route::get('/chi-tiet-san-pham/{slug}', function ($slug) {
         'productdetails' => $productdetails,
         'unique_sizes' => $unique_sizes,
         'unique_colors' => $unique_colors,
-        'products'=>$products
+        'products' => $products,
+        'categories' => $categories
     ]);
 })->name('chitietsanpham');
 
-function LaySanPhamNgauNhien($array,$id){
+function LaySanPhamNgauNhien($array, $id)
+{
     $newarray = [];
     foreach ($array as $item) {
-        if ($item->id!=$id){
-            array_push($newarray,$item);
+        if ($item->id != $id) {
+            array_push($newarray, $item);
         }
     }
 

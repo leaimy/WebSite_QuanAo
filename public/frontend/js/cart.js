@@ -8,14 +8,17 @@ const miniCartStatisticBox = document.getElementById('mini-cart-statistic-box');
 const miniCartTotalItemElement = document.getElementById('mini-cart-item-count');
 const miniCartSubTotal = document.getElementById('mini-cart-subtotal');
 
-class MiniProduct {
-    constructor(id, name, category, image, quantiy, price) {
-        this.id = id;
-        this.name = name;
-        this.category = category;
-        this.image = image;
-        this.quantity = quantiy;
+class ProductModel {
+    constructor(modelID, productID, modelName, modelCategory, modelPhoto, size, color, price, quantity) {
+        this.id = modelID;
+        this.productID = productID;
+        this.name = modelName;
+        this.category = modelCategory;
+        this.image = modelPhoto;
+        this.size = size;
+        this.color = color;
         this.price = price;
+        this.quantity = quantity;
     }
 }
 
@@ -24,6 +27,7 @@ if (!window.localStorage.getItem(localStorageKey) || window.localStorage.getItem
     console.log('Init cart');
     window.localStorage.setItem(localStorageKey, JSON.stringify({}));
 }
+
 renderMiniCart();
 renderCountItems();
 renderSubTotal();
@@ -73,7 +77,10 @@ function countItems() {
     const keys = Object.keys(products);
 
     return keys.reduce((acc, cur, index) => {
-        return acc + products[keys[index]].quantity;
+        const modelKeys = Object.keys(products[cur]);
+        return acc + modelKeys.reduce((acc1, cur1, index1) => {
+            return acc1 + products[cur][cur1].quantity;
+        }, 0);
     }, 0);
 }
 
@@ -82,7 +89,10 @@ function calculateTotal() {
     const keys = Object.keys(products);
 
     return keys.reduce((acc, cur, index) => {
-        return acc + (products[keys[index]].quantity * products[keys[index]].price);
+        const modelKeys = Object.keys(products[cur]);
+        return acc + modelKeys.reduce((acc1, cur1, index1) => {
+            return acc1 + products[cur][cur1].quantity * products[cur][cur1].price;
+        }, 0);
     }, 0);
 }
 
@@ -98,8 +108,21 @@ function renderMiniCart() {
 
     miniCartStatisticBox.hidden = false;
     const HTMLs = Object.keys(products).map(key => {
-        const { id, name, category, image, quantity, price } = products[key];
-        return createMiniProductHTML(id, category, name, image, quantity, price);
+
+        const currentProduct = products[key];
+        const firstModel = currentProduct[Object.keys(currentProduct)[0]];
+
+        const productID = firstModel.productID;
+        const category = firstModel.category.name;
+        const name = firstModel.name;
+        const image = window.location.origin + '/' + firstModel.image;
+        const price = firstModel.price;
+
+        const quantity = Object.keys(currentProduct).reduce((acc, key, idx) => {
+            return acc + currentProduct[key].quantity;
+        }, 0);
+
+        return createMiniProductHTML(productID, category, name, image, quantity, price);
     });
 
     productContainerElement.innerHTML = HTMLs.join('');
@@ -118,59 +141,13 @@ function renderSubTotal() {
     miniCartSubTotal.innerHTML = calculateTotal().toString();
 }
 
-function addToCart(id, productCat, productName, productImage, quantity, price) {
-
-    const products = loadLocalStorage();
-
-    if (products[id]) {
-        products[id].quantity += (quantity*1);
-    }
-    else {
-        products[id] = new MiniProduct(id, productName, productCat, productImage, quantity, price);
-    }
-
-    saveToLocalStorage(products);
-    renderCountItems();
-    renderMiniCart();
-    renderSubTotal();
-}
-
 function removeFromCart(id) {
     const products = loadLocalStorage();
+    console.log(products);
+    console.log(id);
     delete products[id];
     saveToLocalStorage(products);
     renderCountItems();
     renderMiniCart();
     renderSubTotal();
 }
-
-function closeAddToCartModal() {
-    document.body.classList.remove('modal-open');
-    document.body.setAttribute('style', '');
-
-    addToCartModalElement.classList.remove('show');
-    addToCartModalElement.setAttribute('style', '')
-    addToCartModalElement.style.display = 'none';
-    addToCartModalElement.removeAttribute('aria-modal');
-    addToCartModalElement.setAttribute('aria-hidden', 'true');
-
-    modalOverlay.setAttribute('class', '');
-}
-
-// CART PAGE
-(function () {
-    const emptyCartElement = document.getElementById('empty-cart');
-    const fullCartElement = document.getElementById('full-cart');
-
-    if (!emptyCartElement || !fullCartElement) return;
-
-    const products = loadLocalStorage();
-
-    if (Object.keys(products).length === 0) {
-        emptyCartElement.removeAttribute('hidden');
-    }
-    else {
-        fullCartElement.removeAttribute('hidden');
-    }
-})();
-

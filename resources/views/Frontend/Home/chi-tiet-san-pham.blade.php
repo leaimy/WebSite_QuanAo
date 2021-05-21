@@ -24,7 +24,14 @@
     <script src="{{ asset('frontend/js/cart.js') }}"></script>
 
     <script>
+
+    </script>
+
+    <script>
         const productModels = (@json($productdetails));
+        const product = (@json($product));
+        const categories = (@json($categories));
+
         const modelQuantity = document.getElementById('model-quantity');
         const totalQuantity = document.getElementById('total-quantity');
         const modelAvaiable = document.getElementById('avaiable-product-count');
@@ -182,7 +189,70 @@
 
         // ADD TO CART
         btnAddToCart.addEventListener('click', () => {
+            if (!currentSize || !currentColor || getModelQuantity(currentSize, currentColor) <= 0) {
+                return;
+            }
 
+            console.log(currentSize);
+            console.log(currentColor);
+
+            const uniqueStr = getUniqueSearchString(currentSize, currentColor);
+
+            const currentModel = productModels.find(m => m.unique_search_id === uniqueStr);
+            if (!currentModel) {
+                console.log('Khong tim thay model');
+                return;
+            }
+
+            if (!product) {
+                console.log('Khong tim thay product');
+                return;
+            }
+
+            if (!categories) {
+                console.log('Khong tim thay danh sach nhom');
+                return;
+            }
+
+            const currentCategory = categories.find(c => c.id === product.category_id);
+            if (!currentCategory) {
+                console.log('Khong tim thay category');
+                return;
+            }
+
+            const productCounter = document.getElementById('product-counter').value * 1;
+            if (productCounter <= 0) {
+                return;
+            }
+
+            console.log(currentModel);
+            console.log(product);
+            console.log(currentCategory);
+            console.log(productCounter);
+
+            const productID = product.id;
+            const modelID = currentModel.id;
+            const modelName = product.name;
+            const modelPhoto = product.preview_image_path;
+            const modelSize = currentModel.size;
+            const modelColor = currentModel.color;
+            const modelPrice = product.sale_price;
+
+            const savedProduct = loadLocalStorage();
+
+            if (savedProduct[productID]) {
+                if (savedProduct[productID][modelID]) {
+                    savedProduct[productID][modelID].quantity = productCounter;
+                } else {
+                    savedProduct[productID][modelID] = new ProductModel(modelID, product.id, modelName, currentCategory, modelPhoto, modelSize, modelColor, modelPrice, productCounter);
+                }
+            }
+            else {
+                savedProduct[productID] = {};
+                savedProduct[productID][modelID] = new ProductModel(modelID, product.id, modelName, currentCategory, modelPhoto, modelSize, modelColor, modelPrice, productCounter);
+            }
+
+            saveToLocalStorage(savedProduct);
         });
     </script>
 
