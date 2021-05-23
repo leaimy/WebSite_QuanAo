@@ -28,9 +28,13 @@ if (!window.localStorage.getItem(localStorageKey) || window.localStorage.getItem
     window.localStorage.setItem(localStorageKey, JSON.stringify({}));
 }
 
-renderMiniCart();
-renderCountItems();
-renderSubTotal();
+renderMiniCartModal();
+
+function renderMiniCartModal() {
+    renderMiniCart();
+    renderCountItems();
+    renderSubTotal();
+}
 
 function createMiniProductHTML(id, productCat, productName, productImage, quantity, price) {
     return `
@@ -150,4 +154,6 @@ function removeFromCart(id) {
     renderCountItems();
     renderMiniCart();
     renderSubTotal();
+
+    if (window.onCartItemRemove) window.onCartItemRemove();
 }

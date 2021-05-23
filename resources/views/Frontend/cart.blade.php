@@ -11,16 +11,25 @@
     <script src="{{ asset('frontend/js/cart.js') }}"></script>
 
     <script>
-        const savedProduct = loadLocalStorage();
+        let savedProduct = loadLocalStorage();
 
         const cartItemContainer = document.getElementById('cart-item-container');
 
-        if (Object.keys(savedProduct).length === 0) {
-            document.getElementById('empty-cart').hidden = false;
-        }
-        else {
-            document.getElementById('full-cart').hidden = false;
-            renderCart();
+        renderCartList();
+
+        window.onCartItemRemove = renderCartList;
+
+        function renderCartList() {
+            savedProduct = loadLocalStorage();
+            if (Object.keys(savedProduct).length === 0) {
+                document.getElementById('empty-cart').hidden = false;
+                document.getElementById('full-cart').hidden = true;
+            }
+            else {
+                document.getElementById('full-cart').hidden = false;
+                document.getElementById('empty-cart').hidden = true;
+                renderCart();
+            }
         }
 
         function renderCart() {
@@ -93,6 +102,7 @@
 
             savedProduct[productID][modelID].quantity += 1;
             saveToLocalStorage(savedProduct);
+            renderMiniCartModal();
         }
 
         function decreaseQuantity(productID, modelID, unitPrice) {
@@ -107,6 +117,7 @@
 
                 savedProduct[productID][modelID].quantity -= 1;
                 saveToLocalStorage(savedProduct);
+                renderMiniCartModal();
             }
         }
 
@@ -122,7 +133,8 @@
                 delete savedProduct[productID];
 
             saveToLocalStorage(savedProduct);
-            renderCart();
+            renderCartList();
+            renderMiniCartModal();
         }
     </script>
 @endsection

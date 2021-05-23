@@ -253,6 +253,7 @@
             }
 
             saveToLocalStorage(savedProduct);
+            renderMiniCartModal();
         });
     </script>
 
