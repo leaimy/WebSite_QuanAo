@@ -136,6 +136,13 @@
             renderCartList();
             renderMiniCartModal();
         }
+
+        document.getElementById('clear-cart').addEventListener('click', () => {
+            savedProduct = {};
+            saveToLocalStorage(savedProduct);
+            renderCartList();
+            renderMiniCartModal();
+        });
     </script>
 @endsection
 
@@ -223,18 +230,16 @@
                             <div class="route-box">
                                 <div class="route-box__g1">
 
-                                    <a class="route-box__link" href="shop-side-version-2.html"><i class="fas fa-long-arrow-alt-left"></i>
+                                    <a class="route-box__link" href="{{ route('frontend.index') }}"><i class="fas fa-long-arrow-alt-left"></i>
 
-                                        <span>CONTINUE SHOPPING</span></a></div>
+                                        <span>TIẾP TỤC MUA SẮM</span></a></div>
                                 <div class="route-box__g2">
 
-                                    <a class="route-box__link" href="cart.html"><i class="fas fa-trash"></i>
-
-                                        <span>CLEAR CART</span></a>
-
-                                    <a class="route-box__link" href="cart.html"><i class="fas fa-sync"></i>
-
-                                        <span>UPDATE CART</span></a></div>
+                                    <a class="route-box__link" href="javascript:;" id="clear-cart">
+                                        <i class="fas fa-trash"></i>
+                                        <span>XOÁ TOÀN BỘ</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
