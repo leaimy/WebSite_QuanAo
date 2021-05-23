@@ -117,6 +117,10 @@
 
             delete savedProduct[productID][modelID];
 
+            const obj = savedProduct[productID];
+            if (obj && Object.keys(obj).length === 0 && obj.constructor === Object)
+                delete savedProduct[productID];
+
             saveToLocalStorage(savedProduct);
             renderCart();
         }
