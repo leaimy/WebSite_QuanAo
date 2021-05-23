@@ -25,6 +25,7 @@
 
         function renderCart() {
             const productIDs = Object.keys(savedProduct);
+            cartItemContainer.innerHTML = '';
             productIDs.forEach(productID => {
                 const modelIDs = Object.keys(savedProduct[productID]);
                 const rows = modelIDs.map(modelID => generateRowItem(savedProduct[productID][modelID]));
@@ -73,7 +74,7 @@
                 </td>
                 <td>
                     <div class="table-p__del-wrap">
-                        <a class="far fa-trash-alt table-p__delete-link" href="#"></a>
+                        <a class="far fa-trash-alt table-p__delete-link" href="javascript:;" onclick="deleteProductModel(${productID}, ${id})"></a>
                     </div>
                 </td>
             </tr>
@@ -107,6 +108,17 @@
                 savedProduct[productID][modelID].quantity -= 1;
                 saveToLocalStorage(savedProduct);
             }
+        }
+
+        function deleteProductModel(productID, modelID) {
+            if (!savedProduct) return;
+            if (!savedProduct[productID]) return;
+            if (!savedProduct[productID][modelID]) return;
+
+            delete savedProduct[productID][modelID];
+
+            saveToLocalStorage(savedProduct);
+            renderCart();
         }
     </script>
 @endsection
