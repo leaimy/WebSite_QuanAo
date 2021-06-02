@@ -14,8 +14,15 @@
         let savedProduct = loadLocalStorage();
 
         const cartItemContainer = document.getElementById('cart-item-container');
+        const shippingFeeElement = document.getElementById('shipping-fee');
+        const subtotalElement = document.getElementById('subtotal');
+        const totalElement = document.getElementById('total');
+
+        const receiveAtStoreRadioElement = document.getElementById('cash-on-delivery');
+        const shipppingRadioElement = document.getElementById('direct-bank-transfer');
 
         renderCartList();
+        renderSubtotal();
 
         window.onCartItemRemove = renderCartList;
 
@@ -103,6 +110,7 @@
             savedProduct[productID][modelID].quantity += 1;
             saveToLocalStorage(savedProduct);
             renderMiniCartModal();
+            renderSubtotal();
         }
 
         function decreaseQuantity(productID, modelID, unitPrice) {
@@ -118,6 +126,7 @@
                 savedProduct[productID][modelID].quantity -= 1;
                 saveToLocalStorage(savedProduct);
                 renderMiniCartModal();
+                renderSubtotal();
             }
         }
 
@@ -135,6 +144,7 @@
             saveToLocalStorage(savedProduct);
             renderCartList();
             renderMiniCartModal();
+            renderSubtotal();
         }
 
         document.getElementById('clear-cart').addEventListener('click', () => {
@@ -142,7 +152,48 @@
             saveToLocalStorage(savedProduct);
             renderCartList();
             renderMiniCartModal();
+            renderSubtotal();
         });
+
+        receiveAtStoreRadioElement.addEventListener('input', () => {
+            if (receiveAtStoreRadioElement.checked) {
+                shippingFeeElement.innerHTML = '0 VND';
+                window.localStorage.setItem('shipping', JSON.stringify(false));
+                renderFinalCost();
+            }
+        })
+
+        shipppingRadioElement.addEventListener('input', () => {
+            if (shipppingRadioElement.checked) {
+                shippingFeeElement.innerHTML = '35000 VND';
+                window.localStorage.setItem('shipping', JSON.stringify(true));
+                renderFinalCost();
+            }
+        })
+
+        function renderSubtotal() {
+            if (!savedProduct) return;
+
+            const productIDs = Object.keys(savedProduct);
+            let subtotal = 0;
+
+            productIDs.forEach(pID => {
+                const modelIDs = Object.keys(savedProduct[pID]);
+                subtotal += modelIDs.reduce((acc, cur, idx) => {
+                    return acc + (savedProduct[pID][cur].price * savedProduct[pID][cur].quantity);
+                }, 0);
+            })
+
+            subtotalElement.innerHTML = `${subtotal} VND`;
+            renderFinalCost();
+        }
+
+        function renderFinalCost() {
+            const shippingFee = shippingFeeElement.innerHTML.split(' ')[0] * 1;
+            const subtotal = subtotalElement.innerHTML.split(' ')[0] * 1;
+
+            totalElement.innerHTML = `${shippingFee + subtotal} VND`;
+        }
     </script>
 @endsection
 
@@ -260,84 +311,68 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 u-s-m-b-30">
                             <form class="f-cart">
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-6 u-s-m-b-30">
+                                    <div class="col u-s-m-b-30">
                                         <div class="f-cart__pad-box">
-                                            <h1 class="gl-h1">ESTIMATE SHIPPING AND TAXES</h1>
+                                            <h1 class="gl-h1">CÁCH THỨC NHẬN HÀNG</h1>
 
-                                            <span class="gl-text u-s-m-b-30">Enter your destination to get a shipping estimate.</span>
-                                            <div class="u-s-m-b-30">
-
-                                                <!--====== Select Box ======-->
-
-                                                <label class="gl-label" for="shipping-country">COUNTRY *</label><select class="select-box select-box--primary-style" id="shipping-country">
-                                                    <option selected value="">Choose Country</option>
-                                                    <option value="uae">United Arab Emirate (UAE)</option>
-                                                    <option value="uk">United Kingdom (UK)</option>
-                                                    <option value="us">United States (US)</option>
-                                                </select>
-                                                <!--====== End - Select Box ======-->
-                                            </div>
-                                            <div class="u-s-m-b-30">
-
-                                                <!--====== Select Box ======-->
-
-                                                <label class="gl-label" for="shipping-state">STATE/PROVINCE *</label><select class="select-box select-box--primary-style" id="shipping-state">
-                                                    <option selected value="">Choose State/Province</option>
-                                                    <option value="al">Alabama</option>
-                                                    <option value="al">Alaska</option>
-                                                    <option value="ny">New York</option>
-                                                </select>
-                                                <!--====== End - Select Box ======-->
-                                            </div>
-                                            <div class="u-s-m-b-30">
-
-                                                <label class="gl-label" for="shipping-zip">ZIP/POSTAL CODE *</label>
-
-                                                <input class="input-text input-text--primary-style" type="text" id="shipping-zip" placeholder="Zip/Postal Code"></div>
-                                            <div class="u-s-m-b-30">
-
-                                                <a class="f-cart__ship-link btn--e-transparent-brand-b-2" href="cart.html">CALCULATE SHIPPING</a></div>
-
-                                            <span class="gl-text">Note: There are some countries where free shipping is available otherwise our flat rate charges or country delivery charges will be apply.</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 u-s-m-b-30">
-                                        <div class="f-cart__pad-box">
-                                            <h1 class="gl-h1">NOTE</h1>
-
-                                            <span class="gl-text u-s-m-b-30">Add Special Note About Your Product</span>
+                                            <span class="gl-text u-s-m-b-30">Chọn cách bạn sẽ nhận hàng của mình</span>
                                             <div>
+                                                <div class="u-s-m-b-20">
 
-                                                <label for="f-cart-note"></label><textarea class="text-area text-area--primary-style" id="f-cart-note"></textarea></div>
+                                                    <!--====== Radio Box ======-->
+                                                    <div class="radio-box">
+
+                                                        <input type="radio" value="buy_at_store" id="cash-on-delivery" name="order_option">
+                                                        <div class="radio-box__state radio-box__state--primary">
+                                                            <label class="radio-box__label" for="cash-on-delivery">
+                                                                Nhận tại cửa hàng
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <!--====== End - Radio Box ======-->
+                                                    <span class="gl-text u-s-m-t-6">Không phát sinh chi phí giao hàng</span>
+                                                </div>
+                                                <div class="u-s-m-b-10">
+
+                                                    <!--====== Radio Box ======-->
+                                                    <div class="radio-box">
+
+                                                        <input type="radio" value="shipping" id="direct-bank-transfer" name="order_option">
+                                                        <div class="radio-box__state radio-box__state--primary">
+                                                            <label class="radio-box__label" for="direct-bank-transfer">
+                                                                Ship/COD
+                                                            </label>
+                                                            <span class="gl-text u-s-m-t-6">Phát sinh 35K phí giao hàng chuẩn</span>
+                                                        </div>
+                                                    </div>
+                                                    <!--====== End - Radio Box ======-->
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-6 u-s-m-b-30">
+                                    <div class="col u-s-m-b-30">
                                         <div class="f-cart__pad-box">
                                             <div class="u-s-m-b-30">
                                                 <table class="f-cart__table">
                                                     <tbody>
                                                     <tr>
-                                                        <td>SHIPPING</td>
-                                                        <td>$4.00</td>
+                                                        <td>Phí vận chuyển</td>
+                                                        <td id="shipping-fee">0 VND</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>TAX</td>
-                                                        <td>$0.00</td>
+                                                        <td>Tổng tiền hàng</td>
+                                                        <td id="subtotal">0 VND</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>SUBTOTAL</td>
-                                                        <td>$379.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>GRAND TOTAL</td>
-                                                        <td>$379.00</td>
+                                                        <td>Tổng thanh toán</td>
+                                                        <td id="total">0 VND</td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                             <div>
-
-                                                <button class="btn btn--e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button></div>
+                                                <a href="{{ route('frontend.checkout') }}" class="btn btn--e-brand-b-2" type="submit" id="btn-checkout"> THANH TOÁN NGAY</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

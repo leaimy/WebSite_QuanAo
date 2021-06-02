@@ -18,14 +18,15 @@ class CreateOrdersTable extends Migration
 
             $table->unsignedBigInteger('customer_id');
             $table->integer('total_price');
+            $table->string('note');
             $table->integer('discount_percent');
             $table->enum('current_status', [
-                'cancelled', 'new web order', 'new phone order',
-                'approved', 'packed', 'ready for delivery',
+                'cancelled', 'new_web_order', 'new_phone_order',
+                'approved', 'packed', 'ready_for_delivery',
                 'processing', 'shipped'
             ]);
             $table->enum('order_option', [
-                'buy at store',
+                'buy_at_store',
                 'shipping'
             ]);
 
