@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     $sliders = \App\Slider::where('status', 1)->get();
@@ -164,6 +165,35 @@ Route::get('/thanh-toan', function () {
         'parent_categories' => $parent_categories,
     ]);
 })->name('frontend.checkout');
+
+Route::post('/thanh-toan', function (Request $request) {
+    $productIDs = $request->get('product_ids');
+    $modelIDs = $request->get('model_ids');
+    $customerID = $request->get('customer_id');
+    $orderStatus = $request->get('current_status');
+    $orderOption = $request->get('order_option');
+    $totalPrice = $request->get('total_price');
+
+    $newOrder = \App\Order::create([
+        'customer_id' => $customerID,
+        'total_price' => $totalPrice,
+        'discount_percent' => 0,
+        'current_status' => $orderStatus,
+        'order_option' => $orderOption
+    ]);
+
+    $newOrderID = $newOrder->id;
+
+    foreach ($modelIDs as $modelID) {
+        list($id, $quantity) = explode('_', $modelID);
+
+        \App\OrderDetail::create([
+           'order_id' => $newOrderID,
+           'product_detail_id' => $id,
+           'quantity' => $quantity
+        ]);
+    }
+})->name('frontend.checkout.create');
 
 /**
  * Authenticate người dùng

@@ -278,7 +278,7 @@
                                                         id="mini-cart-subtotal"></span> VND</span></div>
                                             <div class="mini-action">
 
-                                                <a class="mini-link btn--e-brand-b-2" href="checkout.html">THANH
+                                                <a class="mini-link btn--e-brand-b-2" href="{{ route('frontend.checkout') }}">THANH
                                                     TOÁN</a>
 
                                                 <a class="mini-link btn--e-transparent-secondary-b-2" href="{{ route('frontend.cart') }}">XEM
