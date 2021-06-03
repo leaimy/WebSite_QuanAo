@@ -162,7 +162,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @if ($order->current_status == \App\OrderOptions::$SHIPPING)
+                    @if ($order->order_option == \App\OrderOptions::$SHIPPING)
 
                         <form class="form-horizontal">
                             <div class="form-group row">
@@ -201,7 +201,7 @@
                                 </div>
                             </div>
                         </form>
-                    
+
                     @else
                         <label for="inputStreet" class="col-sm-12 col-form-label">Khách nhận hàng trực tiếp tại cửa
                             hàng</label>
