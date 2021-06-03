@@ -60,7 +60,6 @@ Route::get('/chi-tiet-san-pham/{slug}', function ($slug) {
     $random_products = \App\Product::where('category_id', $category_id)->get();
     $products = LaySanPhamNgauNhien($random_products, $product->id);
 
-
     return view('Frontend.Home.chi-tiet-san-pham', [
         'websiteconfig' => $websiteconfig,
         'parent_categories' => $parent_categories,
@@ -303,5 +302,19 @@ Route::middleware('auth')->group(function () {
         Route::get('/', 'AdminRoleController@index')->name('AdminRole.index');
         Route::get('create', 'AdminRoleController@create')->name('AdminRole.create');
         Route::post('store', 'AdminController@store')->name('AdminRole.store');
+    });
+
+    /**
+     * Quản lý danh sách đơn hàng
+     */
+    Route::prefix('/admin/orders')->group(function () {
+        Route::get('/', 'OrderController@index')->name('Order.index');
+    });
+
+    /**
+     * Quản lý đơn hàng chi tiết
+     */
+    Route::prefix('/admin/orders/detail')->group(function () {
+        Route::get('/{order}', 'OrderDetailContrller@show')->name('AdminOrderDetail.show');
     });
 });

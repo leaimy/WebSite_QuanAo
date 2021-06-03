@@ -32,6 +32,9 @@
         const product = (@json($product));
         const categories = (@json($categories));
 
+        console.log(product);
+        console.log(productModels);
+
         const modelQuantity = document.getElementById('model-quantity');
         const totalQuantity = document.getElementById('total-quantity');
         const modelAvaiable = document.getElementById('avaiable-product-count');
