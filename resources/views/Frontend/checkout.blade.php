@@ -132,6 +132,10 @@
                 <input type="hidden" name="total_price" value="${shippingFee + subtotal}" >
             `)
         }
+
+        document.getElementById('submitForm').addEventListener('submit', () => {
+           saveToLocalStorage({});
+        });
     </script>
 @endsection
 
