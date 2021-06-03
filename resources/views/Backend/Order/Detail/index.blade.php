@@ -76,31 +76,32 @@
 
                         @foreach($orderNotes as $orderNote)
                             <!-- timeline item -->
-                            <div>
-                                <i class="fas fa-envelope bg-primary"></i>
+                                <div>
+                                    <i class="fas fa-envelope bg-primary"></i>
 
-                                <div class="timeline-item">
-                                    <span class="time"><i class="far fa-clock"></i> {{ $orderNote['hour'] }}:{{ $orderNote['minute'] }}:{{ $orderNote['second'] }}</span>
+                                    <div class="timeline-item">
+                                        <span class="time"><i class="far fa-clock"></i> {{ $orderNote['hour'] }}:{{ $orderNote['minute'] }}:{{ $orderNote['second'] }}</span>
 
-                                    @if (isset($orderNote['user']))
-                                        <h3 class="timeline-header"><a
-                                                href="#">{{ $orderNote['user']['last_name'] . ' ' . $orderNote['user']['first_name'] }}</a>
-                                            <span>chuyển trạng thái đơn hàng thành:</span>
-                                            <span class="{{ \App\OrderHelpers::getClasses($orderNote['order_status']) }}">{{ \App\OrderHelpers::getVNVersion($orderNote['order_status']) }}</span>
-                                        </h3>
-                                    @else
-                                        <h3 class="timeline-header">Khởi tạo</h3>
-                                    @endif
+                                        @if (isset($orderNote['user']))
+                                            <h3 class="timeline-header"><a
+                                                    href="#">{{ $orderNote['user']['last_name'] . ' ' . $orderNote['user']['first_name'] }}</a>
+                                                <span>chuyển trạng thái đơn hàng thành:</span>
+                                                <span
+                                                    class="{{ \App\OrderHelpers::getClasses($orderNote['order_status']) }}">{{ \App\OrderHelpers::getVNVersion($orderNote['order_status']) }}</span>
+                                            </h3>
+                                        @else
+                                            <h3 class="timeline-header">Khởi tạo</h3>
+                                        @endif
 
-                                    @if (!empty($orderNote['note']))
-                                        <div class="timeline-body">
-                                            {{ $orderNote['note'] }}
-                                        </div>
-                                    @endif
+                                        @if (!empty($orderNote['note']))
+                                            <div class="timeline-body">
+                                                {{ $orderNote['note'] }}
+                                            </div>
+                                        @endif
 
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- END timeline item -->
+                                <!-- END timeline item -->
                             @endforeach
                         @endforeach
                     </div>
@@ -109,7 +110,7 @@
             </div>
             <!-- /.card -->
         </div>
-        <div class="col-12">
+        <div class="col-md-6">
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Thông tin khách hàng</h3>
@@ -121,10 +122,89 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @if($order->order_options === \App\OrderOptions::$BUY_AT_STORE)
-                        Mua o cua hang
+                    <form class="form-horizontal">
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-3 col-form-label">Tên đầy đủ</label>
+                            <div class="col-sm-9">
+                                <input readonly type="email" class="form-control" id="inputName"
+                                       value="{{ $customer->last_name . ' ' . $customer->first_name }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                                <input readonly type="email" class="form-control" id="inputEmail"
+                                       value="{{ $customer->email }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPhoneNumber" class="col-sm-3 col-form-label">Số điện thoại</label>
+                            <div class="col-sm-9">
+                                <input readonly type="email" class="form-control" id="inputPhoneNumber"
+                                       value="{{ $customer->phone_number }}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <div class="col-md-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Thông tin vận chuyển</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @if ($order->current_status == \App\OrderOptions::$SHIPPING)
+
+                        <form class="form-horizontal">
+                            <div class="form-group row">
+                                <label for="inputStreet" class="col-sm-4 col-form-label">Phí vận chuyển</label>
+                                <div class="col-sm-8">
+                                    <input readonly type="email" class="form-control" id="inputStreet"
+                                           value="35.000 VND">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputStreet" class="col-sm-4 col-form-label">Chi tiết</label>
+                                <div class="col-sm-8">
+                                    <input readonly type="email" class="form-control" id="inputStreet"
+                                           value="{{ $customer->street }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputA" class="col-sm-4 col-form-label">Phường/Xã</label>
+                                <div class="col-sm-8">
+                                    <input readonly type="email" class="form-control" id="inputA"
+                                           value="{{ $customer->village }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputB" class="col-sm-4 col-form-label">Quận/Huyện</label>
+                                <div class="col-sm-8">
+                                    <input readonly type="email" class="form-control" id="inputB"
+                                           value="{{ $customer->district }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputC" class="col-sm-4 col-form-label">Tỉnh/Thành Phố</label>
+                                <div class="col-sm-8">
+                                    <input readonly type="email" class="form-control" id="inputC"
+                                           value="{{ $customer->province }}">
+                                </div>
+                            </div>
+                        </form>
+                    
                     @else
-                        Ship COD
+                        <label for="inputStreet" class="col-sm-12 col-form-label">Khách nhận hàng trực tiếp tại cửa
+                            hàng</label>
                     @endif
                 </div>
                 <!-- /.card-body -->

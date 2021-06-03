@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Order;
 use App\OrderDetail;
 use App\OrderNote;
@@ -61,12 +62,15 @@ class OrderDetailContrller extends Controller
             array_push($renderOrderNotes[$combine], $note);
         }
 
+        $customer = Customer::find($order->customer_id);
+
         return view('Backend.Order.Detail.index', [
             'orderDetails' => $orderDetails,
             'order_id' => $orderID,
             'orderNotes' => $orderNotes,
             'renderOrderNotes' => $renderOrderNotes,
-            'order' => $order
+            'order' => $order,
+            'customer' => $customer
         ]);
     }
 }
