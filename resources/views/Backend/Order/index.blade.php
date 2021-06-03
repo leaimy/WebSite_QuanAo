@@ -216,13 +216,46 @@
 
     <script>
         const newOrderCount = {{ $new_order_counts }};
+
         const newOrderCountElement = document.getElementById('new_order_count');
+        const frmChangeOrderStatus = document.getElementById('frm-change-order-status');
+
+        const orders = (@json($orders));
+        const replaceWord = 'tronghieuthihavippro';
+        let actionURL = "{{ route('AdminOrder.status',['tronghieuthihavippro']) }}";
+
+        console.log(orders);
+
+        let currentOrderId = null;
 
         if (newOrderCount > 0) {
             newOrderCountElement.innerHTML = newOrderCount;
         }
         else {
             newOrderCountElement.hidden = true;
+        }
+
+        function handleOnOrderStatusClicked(id) {
+            currentOrderId = id;
+        }
+
+        function handleOnBtnSubmitClick() {
+            const url = actionURL.replace(replaceWord, currentOrderId);
+            frmChangeOrderStatus.setAttribute('action', url);
+            const newOrderStatus = document.getElementById('new-order-status').value;
+            const newOrderNote = document.getElementById('new-order-note').value;
+
+            frmChangeOrderStatus.insertAdjacentHTML('afterbegin', `
+                <input type="hidden" name="new_order_status" value="${newOrderStatus}">
+                <input type="hidden" name="new_order_note" value="${newOrderNote}">
+            `);
+
+            document.getElementById('frm-submit-button').click();
+        }
+
+        function handleOnFormSubmit(e) {
+            e.preventDefault();
+            console.log(currentOrderId);
         }
     </script>
 @endsection
@@ -271,7 +304,7 @@
                                 </td>
                                 <td class="text-center align-middle">{{ $item->total_price }} VND</td>
                                 <td class="text-center align-middle">{{ $item->discount_percent }} %</td>
-                                <td class="text-center align-middle">
+                                <td class="text-center align-middle" onclick="handleOnOrderStatusClicked({{ $item->id }})">
                                     <span class="{{ \App\OrderHelpers::getClasses($item->current_status) }}" data-toggle="modal" data-target="#modal-lg">
                                         {{ \App\OrderHelpers::getVNVersion($item->current_status) }}
                                     </span>
@@ -326,31 +359,32 @@
                     </button>
                 </div>
                 <div class="modal-body">
+
                     <div class="row justify-content-between">
                         <div class="col">
                             <div class="form-group">
                                 <label>Trạng thái đơn hàng *</label>
-                                <select class="form-control select2bs4" style="width: 100%;">
-                                    <option selected="selected">Alabama</option>
-                                    <option>Alaska</option>
-                                    <option>California</option>
-                                    <option>Delaware</option>
-                                    <option>Tennessee</option>
-                                    <option>Texas</option>
-                                    <option>Washington</option>
+                                <select class="form-control select2bs4" style="width: 100%;" id="new-order-status">
+                                    <option selected="selected" value="-1">Chọn trạng thái mới</option>
+
+                                    @foreach($list_of_orders as $orderStatus)
+                                        <option name="new-order-status" value="{{ $orderStatus['value'] }}">{{ $orderStatus['render'] }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Ghi chú</label>
-                                <textarea class="form-control" rows="3" placeholder="Nhập ghi chú ..."></textarea>
+                                <textarea class="form-control" rows="3" placeholder="Nhập ghi chú ..." id="new-order-note"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-between">
+                <form id="frm-change-order-status" action="" class="modal-footer justify-content-between" method="post">
+                    @csrf
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
-                </div>
+                    <button onclick="handleOnBtnSubmitClick()" type="button" class="btn btn-primary">Lưu thay đổi</button>
+                    <input style="display: none" type="submit" value="" id="frm-submit-button">
+                </form>
             </div>
             <!-- /.modal-content -->
         </div>

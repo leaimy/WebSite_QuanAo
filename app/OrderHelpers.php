@@ -78,4 +78,29 @@ class OrderHelpers
                 return 'Không rõ trạng thái';
         }
     }
+
+    public static function getListOfOrderStatus()
+    {
+        $statusValues = [
+            OrderStatus::$NEW_WEB_ORDER,
+            OrderStatus::$NEW_PHONE_ORDER,
+            OrderStatus::$APPROVED,
+            OrderStatus::$PACKED,
+            OrderStatus::$WAIT_FOR_DELIVERY,
+            OrderStatus::$ON_PROCESS,
+            OrderStatus::$SHIPPED,
+            OrderStatus::$CANCEL
+        ];
+
+        $results = [];
+
+        foreach ($statusValues as $status) {
+            array_push($results, [
+               'value' => $status,
+               'render' => self::getVNVersion($status)
+            ]);
+        }
+
+        return $results;
+    }
 }

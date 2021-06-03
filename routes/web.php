@@ -309,6 +309,7 @@ Route::middleware('auth')->group(function () {
      */
     Route::prefix('/admin/orders')->group(function () {
         Route::get('/', 'OrderController@index')->name('Order.index');
+        Route::post('/status/{order}', 'OrderController@changeStatus')->name('AdminOrder.status');
     });
 
     /**
