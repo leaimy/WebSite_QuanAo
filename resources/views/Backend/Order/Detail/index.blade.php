@@ -52,6 +52,62 @@
 @section('content-body')
     <div class="row">
         <div class="col-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Lịch sử đơn hàng</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="timeline timeline-inverse">
+
+                    @foreach($orderNotes as $orderNote)
+                        <!-- timeline time label -->
+                            <div class="time-label">
+                                <span class="bg-danger">
+                                  {{ $orderNote['day'] }} {{ $orderNote['month'] }}. {{ $orderNote['year'] }}
+                                </span>
+                            </div>
+                            <!-- /.timeline-label -->
+
+                            <!-- timeline item -->
+                            <div>
+                                <i class="fas fa-envelope bg-primary"></i>
+
+                                <div class="timeline-item">
+                                    <span class="time"><i class="far fa-clock"></i> {{ $orderNote['hour'] }}:{{ $orderNote['minute'] }}:{{ $orderNote['second'] }}</span>
+
+                                    @if (isset($orderNote['user']))
+                                        <h3 class="timeline-header"><a
+                                                href="#">{{ $orderNote['user']['last_name'] . ' ' . $orderNote['user']['first_name'] }}</a>
+                                            <span>chuyển trạng thái đơn hàng thành:</span>
+                                            <span class="{{ \App\OrderHelpers::getClasses($orderNote['order_status']) }}">{{ \App\OrderHelpers::getVNVersion($orderNote['order_status']) }}</span>
+                                        </h3>
+                                    @else
+                                        <h3 class="timeline-header">Khởi tạo</h3>
+                                    @endif
+
+                                    @if (!empty($orderNote['note']))
+                                        <div class="timeline-body">
+                                            {{ $orderNote['note'] }}
+                                        </div>
+                                    @endif
+
+                                </div>
+                            </div>
+                            <!-- END timeline item -->
+                        @endforeach
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <p>Mã đơn hàng: {{ $order_id }}</p>
@@ -86,7 +142,7 @@
                                     {{ $item['product']['name'] }}
                                 </td>
                                 <td class="text-center align-middle">
-                                    <img width="100" src="{{ asset( $item['product']['preview_image_path'] ) }}" alt="" >
+                                    <img width="100" src="{{ asset( $item['product']['preview_image_path'] ) }}" alt="">
                                 </td>
                                 <td class="text-center align-middle">
                                     {{ $item['model']['color'] }}
