@@ -1,3 +1,8 @@
+<?php
+    $new_order_count = \App\Order::where('current_status', \App\OrderStatus::$NEW_WEB_ORDER)->count();
+    $new_order_count += \App\Order::where('current_status', \App\OrderStatus::$NEW_PHONE_ORDER)->count();
+?>
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
@@ -63,7 +68,7 @@
                         </i>
                         <p>
                             Bán hàng
-                            <span class="badge badge-info right" id="new_order_count">3</span>
+                            <span class="badge badge-info right" id="new_order_count">{{ $new_order_count }}</span>
                         </p>
                     </a>
                 </li>
