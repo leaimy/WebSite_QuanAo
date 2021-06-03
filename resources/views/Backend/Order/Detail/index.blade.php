@@ -55,8 +55,6 @@
             <div class="card">
                 <div class="card-header">
                     <p>Mã đơn hàng: {{ $order_id }}</p>
-                    <p>Số lượng sản phẩm: {{ count($orderDetails) }}</p>
-                    <p>Tổng tiền: {{ 1 }}</p>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -67,6 +65,8 @@
                             <th width="3%"
                                 class="text-center">ID
                             </th>
+                            <th class="text-center">Sản phẩm</th>
+                            <th class="text-center">Hình ảnh</th>
                             <th class="text-center">Màu sắc</th>
                             <th class="text-center">Kích thước</th>
                             <th class="text-center">Đơn giá</th>
@@ -78,31 +78,30 @@
                         <tbody>
 
                         @foreach($orderDetails as $item)
-
-                            @php
-                                $model_id = $item->product_detail_id;
-                                $model = \App\ProductDetail::find($item->product_detail_id);
-                                $product = \App\Product::find($model->product_id);
-                            @endphp
-
                             <tr>
                                 <td class="text-center align-middle">
                                     {{ $item->id }}
                                 </td>
                                 <td class="text-center align-middle">
-                                    {{ $model->color }}
+                                    {{ $item['product']['name'] }}
                                 </td>
                                 <td class="text-center align-middle">
-                                    {{ $model->size }}
-                                </td>
-                                <td class="text-right align-middle">
-                                    {{ $product->sale_price }}
+                                    <img width="100" src="{{ asset( $item['product']['preview_image_path'] ) }}" alt="" >
                                 </td>
                                 <td class="text-center align-middle">
-                                    {{ $item->quantity }}
+                                    {{ $item['model']['color'] }}
+                                </td>
+                                <td class="text-center align-middle">
+                                    {{ $item['model']['size'] }}
                                 </td>
                                 <td class="text-right align-middle">
-                                    {{ $item->quantity * $product->sale_price }}
+                                    {{ $item['product']['sale_price'] }}
+                                </td>
+                                <td class="text-center align-middle">
+                                    {{ $item['quantity'] }}
+                                </td>
+                                <td class="text-right align-middle">
+                                    {{ $item['quantity'] * $item['product']['sale_price'] }}
                                 </td>
                                 <td class="text-center align-middle">
                                     <a title="Sửa" class="m-1 btn btn-success btn-sm"
