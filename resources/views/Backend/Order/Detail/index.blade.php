@@ -65,15 +65,16 @@
                 <div class="card-body">
                     <div class="timeline timeline-inverse">
 
-                    @foreach($orderNotes as $orderNote)
+                    @foreach($renderOrderNotes as $orderNotes)
                         <!-- timeline time label -->
                             <div class="time-label">
                                 <span class="bg-danger">
-                                  {{ $orderNote['day'] }} {{ $orderNote['month'] }}. {{ $orderNote['year'] }}
+                                  {{ $orderNotes[0]['day'] }} {{ $orderNotes[0]['month'] }}. {{ $orderNotes[0]['year'] }}
                                 </span>
                             </div>
                             <!-- /.timeline-label -->
 
+                        @foreach($orderNotes as $orderNote)
                             <!-- timeline item -->
                             <div>
                                 <i class="fas fa-envelope bg-primary"></i>
@@ -100,6 +101,7 @@
                                 </div>
                             </div>
                             <!-- END timeline item -->
+                            @endforeach
                         @endforeach
                     </div>
                 </div>

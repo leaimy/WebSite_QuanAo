@@ -13,7 +13,8 @@ use PhpParser\Node\Expr\Cast\Int_;
 
 class OrderDetailContrller extends Controller
 {
-    public function show(Request $request, Order $order) {
+    public function show(Request $request, Order $order)
+    {
         $orderID = $order->id;
 
         $orderDetails = OrderDetail::where('order_id', $orderID)->get();
@@ -45,10 +46,26 @@ class OrderDetailContrller extends Controller
             }
         }
 
+        $renderOrderNotes = [];
+        foreach ($orderNotes as $note) {
+            $day = $note['day'];
+            $month = $note['month'];
+            $year = $note['year'];
+
+            $combine = $day . $month . $year;
+
+            if (!isset($renderOrderNotes[$combine])) {
+                $renderOrderNotes[$combine] = [];
+            }
+
+            array_push($renderOrderNotes[$combine], $note);
+        }
+
         return view('Backend.Order.Detail.index', [
             'orderDetails' => $orderDetails,
             'order_id' => $orderID,
-            'orderNotes' => $orderNotes
+            'orderNotes' => $orderNotes,
+            'renderOrderNotes' => $renderOrderNotes
         ]);
     }
 }
