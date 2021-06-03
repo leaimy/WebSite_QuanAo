@@ -69,7 +69,7 @@
                         <!-- timeline time label -->
                             <div class="time-label">
                                 <span class="bg-danger">
-                                  {{ $orderNotes[0]['day'] }} {{ $orderNotes[0]['month'] }}. {{ $orderNotes[0]['year'] }}
+                                  {{ $orderNotes[0]['day'] }} - {{ $orderNotes[0]['month'] }} - {{ $orderNotes[0]['year'] }}
                                 </span>
                             </div>
                             <!-- /.timeline-label -->
@@ -104,6 +104,28 @@
                             @endforeach
                         @endforeach
                     </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <div class="col-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Thông tin khách hàng</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @if($order->order_options === \App\OrderOptions::$BUY_AT_STORE)
+                        Mua o cua hang
+                    @else
+                        Ship COD
+                    @endif
                 </div>
                 <!-- /.card-body -->
             </div>

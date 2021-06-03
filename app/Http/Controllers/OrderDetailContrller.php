@@ -35,7 +35,7 @@ class OrderDetailContrller extends Controller
             $dateFormat = new \DateTime($timestamp);
 
             $note['day'] = $dateFormat->format('d');
-            $note['month'] = $dateFormat->format('M');
+            $note['month'] = $dateFormat->format('m');
             $note['year'] = $dateFormat->format('Y');
             $note['hour'] = intval($dateFormat->format('H')) + 7;
             $note['minute'] = $dateFormat->format('i');
@@ -65,7 +65,8 @@ class OrderDetailContrller extends Controller
             'orderDetails' => $orderDetails,
             'order_id' => $orderID,
             'orderNotes' => $orderNotes,
-            'renderOrderNotes' => $renderOrderNotes
+            'renderOrderNotes' => $renderOrderNotes,
+            'order' => $order
         ]);
     }
 }
