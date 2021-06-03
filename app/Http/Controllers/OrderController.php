@@ -65,7 +65,7 @@ class OrderController extends Controller
             'order_id' => $newOrderID,
             'user_id' => 0,
             'order_status' => OrderStatus::$NEW_WEB_ORDER,
-            'note' => 'Đơn hàng mới được tạo bởi khách hàng: ' . $customer->name
+            'note' => 'Đơn hàng mới được tạo bởi khách hàng: ' . $customer->username
         ]);
 
         return redirect()->route('frontend.index');
