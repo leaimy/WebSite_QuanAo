@@ -166,13 +166,6 @@
 
                         <form class="form-horizontal">
                             <div class="form-group row">
-                                <label for="inputStreet" class="col-sm-4 col-form-label">Phí vận chuyển</label>
-                                <div class="col-sm-8">
-                                    <input readonly type="email" class="form-control" id="inputStreet"
-                                           value="35.000 VND">
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <label for="inputStreet" class="col-sm-4 col-form-label">Chi tiết</label>
                                 <div class="col-sm-8">
                                     <input readonly type="email" class="form-control" id="inputStreet"
@@ -206,6 +199,66 @@
                         <label for="inputStreet" class="col-sm-12 col-form-label">Khách nhận hàng trực tiếp tại cửa
                             hàng</label>
                     @endif
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Thông tin thanh toán</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body row">
+                    <div class="col-12">
+                        <p class="lead">Ngày lập đơn hàng: {{ $order['day'] }} - {{ $order['month'] }}
+                            - {{ $order['year'] }}</p>
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th style="width:50%">Phí vận chuyển:</th>
+                                    <td>
+                                        @if ($order->order_option == \App\OrderOptions::$SHIPPING)
+                                            35000 VND
+                                        @else
+                                            0 VND
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Giảm giá</th>
+                                    <td>
+                                        {{ $order->discount_percent }} %
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Tổng tiền hàng</th>
+                                    <td>
+                                        @if ($order->order_option == \App\OrderOptions::$SHIPPING)
+                                            {{ $order->total_price - 35000 }} VND
+                                        @else
+                                            {{ $order->total_price }} VND
+                                        @endif
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Tổng tiền thanh toán</th>
+                                    <td>
+                                        {{ $order->total_price }} VND
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.card-body -->
             </div>

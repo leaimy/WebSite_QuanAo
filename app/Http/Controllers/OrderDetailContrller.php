@@ -64,6 +64,12 @@ class OrderDetailContrller extends Controller
 
         $customer = Customer::find($order->customer_id);
 
+        $orderDate = new \DateTime($order->created_at);
+
+        $order['day'] = $orderDate->format('d');
+        $order['month'] = $orderDate->format('m');
+        $order['year'] = $orderDate->format('Y');
+
         return view('Backend.Order.Detail.index', [
             'orderDetails' => $orderDetails,
             'order_id' => $orderID,
