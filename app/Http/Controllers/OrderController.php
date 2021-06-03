@@ -11,9 +11,11 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::all();
+        $newOrdersCount = OrderHelpers::countNewOrders($orders);
 
         return view('Backend.Order.index', [
             'orders' => $orders,
+            'new_order_counts' => $newOrdersCount
         ]);
     }
 }

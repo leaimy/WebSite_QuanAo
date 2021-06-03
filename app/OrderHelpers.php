@@ -2,8 +2,20 @@
 
 namespace App;
 
+use function Psy\debug;
+
 class OrderHelpers
 {
+    public static function countNewOrders($orders)
+    {
+        $count = 0;
+
+        foreach ($orders as $order)
+            if ($order->current_status == OrderStatus::$NEW_PHONE_ORDER || $order->current_status == OrderStatus::$NEW_WEB_ORDER)
+                $count += 1;
+
+        return $count;
+    }
 
     public static function getClasses($order_info)
     {

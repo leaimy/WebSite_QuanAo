@@ -63,7 +63,7 @@
                         </i>
                         <p>
                             Bán hàng
-                            <span class="badge badge-info right">3</span>
+                            <span class="badge badge-info right" id="new_order_count">3</span>
                         </p>
                     </a>
                 </li>
