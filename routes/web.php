@@ -167,6 +167,40 @@ Route::get('/thanh-toan', function () {
 
 Route::post('/thanh-toan', 'OrderController@storeFromWeb')->name('frontend.checkout.create');
 
+
+/**
+ * Khách hàng
+ */
+
+Route::get('/dang-nhap',function (){
+    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+    $websiteconfig = \App\Website::all();
+
+    return view('Frontend.Home.signin',[
+        'websiteconfig' => $websiteconfig,
+        'parent_categories' => $parent_categories,
+    ]);
+})->name('khachhangdangnhap');
+
+Route::get('/tao-tai-khoan',function (){
+    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+    $websiteconfig = \App\Website::all();
+
+    return view('Frontend.Home.signup',[
+        'websiteconfig' => $websiteconfig,
+        'parent_categories' => $parent_categories,
+    ]);
+})->name('khachhangtaotaikhoan');
+
+Route::get('/thong-tin-khach-hang',function (){
+    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+    $websiteconfig = \App\Website::all();
+
+    return view('Frontend.Home.manage-my-account',[
+        'websiteconfig' => $websiteconfig,
+        'parent_categories' => $parent_categories,
+    ]);
+})->name('quanlytaikhoan');
 /**
  * Authenticate người dùng
  */

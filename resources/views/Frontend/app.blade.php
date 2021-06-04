@@ -50,7 +50,7 @@
                     <a class="main-logo" href="{{ route('frontend.index') }}">
                         @foreach($websiteconfig as $item)
                             @if($item->config_key=='LOGO_IMAGE')
-                                <img src="{{ asset($item->config_value) }}" alt="">
+                                <img src="{{ asset($item->config_value) }}" alt="" style="width: 170px">
                             @endif
                         @endforeach
                     </a>
@@ -94,17 +94,17 @@
                                     <ul style="width:200px">
                                         <li>
 
-                                            <a href="dashboard.html"><i class="fas fa-user-circle u-s-m-r-6"></i>
+                                            <a href="{{route('quanlytaikhoan')}}"><i class="fas fa-user-circle u-s-m-r-6"></i>
 
                                                 <span>Thông tin khách hàng</span></a></li>
                                         <li>
 
-                                            <a href="signup.html"><i class="fas fa-user-plus u-s-m-r-6"></i>
+                                            <a href="{{route('khachhangtaotaikhoan')}}"><i class="fas fa-user-plus u-s-m-r-6"></i>
 
                                                 <span>Tạo tài khoản</span></a></li>
                                         <li>
 
-                                            <a href="signin.html"><i class="fas fa-lock u-s-m-r-6"></i>
+                                            <a href="{{route('khachhangdangnhap')}}"><i class="fas fa-lock u-s-m-r-6"></i>
 
                                                 <span>Đăng nhập</span></a></li>
 
