@@ -14,7 +14,7 @@
             <a href="{{ route('AdminProduct.index') }}" class="nav-link">Sản phẩm</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin" class="nav-link">Hóa đơn</a>
+            <a href="{{ route('Order.index') }}" class="nav-link">Bán hàng</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="{{ route('AdminUser.index') }}" class="nav-link">Khách hàng</a>

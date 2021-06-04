@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     $sliders = \App\Slider::where('status', 1)->get();
@@ -54,13 +55,10 @@ Route::get('/chi-tiet-san-pham/{slug}', function ($slug) {
     $unique_colors = TrichXuatColor($productdetails);
     $unique_sizes = TrichXuatSize($productdetails);
 
-    // $productcategories =
-    //
     $category_id = $product->category_id;
 
-    $random_products = \App\Product::where('category_id', $category_id)->get(); // chon product thuoc nhom $category_id ngau nhien, khong bao gom san pham hien tai
-    $products = LaySanPhamNgauNhien($random_products,$product->id);
-
+    $random_products = \App\Product::where('category_id', $category_id)->get();
+    $products = LaySanPhamNgauNhien($random_products, $product->id);
 
     return view('Frontend.Home.chi-tiet-san-pham', [
         'websiteconfig' => $websiteconfig,
@@ -70,15 +68,17 @@ Route::get('/chi-tiet-san-pham/{slug}', function ($slug) {
         'productdetails' => $productdetails,
         'unique_sizes' => $unique_sizes,
         'unique_colors' => $unique_colors,
-        'products'=>$products
+        'products' => $products,
+        'categories' => $categories
     ]);
 })->name('chitietsanpham');
 
-function LaySanPhamNgauNhien($array,$id){
+function LaySanPhamNgauNhien($array, $id)
+{
     $newarray = [];
     foreach ($array as $item) {
-        if ($item->id!=$id){
-            array_push($newarray,$item);
+        if ($item->id != $id) {
+            array_push($newarray, $item);
         }
     }
 
@@ -164,6 +164,8 @@ Route::get('/thanh-toan', function () {
         'parent_categories' => $parent_categories,
     ]);
 })->name('frontend.checkout');
+
+Route::post('/thanh-toan', 'OrderController@storeFromWeb')->name('frontend.checkout.create');
 
 /**
  * Authenticate người dùng
@@ -273,5 +275,22 @@ Route::middleware('auth')->group(function () {
         Route::get('/', 'AdminRoleController@index')->name('AdminRole.index');
         Route::get('create', 'AdminRoleController@create')->name('AdminRole.create');
         Route::post('store', 'AdminController@store')->name('AdminRole.store');
+    });
+
+    /**
+     * Quản lý danh sách đơn hàng
+     */
+    Route::prefix('/admin/orders')->group(function () {
+        Route::get('/', 'OrderController@index')->name('Order.index');
+        Route::post('/store-web', 'OrderController@storeFromWeb')->name('Order.store.web');
+        Route::post('/store-user', 'OrderController@storeFromUser')->name('Order.store.user');
+        Route::post('/status/{order}', 'OrderController@changeStatus')->name('AdminOrder.status');
+    });
+
+    /**
+     * Quản lý đơn hàng chi tiết
+     */
+    Route::prefix('/admin/orders/detail')->group(function () {
+        Route::get('/{order}', 'OrderDetailContrller@show')->name('AdminOrderDetail.show');
     });
 });

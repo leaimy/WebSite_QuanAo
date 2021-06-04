@@ -8,6 +8,135 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('frontend/js/cart.js') }}"></script>
+
+    <script>
+        let savedProduct = loadLocalStorage();
+
+        const isShipping = JSON.parse(window.localStorage.getItem('shipping'));
+
+        if (isShipping) {
+            document.getElementById('shippingFee').innerHTML = '35000 VND';
+        }
+
+        const cartItemContainer = document.getElementById('list-sold-items');
+        const shippingFeeElement = document.getElementById('shippingFee');
+        const subtotalElement = document.getElementById('subtotal');
+        const totalElement = document.getElementById('grantotal');
+
+        const submitForm = document.getElementById('submitForm');
+
+        renderSubmitForm();
+
+        function renderSubmitForm() {
+            const savedProduct = loadLocalStorage();
+            if (!savedProduct) return;
+
+            const productIds = Object.keys(savedProduct);
+
+            productIds.forEach(pID => {
+                submitForm.insertAdjacentHTML('afterbegin', `
+                    <input type="hidden" name="product_ids[]" value="${pID}" />
+                `);
+
+                const modelID = Object.keys(savedProduct[pID]);
+                modelID.forEach(mId => {
+                    submitForm.insertAdjacentHTML('afterbegin', `
+                        <input type="hidden" name="model_ids[]" value="${mId}_${savedProduct[pID][mId].quantity}" />
+                    `);
+                });
+            });
+
+            submitForm.insertAdjacentHTML('afterbegin', `
+                <input type="hidden" name="current_status" value="new web order" >
+            `)
+
+            if (isShipping) {
+                submitForm.insertAdjacentHTML('afterbegin', `
+                    <input type="hidden" name="order_option" value="shipping" >
+                `)
+            }
+            else {
+                submitForm.insertAdjacentHTML('afterbegin', `
+                    <input type="hidden" name="order_option" value="buy at store" >
+                `)
+            }
+        }
+
+        renderCart();
+        renderSubtotal();
+        renderFinalCost();
+
+        window.onCartItemRemove = renderCart;
+
+        function renderCart() {
+            const productIDs = Object.keys(savedProduct);
+            cartItemContainer.innerHTML = '';
+            productIDs.forEach(productID => {
+                const modelIDs = Object.keys(savedProduct[productID]);
+                const rows = modelIDs.map(modelID => generateRowItem(savedProduct[productID][modelID]));
+                cartItemContainer.insertAdjacentHTML('afterbegin', rows.join(''));
+            })
+        }
+
+        function generateRowItem(model) {
+            const { id, productID, image, name, category, size, color, quantity, price } = model;
+            return `
+                <div class="o-card" id="model-${id}"}>
+                    <div class="o-card__flex">
+                        <div class="o-card__img-wrap">
+
+                            <img class="u-img-fluid"
+                                 src="${image}"
+                                 alt="">
+                        </div>
+                        <div class="o-card__info-wrap">
+
+                        <span class="o-card__name">
+
+                            <a href="javascript:;">${category.name} | ${color} - ${size}</a></span>
+
+                            <span class="o-card__quantity">Số lượng x ${quantity}</span>
+
+                            <span class="o-card__price">${price * quantity} VND</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderSubtotal() {
+            if (!savedProduct) return;
+
+            const productIDs = Object.keys(savedProduct);
+            let subtotal = 0;
+
+            productIDs.forEach(pID => {
+                const modelIDs = Object.keys(savedProduct[pID]);
+                subtotal += modelIDs.reduce((acc, cur, idx) => {
+                    return acc + (savedProduct[pID][cur].price * savedProduct[pID][cur].quantity);
+                }, 0);
+            })
+
+            subtotalElement.innerHTML = `${subtotal} VND`;
+            renderFinalCost();
+        }
+
+        function renderFinalCost() {
+            const shippingFee = shippingFeeElement.innerHTML.split(' ')[0] * 1;
+            const subtotal = subtotalElement.innerHTML.split(' ')[0] * 1;
+
+            totalElement.innerHTML = `${shippingFee + subtotal} VND`;
+
+            submitForm.insertAdjacentHTML('afterbegin', `
+                <input type="hidden" name="total_price" value="${shippingFee + subtotal}" >
+            `)
+        }
+
+        document.getElementById('submitForm').addEventListener('submit', () => {
+           saveToLocalStorage({});
+        });
+    </script>
 @endsection
 
 @section('content')
@@ -59,29 +188,29 @@
                                             <div class="gl-inline">
                                                 <div class="u-s-m-b-15">
 
-                                                    <label class="gl-label" for="login-email">E-MAIL *</label>
+                                                    <label class="gl-label" for="login-email">Tên người dùng *</label>
 
                                                     <input class="input-text input-text--primary-style" type="text"
-                                                           id="login-email" placeholder="Enter E-mail">
+                                                           id="login-email" placeholder="Tên người dùng của bạn...">
                                                 </div>
                                                 <div class="u-s-m-b-15">
 
-                                                    <label class="gl-label" for="login-password">PASSWORD *</label>
+                                                    <label class="gl-label" for="login-password">Mật khẩu</label>
 
-                                                    <input class="input-text input-text--primary-style" type="text"
-                                                           id="login-password" placeholder="Enter Password">
+                                                    <input class="input-text input-text--primary-style" type="password"
+                                                           id="login-password" placeholder="Mật khẩu">
                                                 </div>
                                             </div>
                                             <div class="gl-inline">
                                                 <div class="u-s-m-b-15">
 
                                                     <button class="btn btn--e-transparent-brand-b-2"
-                                                            type="submit">LOGIN
+                                                            type="submit">Đăng nhập
                                                     </button>
                                                 </div>
                                                 <div class="u-s-m-b-15">
 
-                                                    <a class="gl-link" href="lost-password.html">Lost Your Password?</a>
+                                                    <a class="gl-link" href="lost-password.html">Bạn quên mật khẩu?</a>
                                                 </div>
                                             </div>
 
@@ -91,8 +220,7 @@
                                                 <input type="checkbox" id="remember-me">
                                                 <div class="check-box__state check-box__state--primary">
 
-                                                    <label class="check-box__label" for="remember-me">Remember
-                                                        Me</label>
+                                                    <label class="check-box__label" for="remember-me">Ghi nhớ đăng nhập</label>
                                                 </div>
                                             </div>
                                             <!--====== End - Check Box ======-->
@@ -119,37 +247,22 @@
                 <div class="checkout-f">
                     <div class="row">
                         <div class="col-lg-6">
-                            <h1 class="checkout-f__h1">DELIVERY INFORMATION</h1>
+                            <h1 class="checkout-f__h1">THÔNG TIN GIAO HÀNG</h1>
                             <form class="checkout-f__delivery">
                                 <div class="u-s-m-b-30">
-                                    <div class="u-s-m-b-15">
-
-                                        <!--====== Check Box ======-->
-                                        <div class="check-box">
-
-                                            <input type="checkbox" id="get-address">
-                                            <div class="check-box__state check-box__state--primary">
-
-                                                <label class="check-box__label" for="get-address">Use default shipping
-                                                    and
-                                                    billing address from account</label>
-                                            </div>
-                                        </div>
-                                        <!--====== End - Check Box ======-->
-                                    </div>
 
                                     <!--====== First Name, Last Name ======-->
                                     <div class="gl-inline">
                                         <div class="u-s-m-b-15">
 
-                                            <label class="gl-label" for="billing-fname">FIRST NAME *</label>
+                                            <label class="gl-label" for="billing-fname">TÊN *</label>
 
                                             <input class="input-text input-text--primary-style" type="text"
                                                    id="billing-fname" data-bill="">
                                         </div>
                                         <div class="u-s-m-b-15">
 
-                                            <label class="gl-label" for="billing-lname">LAST NAME *</label>
+                                            <label class="gl-label" for="billing-lname">HỌ ĐỆM *</label>
 
                                             <input class="input-text input-text--primary-style" type="text"
                                                    id="billing-lname" data-bill="">
@@ -161,7 +274,7 @@
                                     <!--====== E-MAIL ======-->
                                     <div class="u-s-m-b-15">
 
-                                        <label class="gl-label" for="billing-email">E-MAIL *</label>
+                                        <label class="gl-label" for="billing-email">ĐỊA CHỈ EMAIL *</label>
 
                                         <input class="input-text input-text--primary-style" type="text"
                                                id="billing-email"
@@ -173,7 +286,7 @@
                                     <!--====== PHONE ======-->
                                     <div class="u-s-m-b-15">
 
-                                        <label class="gl-label" for="billing-phone">PHONE *</label>
+                                        <label class="gl-label" for="billing-phone">SỐ ĐIỆN THOẠI *</label>
 
                                         <input class="input-text input-text--primary-style" type="text"
                                                id="billing-phone"
@@ -181,66 +294,16 @@
                                     </div>
                                     <!--====== End - PHONE ======-->
 
-
-                                    <!--====== Street Address ======-->
-                                    <div class="u-s-m-b-15">
-
-                                        <label class="gl-label" for="billing-street">STREET ADDRESS *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text"
-                                               id="billing-street"
-                                               placeholder="House name and street name" data-bill="">
-                                    </div>
-                                    <div class="u-s-m-b-15">
-
-                                        <label for="billing-street-optional"></label>
-
-                                        <input class="input-text input-text--primary-style" type="text"
-                                               id="billing-street-optional"
-                                               placeholder="Apartment, suite unit etc. (optional)"
-                                               data-bill="">
-                                    </div>
-                                    <!--====== End - Street Address ======-->
-
-
-                                    <!--====== Country ======-->
-                                    <div class="u-s-m-b-15">
-
-                                        <!--====== Select Box ======-->
-
-                                        <label class="gl-label" for="billing-country">COUNTRY *</label><select
-                                            class="select-box select-box--primary-style" id="billing-country"
-                                            data-bill="">
-                                            <option selected value="">Choose Country</option>
-                                            <option value="uae">United Arab Emirate (UAE)</option>
-                                            <option value="uk">United Kingdom (UK)</option>
-                                            <option value="us">United States (US)</option>
-                                        </select>
-                                        <!--====== End - Select Box ======-->
-                                    </div>
-                                    <!--====== End - Country ======-->
-
-
-                                    <!--====== Town / City ======-->
-                                    <div class="u-s-m-b-15">
-
-                                        <label class="gl-label" for="billing-town-city">TOWN/CITY *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text"
-                                               id="billing-town-city" data-bill="">
-                                    </div>
-                                    <!--====== End - Town / City ======-->
-
-
                                     <!--====== STATE/PROVINCE ======-->
                                     <div class="u-s-m-b-15">
 
                                         <!--====== Select Box ======-->
 
-                                        <label class="gl-label" for="billing-state">STATE/PROVINCE *</label><select
-                                            class="select-box select-box--primary-style" id="billing-state"
+                                        <label class="gl-label" for="billing-state">TỈNH/ THÀNH PHỐ *</label>
+                                        <select
+                                            class="select-box select-box--primary-style" id="billing-tinhthanhpho"
                                             data-bill="">
-                                            <option selected value="">Choose State/Province</option>
+                                            <option selected value="">Chọn Tỉnh/Thành Phố</option>
                                             <option value="al">Alabama</option>
                                             <option value="al">Alaska</option>
                                             <option value="ny">New York</option>
@@ -249,68 +312,61 @@
                                     </div>
                                     <!--====== End - STATE/PROVINCE ======-->
 
-
-                                    <!--====== ZIP/POSTAL ======-->
+                                    <!--====== STATE/PROVINCE ======-->
                                     <div class="u-s-m-b-15">
 
-                                        <label class="gl-label" for="billing-zip">ZIP/POSTAL CODE *</label>
+                                        <!--====== Select Box ======-->
 
-                                        <input class="input-text input-text--primary-style" type="text" id="billing-zip"
-                                               placeholder="Zip/Postal Code" data-bill="">
+                                        <label class="gl-label" for="billing-state">QUẬN/HUYỆN *</label>
+                                        <select
+                                            class="select-box select-box--primary-style" id="billing-quanhuyen"
+                                            data-bill="">
+                                            <option selected value="">Chọn Quận/Huyện</option>
+                                            <option value="al">Alabama</option>
+                                            <option value="al">Alaska</option>
+                                            <option value="ny">New York</option>
+                                        </select>
+                                        <!--====== End - Select Box ======-->
                                     </div>
-                                    <!--====== End - ZIP/POSTAL ======-->
-                                    <div class="u-s-m-b-10">
+                                    <!--====== End - STATE/PROVINCE ======-->
 
-                                        <!--====== Check Box ======-->
-                                        <div class="check-box">
+                                    <!--====== STATE/PROVINCE ======-->
+                                    <div class="u-s-m-b-15">
 
-                                            <input type="checkbox" id="make-default-address" data-bill="">
-                                            <div class="check-box__state check-box__state--primary">
+                                        <!--====== Select Box ======-->
 
-                                                <label class="check-box__label" for="make-default-address">Make default
-                                                    shipping and billing address</label>
-                                            </div>
-                                        </div>
-                                        <!--====== End - Check Box ======-->
+                                        <label class="gl-label" for="billing-state">PHƯỜNG/XÃ *</label><select
+                                            class="select-box select-box--primary-style" id="billing-phuongxa"
+                                            data-bill="">
+                                            <option selected value="">Chọn Phường/Xã</option>
+                                            <option value="al">Alabama</option>
+                                            <option value="al">Alaska</option>
+                                            <option value="ny">New York</option>
+                                        </select>
+                                        <!--====== End - Select Box ======-->
                                     </div>
-                                    <div class="u-s-m-b-10">
+                                    <!--====== End - STATE/PROVINCE ======-->
 
-                                        <a class="gl-link" href="#create-account" data-toggle="collapse">Want to create
-                                            a
-                                            new account?</a>
+                                    <!--====== Street Address ======-->
+                                    <div class="u-s-m-b-15">
+
+                                        <label class="gl-label" for="billing-street">TOÀ NHÀ/TÊN ĐƯỜNG *</label>
+
+                                        <input class="input-text input-text--primary-style" type="text"
+                                               id="billing-street"
+                                               placeholder="Địa chỉ toà nhà/tên đường" data-bill="">
                                     </div>
-                                    <div class="collapse u-s-m-b-15" id="create-account">
 
-                                    <span class="gl-text u-s-m-b-15">Create an account by entering the information
-                                        below. If you are a returning customer please login at the top of the
-                                        page.</span>
-                                        <div>
-
-                                            <label class="gl-label" for="reg-password">Account Password *</label>
-
-                                            <input class="input-text input-text--primary-style" type="text" data-bill
-                                                   id="reg-password">
-                                        </div>
-                                    </div>
-                                    <div class="u-s-m-b-10">
-
-                                        <label class="gl-label" for="order-note">ORDER NOTE</label><textarea
-                                            class="text-area text-area--primary-style" id="order-note"></textarea>
-                                    </div>
-                                    <div>
-
-                                        <button class="btn btn--e-transparent-brand-b-2" type="submit">SAVE</button>
-                                    </div>
                                 </div>
                             </form>
                         </div>
                         <div class="col-lg-6">
-                            <h1 class="checkout-f__h1">ORDER SUMMARY</h1>
+                            <h1 class="checkout-f__h1">THÔNG TIN ĐƠN HÀNG</h1>
 
                             <!--====== Order Summary ======-->
                             <div class="o-summary">
                                 <div class="o-summary__section u-s-m-b-30">
-                                    <div class="o-summary__item-wrap gl-scroll">
+                                    <div class="o-summary__item-wrap gl-scroll" id="list-sold-items">
                                         <div class="o-card">
                                             <div class="o-card__flex">
                                                 <div class="o-card__img-wrap">
@@ -403,164 +459,27 @@
                                 </div>
                                 <div class="o-summary__section u-s-m-b-30">
                                     <div class="o-summary__box">
-                                        <h1 class="checkout-f__h1">SHIPPING & BILLING</h1>
-                                        <div class="ship-b">
-
-                                            <span class="ship-b__text">Ship to:</span>
-                                            <div class="ship-b__box u-s-m-b-10">
-                                                <p class="ship-b__p">4247 Ashford Drive Virginia VA-20006 USA (+0)
-                                                    900901904
-                                                </p>
-
-                                                <a class="ship-b__edit btn--e-transparent-platinum-b-2"
-                                                   data-modal="modal"
-                                                   data-modal-id="#edit-ship-address">Edit</a>
-                                            </div>
-                                            <div class="ship-b__box">
-
-                                                <span class="ship-b__text">Bill to default billing address</span>
-
-                                                <a class="ship-b__edit btn--e-transparent-platinum-b-2"
-                                                   data-modal="modal"
-                                                   data-modal-id="#edit-ship-address">Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="o-summary__section u-s-m-b-30">
-                                    <div class="o-summary__box">
-                                        <table class="o-summary__table">
+                                        <table class="o-summary__table u-s-m-b-30">
                                             <tbody>
                                             <tr>
-                                                <td>SHIPPING</td>
-                                                <td>$4.00</td>
+                                                <td>PHÍ VẬN CHUYỂN</td>
+                                                <td id="shippingFee">0 VND</td>
                                             </tr>
                                             <tr>
-                                                <td>TAX</td>
-                                                <td>$0.00</td>
+                                                <td>TỔNG TIỀN HÀNG</td>
+                                                <td id="subtotal">0 VND</td>
                                             </tr>
                                             <tr>
-                                                <td>SUBTOTAL</td>
-                                                <td>$379.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>GRAND TOTAL</td>
-                                                <td>$379.00</td>
+                                                <td>TỔNG THANH TOÁN</td>
+                                                <td id="grantotal">0 VND</td>
                                             </tr>
                                             </tbody>
                                         </table>
-                                    </div>
-                                </div>
-                                <div class="o-summary__section u-s-m-b-30">
-                                    <div class="o-summary__box">
-                                        <h1 class="checkout-f__h1">PAYMENT INFORMATION</h1>
-                                        <form class="checkout-f__payment">
-                                            <div class="u-s-m-b-10">
-
-                                                <!--====== Radio Box ======-->
-                                                <div class="radio-box">
-
-                                                    <input type="radio" id="cash-on-delivery" name="payment">
-                                                    <div class="radio-box__state radio-box__state--primary">
-
-                                                        <label class="radio-box__label" for="cash-on-delivery">Cash on
-                                                            Delivery</label>
-                                                    </div>
-                                                </div>
-                                                <!--====== End - Radio Box ======-->
-
-                                                <span class="gl-text u-s-m-t-6">Pay Upon Cash on delivery. (This service is
-                                                only available for some countries)</span>
-                                            </div>
-                                            <div class="u-s-m-b-10">
-
-                                                <!--====== Radio Box ======-->
-                                                <div class="radio-box">
-
-                                                    <input type="radio" id="direct-bank-transfer" name="payment">
-                                                    <div class="radio-box__state radio-box__state--primary">
-
-                                                        <label class="radio-box__label" for="direct-bank-transfer">Direct
-                                                            Bank Transfer</label>
-                                                    </div>
-                                                </div>
-                                                <!--====== End - Radio Box ======-->
-
-                                                <span class="gl-text u-s-m-t-6">Make your payment directly into our bank
-                                                account. Please use your Order ID as the payment reference. Your order
-                                                will not be shipped until the funds have cleared in our account.</span>
-                                            </div>
-                                            <div class="u-s-m-b-10">
-
-                                                <!--====== Radio Box ======-->
-                                                <div class="radio-box">
-
-                                                    <input type="radio" id="pay-with-check" name="payment">
-                                                    <div class="radio-box__state radio-box__state--primary">
-
-                                                        <label class="radio-box__label" for="pay-with-check">Pay With
-                                                            Check</label>
-                                                    </div>
-                                                </div>
-                                                <!--====== End - Radio Box ======-->
-
-                                                <span class="gl-text u-s-m-t-6">Please send a check to Store Name, Store
-                                                Street, Store Town, Store State / County, Store Postcode.</span>
-                                            </div>
-                                            <div class="u-s-m-b-10">
-
-                                                <!--====== Radio Box ======-->
-                                                <div class="radio-box">
-
-                                                    <input type="radio" id="pay-with-card" name="payment">
-                                                    <div class="radio-box__state radio-box__state--primary">
-
-                                                        <label class="radio-box__label" for="pay-with-card">Pay With
-                                                            Credit
-                                                            / Debit Card</label>
-                                                    </div>
-                                                </div>
-                                                <!--====== End - Radio Box ======-->
-
-                                                <span class="gl-text u-s-m-t-6">International Credit Cards must be eligible
-                                                for use within the United States.</span>
-                                            </div>
-                                            <div class="u-s-m-b-10">
-
-                                                <!--====== Radio Box ======-->
-                                                <div class="radio-box">
-
-                                                    <input type="radio" id="pay-pal" name="payment">
-                                                    <div class="radio-box__state radio-box__state--primary">
-
-                                                        <label class="radio-box__label" for="pay-pal">Pay Pal</label>
-                                                    </div>
-                                                </div>
-                                                <!--====== End - Radio Box ======-->
-
-                                                <span class="gl-text u-s-m-t-6">When you click "Place Order" below we'll
-                                                take you to Paypal's site to set up your billing information.</span>
-                                            </div>
-                                            <div class="u-s-m-b-15">
-
-                                                <!--====== Check Box ======-->
-                                                <div class="check-box">
-
-                                                    <input type="checkbox" id="term-and-condition">
-                                                    <div class="check-box__state check-box__state--primary">
-
-                                                        <label class="check-box__label" for="term-and-condition">I
-                                                            consent
-                                                            to the</label>
-                                                    </div>
-                                                </div>
-                                                <!--====== End - Check Box ======-->
-
-                                                <a class="gl-link">Terms of Service.</a>
-                                            </div>
+                                        <form id="submitForm" action="{{ route('frontend.checkout.create') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="customer_id" value="1">
                                             <div>
-
-                                                <button class="btn btn--e-brand-b-2" type="submit">PLACE ORDER</button>
+                                                <button class="btn btn--e-brand-b-2" type="submit">ĐẶT HÀNG</button>
                                             </div>
                                         </form>
                                     </div>
@@ -575,197 +494,4 @@
         <!--====== End - Section Content ======-->
     </div>
     <!--====== End - Section 3 ======-->
-
-    <!--====== Modal Section ======-->
-
-
-    <!--====== Shipping Address Add Modal ======-->
-    <div class="modal fade" id="edit-ship-address">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="checkout-modal2">
-                        <div class="u-s-m-b-30">
-                            <div class="dash-l-r">
-                                <h1 class="gl-modal-h1">Shipping Address</h1>
-                                <div class="dash__link dash__link--brand">
-
-                                    <a data-modal="modal" data-modal-id="#add-ship-address" data-dismiss="modal">Add new
-                                        Address</a>
-                                </div>
-                            </div>
-                        </div>
-                        <form class="checkout-modal2__form">
-                            <div class="dash__table-2-wrap u-s-m-b-30 gl-scroll">
-                                <table class="dash__table-2">
-                                    <thead>
-                                    <tr>
-                                        <th>Action</th>
-                                        <th>Full Name</th>
-                                        <th>Address</th>
-                                        <th>Region</th>
-                                        <th>Phone Number</th>
-                                        <th>Status</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>
-
-                                            <!--====== Radio Box ======-->
-                                            <div class="radio-box">
-
-                                                <input type="radio" id="address-1" name="default-address" checked="">
-                                                <div class="radio-box__state radio-box__state--primary">
-
-                                                    <label class="radio-box__label" for="address-1"></label>
-                                                </div>
-                                            </div>
-                                            <!--====== End - Radio Box ======-->
-                                        </td>
-                                        <td>John Doe</td>
-                                        <td>4247 Ashford Drive Virginia VA-20006 USA</td>
-                                        <td>Virginia VA-20006 USA</td>
-                                        <td>(+0) 900901904</td>
-                                        <td>
-                                            <div class="gl-text">Default Shipping Address</div>
-                                            <div class="gl-text">Default Billing Address</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                            <!--====== Radio Box ======-->
-                                            <div class="radio-box">
-
-                                                <input type="radio" id="address-2" name="default-address">
-                                                <div class="radio-box__state radio-box__state--primary">
-
-                                                    <label class="radio-box__label" for="address-2"></label>
-                                                </div>
-                                            </div>
-                                            <!--====== End - Radio Box ======-->
-                                        </td>
-                                        <td>Doe John</td>
-                                        <td>1484 Abner Road</td>
-                                        <td>Eau Claire WI - Wisconsin</td>
-                                        <td>(+0) 7154419563</td>
-                                        <td></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="gl-modal-btn-group">
-
-                                <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
-
-                                <button class="btn btn--e-grey-b-2" type="button" data-dismiss="modal">CANCEL</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--====== End - Shipping Address Add Modal ======-->
-
-
-    <!--====== Shipping Address Add Modal ======-->
-    <div class="modal fade" id="add-ship-address">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="checkout-modal1">
-                        <form class="checkout-modal1__form">
-                            <div class="u-s-m-b-30">
-                                <h1 class="gl-modal-h1">Add new Shipping Address</h1>
-                            </div>
-                            <div class="gl-inline">
-                                <div class="u-s-m-b-30">
-
-                                    <label class="gl-label" for="address-fname">FIRST NAME *</label>
-
-                                    <input class="input-text input-text--primary-style" type="text" id="address-fname"
-                                           placeholder="First Name">
-                                </div>
-                                <div class="u-s-m-b-30">
-
-                                    <label class="gl-label" for="address-lname">LAST NAME *</label>
-
-                                    <input class="input-text input-text--primary-style" type="text" id="address-lname"
-                                           placeholder="Last Name">
-                                </div>
-                            </div>
-                            <div class="gl-inline">
-                                <div class="u-s-m-b-30">
-
-                                    <label class="gl-label" for="address-phone">PHONE *</label>
-
-                                    <input class="input-text input-text--primary-style" type="text" id="address-phone">
-                                </div>
-                                <div class="u-s-m-b-30">
-
-                                    <label class="gl-label" for="address-street">STREET ADDRESS *</label>
-
-                                    <input class="input-text input-text--primary-style" type="text" id="address-street"
-                                           placeholder="House Name and Street">
-                                </div>
-                            </div>
-                            <div class="gl-inline">
-                                <div class="u-s-m-b-30">
-
-                                    <!--====== Select Box ======-->
-
-                                    <label class="gl-label" for="address-country">COUNTRY *</label><select
-                                        class="select-box select-box--primary-style" id="address-country">
-                                        <option selected value="">Choose Country</option>
-                                        <option value="uae">United Arab Emirate (UAE)</option>
-                                        <option value="uk">United Kingdom (UK)</option>
-                                        <option value="us">United States (US)</option>
-                                    </select>
-                                    <!--====== End - Select Box ======-->
-                                </div>
-                                <div class="u-s-m-b-30">
-
-                                    <!--====== Select Box ======-->
-
-                                    <label class="gl-label" for="address-state">STATE/PROVINCE *</label><select
-                                        class="select-box select-box--primary-style" id="address-state">
-                                        <option selected value="">Choose State/Province</option>
-                                        <option value="al">Alabama</option>
-                                        <option value="al">Alaska</option>
-                                        <option value="ny">New York</option>
-                                    </select>
-                                    <!--====== End - Select Box ======-->
-                                </div>
-                            </div>
-                            <div class="gl-inline">
-                                <div class="u-s-m-b-30">
-
-                                    <label class="gl-label" for="address-city">TOWN/CITY *</label>
-
-                                    <input class="input-text input-text--primary-style" type="text" id="address-city">
-                                </div>
-                                <div class="u-s-m-b-30">
-
-                                    <label class="gl-label" for="address-street">ZIP/POSTAL CODE *</label>
-
-                                    <input class="input-text input-text--primary-style" type="text" id="address-postal"
-                                           placeholder="Zip/Postal Code">
-                                </div>
-                            </div>
-                            <div class="gl-modal-btn-group">
-
-                                <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
-
-                                <button class="btn btn--e-grey-b-2" type="button" data-dismiss="modal">CANCEL</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--====== End - Shipping Address Add Modal ======-->
-    <!--====== End - Modal Section ======-->
 @endsection

@@ -1,3 +1,8 @@
+<?php
+    $new_order_count = \App\Order::where('current_status', \App\OrderStatus::$NEW_WEB_ORDER)->count();
+    $new_order_count += \App\Order::where('current_status', \App\OrderStatus::$NEW_PHONE_ORDER)->count();
+?>
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
@@ -56,14 +61,14 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('Admin.home') }}" class="nav-link">
+                    <a href="{{ route('Order.index') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/dolphin.png') }}" width="20"
                                  alt="">
                         </i>
                         <p>
                             Bán hàng
-                            <span class="badge badge-info right">3</span>
+                            <span class="badge badge-info right" id="new_order_count">{{ $new_order_count }}</span>
                         </p>
                     </a>
                 </li>

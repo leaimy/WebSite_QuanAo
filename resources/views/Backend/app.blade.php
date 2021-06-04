@@ -70,6 +70,8 @@
 </div>
 <!-- ./wrapper -->
 
+@yield('modal')
+
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
 <script src="{{ asset('backend/plugins/jquery/jquery.min.js') }}"></script>
