@@ -94,7 +94,7 @@
                                     <ul style="width:200px">
                                         <li>
 
-                                            <a href="{{route('quanlytaikhoan')}}"><i class="fas fa-user-circle u-s-m-r-6"></i>
+                                            <a href="{{route('thongtincanhan')}}"><i class="fas fa-user-circle u-s-m-r-6"></i>
 
                                                 <span>Thông tin khách hàng</span></a></li>
                                         <li>

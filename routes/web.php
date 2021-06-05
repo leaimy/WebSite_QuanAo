@@ -192,15 +192,44 @@ Route::get('/tao-tai-khoan',function (){
     ]);
 })->name('khachhangtaotaikhoan');
 
-Route::get('/thong-tin-khach-hang',function (){
+Route::get('/thong-tin-don-hang',function (){
     $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
     $websiteconfig = \App\Website::all();
 
-    return view('Frontend.Home.manage-my-account',[
+    return view('Frontend.Home.my-order',[
         'websiteconfig' => $websiteconfig,
         'parent_categories' => $parent_categories,
     ]);
-})->name('quanlytaikhoan');
+})->name('thongtindonhang');
+Route::get('/thong-tin-ca-nhan',function (){
+    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+    $websiteconfig = \App\Website::all();
+
+    return view('Frontend.Home.my-profile',[
+        'websiteconfig' => $websiteconfig,
+        'parent_categories' => $parent_categories,
+    ]);
+})->name('thongtincanhan');
+
+Route::get('/cap-nhat-ho-so',function (){
+    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+    $websiteconfig = \App\Website::all();
+
+    return view('Frontend.Home.cap-nhat-ho-so',[
+        'websiteconfig' => $websiteconfig,
+        'parent_categories' => $parent_categories,
+    ]);
+})->name('capnhathoso');
+
+Route::get('/chi-tiet-don-hang',function (){
+    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+    $websiteconfig = \App\Website::all();
+
+    return view('Frontend.Home.chi-tiet-don-hang',[
+        'websiteconfig' => $websiteconfig,
+        'parent_categories' => $parent_categories,
+    ]);
+})->name('chitietdonhang');
 /**
  * Authenticate người dùng
  */
