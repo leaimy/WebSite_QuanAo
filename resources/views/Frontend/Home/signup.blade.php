@@ -82,7 +82,8 @@
                             <div class="l-f-o">
                                 <div class="l-f-o__pad-box">
                                     <h1 class="gl-h1">THÔNG TIN CÁ NHÂN</h1>
-                                    <form class="l-f-o__form">
+                                    <form class="l-f-o__form" action="{{route('taotaikhoan')}}" method="post">
+                                        @csrf
                                         <div class="gl-s-api">
                                             <div class="u-s-m-b-15">
 
@@ -104,13 +105,13 @@
 
                                             <label class="gl-label" for="reg-fname">TÊN *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text"
+                                            <input name="first_name" class="input-text input-text--primary-style" type="text"
                                                    id="reg-fname" placeholder="Nhập tên"></div>
                                         <div class="u-s-m-b-30">
 
                                             <label class="gl-label" for="reg-lname">HỌ ĐỆM *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text"
+                                            <input name="last_name" class="input-text input-text--primary-style" type="text"
                                                    id="reg-lname" placeholder="Nhập họ đệm"></div>
                                         </div>
 
@@ -119,13 +120,13 @@
 
                                             <label class="gl-label" for="reg-username">TÊN ĐĂNG NHẬP *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text"
+                                            <input name="username" class="input-text input-text--primary-style" type="text"
                                                    id="reg-username" placeholder="Nhập tên đăng nhập"></div>
                                         <div class="u-s-m-b-30">
 
                                             <label class="gl-label" for="reg-email">E-MAIL *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text"
+                                            <input name="email" class="input-text input-text--primary-style" type="text"
                                                    id="reg-email" placeholder="Nhập E-mail"></div>
                                         </div>
 
@@ -134,7 +135,7 @@
 
                                             <label class="gl-label" for="reg-password">PASSWORD *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text"
+                                            <input name="password" class="input-text input-text--primary-style" type="text"
                                                    id="reg-password" placeholder="Nhập mật khẩu"></div>
 
                                         <!--====== PHONE ======-->
@@ -142,7 +143,7 @@
 
                                             <label class="gl-label" for="billing-phone">SỐ ĐIỆN THOẠI *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text"
+                                            <input name="phone_number" class="input-text input-text--primary-style" type="text"
                                                    id="billing-phone"
                                                    data-bill="" placeholder="Nhập số điện thoại">
                                         </div>
@@ -156,19 +157,20 @@
 
                                                 <span class="gl-label">ĐỊA CHỈ</span>
                                                 <div class="gl-dob"><select
+                                                        name="province"
                                                         class="select-box select-box--primary-style">
                                                         <option selected>Tỉnh/Thành Phố</option>
                                                         <option value="male">January</option>
                                                         <option value="male">February</option>
                                                         <option value="male">March</option>
                                                         <option value="male">April</option>
-                                                    </select><select class="select-box select-box--primary-style">
+                                                    </select><select name="district" class="select-box select-box--primary-style">
                                                         <option selected>Quận/Huyện</option>
                                                         <option value="01">01</option>
                                                         <option value="02">02</option>
                                                         <option value="03">03</option>
                                                         <option value="04">04</option>
-                                                    </select><select class="select-box select-box--primary-style">
+                                                    </select><select name="village" class="select-box select-box--primary-style">
                                                         <option selected>Xã/Phường/Thị Trấn</option>
                                                         <option value="1991">1991</option>
                                                         <option value="1992">1992</option>
@@ -185,7 +187,7 @@
                                         <div class="gl-inline">
                                             <div class="u-s-m-b-30">
 
-                                                <input class="input-text input-text--primary-style" type="text"
+                                                <input name="street" class="input-text input-text--primary-style" type="text"
                                                        id="billing-street"
                                                        placeholder="Số nhà/tên đường" data-bill="">
                                             </div>

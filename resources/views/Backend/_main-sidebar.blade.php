@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('Admin.home') }}" class="nav-link">
+                    <a href="{{ route('AdminCustomer.index') }}" class="nav-link">
                         <i class="mx-1">
                             <img src="{{ asset('images/icons/mushroom.png') }}" width="20"
                                  alt="">

@@ -192,6 +192,10 @@ Route::get('/tao-tai-khoan',function (){
     ]);
 })->name('khachhangtaotaikhoan');
 
+Route::post('/tao-tai-khoan','AdminCustomerController@store')->name('taotaikhoan');
+Route::post('/cap-nhat-tai-khoan','AdminCustomerController@update')->name('capnhattaikhoan');
+
+
 Route::get('/thong-tin-don-hang',function (){
     $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
     $websiteconfig = \App\Website::all();
@@ -230,6 +234,11 @@ Route::get('/chi-tiet-don-hang',function (){
         'parent_categories' => $parent_categories,
     ]);
 })->name('chitietdonhang');
+
+
+
+
+
 /**
  * Authenticate người dùng
  */
@@ -329,6 +338,19 @@ Route::middleware('auth')->group(function () {
         Route::get('edit/{user}', 'AdminUserController@edit')->name('AdminUser.edit');
         Route::post('update/{user}', 'AdminUserController@update')->name('AdminUser.update');
         Route::get('delete/{user}', 'AdminUserController@delete')->name('AdminUser.delete');
+    });
+
+    /**
+     * Quản lý danh sách khách hàng
+     */
+    Route::prefix('/admin/customers')->group(function () {
+        Route::get('/', 'AdminCustomerController@index')->name('AdminCustomer.index');
+        Route::get('show/{customer}', 'AdminCustomerController@show')->name('AdminCustomer.show');
+        Route::get('create', 'AdminCustomerController@create')->name('AdminCustomer.create');
+        Route::post('store', 'AdminCustomerController@store')->name('AdminCustomer.store');
+        Route::get('edit/{customer}', 'AdminCustomerController@edit')->name('AdminCustomer.edit');
+        Route::post('update/{customer}', 'AdminCustomerController@update')->name('AdminCustomer.update');
+        Route::get('delete/{customer}', 'AdminCustomerController@delete')->name('AdminCustomer.delete');
     });
 
     /**
