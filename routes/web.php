@@ -182,18 +182,11 @@ Route::get('/dang-nhap',function (){
     ]);
 })->name('khachhangdangnhap');
 
-Route::get('/tao-tai-khoan',function (){
-    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
-    $websiteconfig = \App\Website::all();
-
-    return view('Frontend.Home.signup',[
-        'websiteconfig' => $websiteconfig,
-        'parent_categories' => $parent_categories,
-    ]);
-})->name('khachhangtaotaikhoan');
-
-Route::post('/tao-tai-khoan','AdminCustomerController@store')->name('taotaikhoan');
-Route::post('/cap-nhat-tai-khoan','AdminCustomerController@update')->name('capnhattaikhoan');
+Route::get('/tao-tai-khoan','ClientCustomerController@create')->name('khachhangtaotaikhoan');
+Route::post('/tao-tai-khoan','ClientCustomerController@store')->name('taotaikhoan');
+Route::get('/cap-nhat-ho-so','ClientCustomerController@edit')->name('capnhathoso');
+Route::post('/cap-nhat-tai-khoan','ClientCustomerController@update')->name('capnhattaikhoan');
+Route::get('/thong-tin-ca-nhan','ClientCustomerController@show')->name('thongtincanhan');
 
 
 Route::get('/thong-tin-don-hang',function (){
@@ -205,25 +198,9 @@ Route::get('/thong-tin-don-hang',function (){
         'parent_categories' => $parent_categories,
     ]);
 })->name('thongtindonhang');
-Route::get('/thong-tin-ca-nhan',function (){
-    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
-    $websiteconfig = \App\Website::all();
 
-    return view('Frontend.Home.my-profile',[
-        'websiteconfig' => $websiteconfig,
-        'parent_categories' => $parent_categories,
-    ]);
-})->name('thongtincanhan');
 
-Route::get('/cap-nhat-ho-so',function (){
-    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
-    $websiteconfig = \App\Website::all();
 
-    return view('Frontend.Home.cap-nhat-ho-so',[
-        'websiteconfig' => $websiteconfig,
-        'parent_categories' => $parent_categories,
-    ]);
-})->name('capnhathoso');
 
 Route::get('/chi-tiet-don-hang',function (){
     $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();

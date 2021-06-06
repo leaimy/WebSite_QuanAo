@@ -118,27 +118,27 @@
                                             <div class="col-lg-4 u-s-m-b-30">
                                                 <h2 class="dash__h2 u-s-m-b-8">Họ và tên</h2>
 
-                                                <span class="dash__text">Hiếu Chó Điên</span>
+                                                <span class="dash__text">{{$customer->getFullName()}}</span>
                                             </div>
                                             <div class="col-lg-4 u-s-m-b-30">
                                                 <h2 class="dash__h2 u-s-m-b-8">Tên đăng nhập</h2>
 
-                                                <span class="dash__text">Hieuchodien</span>
+                                                <span class="dash__text">{{$customer->username}}</span>
                                             </div>
                                             <div class="col-lg-4 u-s-m-b-30">
                                                 <h2 class="dash__h2 u-s-m-b-8">E-mail</h2>
 
-                                                <span class="dash__text">johndoe@domain.com</span>
+                                                <span class="dash__text">{{$customer->email}}</span>
                                             </div>
                                             <div class="col-lg-4 u-s-m-b-30">
                                                 <h2 class="dash__h2 u-s-m-b-8">Số điện thoại</h2>
 
-                                                <span class="dash__text">0987647653</span>
+                                                <span class="dash__text">{{$customer->phone_number}}</span>
                                             </div>
                                             <div class="col-lg-4 u-s-m-b-30">
                                                 <h2 class="dash__h2 u-s-m-b-8">Địa chỉ</h2>
 
-                                                <span class="dash__text">1 Phù Đổng Thiên Vương</span>
+                                                <span class="dash__text">{{$customer->getAdrress()}}</span>
                                             </div>
                                         </div>
                                         <div class="row">

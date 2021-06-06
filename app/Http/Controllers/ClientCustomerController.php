@@ -6,8 +6,9 @@ use App\Customer;
 use App\Order;
 use Illuminate\Http\Request;
 
-class AdminCustomerController extends Controller
+class ClientCustomerController extends Controller
 {
+
     public function index()
     {
 
@@ -19,9 +20,12 @@ class AdminCustomerController extends Controller
 
     public function show(Customer $customer)
     {
+        $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+        $websiteconfig = \App\Website::all();
         $orders = Order::where('customer_id',$customer->id)->get();
-
-        return view('Backend.Customer.show', [
+        return view('Frontend.Home.my-profile',[
+            'websiteconfig' => $websiteconfig,
+            'parent_categories' => $parent_categories,
             'customer' => $customer,
             'orders'=>$orders
         ]);
@@ -29,7 +33,13 @@ class AdminCustomerController extends Controller
 
     public function create()
     {
-        return view('Backend.Customer.create');
+            $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+            $websiteconfig = \App\Website::all();
+
+            return view('Frontend.Home.signup',[
+                'websiteconfig' => $websiteconfig,
+                'parent_categories' => $parent_categories,
+            ]);
     }
 
     public function store(Request $request)
@@ -63,13 +73,17 @@ class AdminCustomerController extends Controller
             'street' => $street
         ]);
 
-        return redirect()->route('AdminCustomer.index');
+        return redirect()->route('frontend.index');
     }
 
     public function edit(Customer $customer)
     {
-        return view('Backend.Customer.edit', [
-            'customer' => $customer
+        $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+        $websiteconfig = \App\Website::all();
+
+        return view('Frontend.Home.cap-nhat-ho-so',[
+            'websiteconfig' => $websiteconfig,
+            'parent_categories' => $parent_categories,
         ]);
     }
 
@@ -102,13 +116,7 @@ class AdminCustomerController extends Controller
 
         $customer->update($update_array);
 
-        return redirect()->route('AdminCustomer.index');
-    }
-
-    public function delete(Customer $customer)
-    {
-        $customer->delete();
-        return redirect()->route('AdminCustomer.index');
+        return redirect()->route('frontend.index');
     }
 
 
