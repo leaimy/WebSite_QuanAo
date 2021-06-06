@@ -51,3 +51,8 @@ VALUES ('YOUTUBE', 'https://www.youtube.com/channel/UCOmHUn--16B90oW2L6FRR3A');
 INSERT INTO websiteconfigs(config_key, config_value)
 VALUES ('INSTAGRAM', 'https://www.instagram.com/nancyjewel_mcdonie_');
 
+INSERT INTO customer(first_name, last_name, username, email, password, phone_number, street, village, district, province)
+VALUES ('Hà', 'Nguyễn Thị', 'hanguyen', 'hantctk42@gmail.com', '$2y$10$eaPpBkfzt7f0tM5/j8CYZ.j4h1CTc4c2OqQU59383vLKhl.cqKPjS', '0702383675', '1 Phù Đổng Thiên Vương', 'Phường 8', 'Thành phố Đà Lạt', 'Lâm Đồng');
+INSERT INTO customer(first_name, last_name, username, email, password, phone_number, street, village, district, province)
+VALUES ('Hiếu', 'Nguyễn Trọng', 'hieunguyen', 'hieunctk42@gmail.com', '$2y$10$BFgwu66Ddc1fDwtJ0xxiiuIMbzzDroe1L8sTH27ZnXNLJ7ZShO/g6', '0374408253', '1 Phù Đổng Thiên Vương', 'Phường 8', 'Thành phố Đà Lạt', 'Lâm Đồng');
+

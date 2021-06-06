@@ -26,6 +26,8 @@ Route::get('/', function () {
 
     $trending_categories = \App\Category::where('parent_id', '!=', 0)->inRandomOrder()->limit(4)->get();
 
+    dd(Auth::guard('customer')->user());
+
     return view('Frontend.Home.index', [
         'websiteconfig' => $websiteconfig,
         'sliders' => $sliders,
@@ -173,7 +175,7 @@ Route::post('/thanh-toan', 'OrderController@storeFromWeb')->name('frontend.check
  */
 
 Route::get('/dang-nhap','ClientLoginController@showLoginForm')->name('khachhangdangnhap');
-Route::post('/dang-nhap','ClientLoginController@logUserIn')->name('dangnhap');
+Route::post('/dang-nhap','ClientLoginController@login')->name('dangnhap');
 
 Route::get('/tao-tai-khoan','ClientCustomerController@create')->name('khachhangtaotaikhoan');
 Route::post('/tao-tai-khoan','ClientCustomerController@store')->name('taotaikhoan');
@@ -191,8 +193,6 @@ Route::get('/thong-tin-don-hang',function (){
         'parent_categories' => $parent_categories,
     ]);
 })->name('thongtindonhang');
-
-
 
 
 Route::get('/chi-tiet-don-hang',function (){
@@ -349,3 +349,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/{order}', 'OrderDetailContrller@show')->name('AdminOrderDetail.show');
     });
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

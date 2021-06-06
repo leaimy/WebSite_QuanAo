@@ -4,16 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\AuthController as DefaultLoginController;
+use App\Http\Controllers\Auth\LoginController as DefaultLoginController;
 
 class ClientLoginController extends DefaultLoginController
 {
-    protected $redirectTo = 'frontend.index';
-
-    public function __construct()
-    {
-        $this->middleware('guest:customer')->except('logout');
-    }
+    protected $redirectTo = '/';
 
     public function showLoginForm()
     {
@@ -26,30 +21,12 @@ class ClientLoginController extends DefaultLoginController
         ]);
     }
 
-    public function logUserIn(Request $request)
-    {
-        $credentials = [
-            'username' => $request['username'],
-            'password' => $request['password']
-        ];
-
-        $rememberMe = $request->has('remember');
-
-        if (auth()->attempt($credentials, $rememberMe)) {
-            return redirect()->route('frontend.index');
-        }
-
-        dd(auth()->attempt($credentials, $rememberMe));
-
-        return redirect()->route('khachhangdangnhap');
-    }
-
     public function username()
     {
         return 'username';
     }
 
-    protected  function guard()
+    protected function guard()
     {
         return Auth::guard('customer');
     }

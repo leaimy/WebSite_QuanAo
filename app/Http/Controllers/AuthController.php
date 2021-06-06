@@ -6,14 +6,24 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    protected $redirectTo = '/admin';
+
+    /**
+     * @param string $redirectTo
+     */
+    public function setRedirectTo(string $redirectTo): void
+    {
+        $this->redirectTo = $redirectTo;
+    }
+
     public function renderLoginForm()
     {
         if (auth()->viaRemember()) {
-            return redirect('/admin');
+            return redirect($this->redirectTo);
         }
 
         if (auth()->check()) {
-            return redirect('/admin');
+            return redirect($this->redirectTo);
         }
 
         return view('Backend.Auth.login');
@@ -29,7 +39,7 @@ class AuthController extends Controller
         $rememberMe = $request->has('remember');
 
         if (auth()->attempt($credentials, $rememberMe)) {
-            return redirect('/admin');
+            return redirect($this->redirectTo);
         }
 
         return redirect()->route('auth.login.index');
