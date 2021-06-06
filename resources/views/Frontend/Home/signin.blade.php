@@ -86,37 +86,48 @@
                                     <span class="gl-text u-s-m-b-30">Bằng cách tạo tài khoản với cửa hàng của chúng tôi, bạn sẽ có thể thực hiện quy trình thanh toán nhanh hơn, lưu trữ địa chỉ giao hàng, xem và theo dõi đơn đặt hàng trong tài khoản của bạn và hơn thế nữa.</span>
                                     <div class="u-s-m-b-15">
 
-                                        <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="{{route('khachhangtaotaikhoan')}}">TẠO MỘT TÀI KHOẢN</a></div>
+                                        <a class="l-f-o__create-link btn--e-transparent-brand-b-2"
+                                           href="{{route('khachhangtaotaikhoan')}}">TẠO MỘT TÀI KHOẢN</a></div>
                                     <h1 class="gl-h1">ĐĂNG NHẬP</h1>
 
                                     <span class="gl-text u-s-m-b-30">Nếu bạn đã có tài khoản, vui lòng đăng nhập</span>
-                                    <form class="l-f-o__form">
+                                    <form action="{{route('dangnhap')}}" method="post" class="l-f-o__form">
+                                        @csrf
                                         <div class="gl-s-api">
                                             <div class="u-s-m-b-15">
 
-                                                <button class="gl-s-api__btn gl-s-api__btn--fb" type="button"><i class="fab fa-facebook-f"></i>
+                                                <button class="gl-s-api__btn gl-s-api__btn--fb" type="button"><i
+                                                        class="fab fa-facebook-f"></i>
 
-                                                    <span>Đăng nhập với Facebook</span></button></div>
+                                                    <span>Đăng nhập với Facebook</span></button>
+                                            </div>
                                             <div class="u-s-m-b-15">
 
-                                                <button class="gl-s-api__btn gl-s-api__btn--gplus" type="button"><i class="fab fa-google"></i>
+                                                <button class="gl-s-api__btn gl-s-api__btn--gplus" type="button"><i
+                                                        class="fab fa-google"></i>
 
-                                                    <span>Đăng nhập với Google</span></button></div>
+                                                    <span>Đăng nhập với Google</span></button>
+                                            </div>
                                         </div>
                                         <div class="u-s-m-b-30">
 
                                             <label class="gl-label" for="login-email">TÊN ĐĂNG NHẬP *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text" id="login-email" placeholder="Vui lòng nhập tên đăng nhập"></div>
+                                            <input name="username" class="input-text input-text--primary-style" type="text"
+                                                   id="login-email" placeholder="Vui lòng nhập tên đăng nhập"></div>
                                         <div class="u-s-m-b-30">
 
                                             <label class="gl-label" for="login-password">MẬT KHẨU *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text" id="login-password" placeholder="Vui lòng nhập mật khẩu"></div>
+                                            <input name="password" class="input-text input-text--primary-style" type="text"
+                                                   id="login-password" placeholder="Vui lòng nhập mật khẩu"></div>
                                         <div class="gl-inline">
                                             <div class="u-s-m-b-30">
 
-                                                <button class="btn btn--e-transparent-brand-b-2" type="submit">ĐĂNG NHẬP</button></div>
+                                                <button class="btn btn--e-transparent-brand-b-2" type="submit">ĐĂNG
+                                                    NHẬP
+                                                </button>
+                                            </div>
                                             <div class="u-s-m-b-30">
 
                                                 <a class="gl-link" href="lost-password.html">Quên mật khẩu?</a></div>
@@ -126,10 +137,11 @@
                                             <!--====== Check Box ======-->
                                             <div class="check-box">
 
-                                                <input type="checkbox" id="remember-me">
+                                                <input name="remember" type="checkbox" id="remember-me">
                                                 <div class="check-box__state check-box__state--primary">
 
-                                                    <label class="check-box__label" for="remember-me">Ghi nhớ tài khoản</label></div>
+                                                    <label class="check-box__label" for="remember-me">Ghi nhớ tài
+                                                        khoản</label></div>
                                             </div>
                                             <!--====== End - Check Box ======-->
                                         </div>

@@ -2,10 +2,17 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Model;
 
 class Customer extends Model
 {
+    protected $guarded = ['id'];
+
+    protected  $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     protected $table = 'customers';
     protected $fillable = [
         'first_name',
@@ -28,5 +35,10 @@ class Customer extends Model
     public function getAdrress()
     {
         return $this->street . ', ' . $this->village . ', ' . $this->district . ', ' . $this->province;
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password;
     }
 }

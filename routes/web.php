@@ -172,15 +172,8 @@ Route::post('/thanh-toan', 'OrderController@storeFromWeb')->name('frontend.check
  * Khách hàng
  */
 
-Route::get('/dang-nhap',function (){
-    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
-    $websiteconfig = \App\Website::all();
-
-    return view('Frontend.Home.signin',[
-        'websiteconfig' => $websiteconfig,
-        'parent_categories' => $parent_categories,
-    ]);
-})->name('khachhangdangnhap');
+Route::get('/dang-nhap','ClientLoginController@showLoginForm')->name('khachhangdangnhap');
+Route::post('/dang-nhap','ClientLoginController@logUserIn')->name('dangnhap');
 
 Route::get('/tao-tai-khoan','ClientCustomerController@create')->name('khachhangtaotaikhoan');
 Route::post('/tao-tai-khoan','ClientCustomerController@store')->name('taotaikhoan');
