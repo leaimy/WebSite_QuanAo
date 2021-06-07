@@ -26,7 +26,7 @@ Route::get('/', function () {
 
     $trending_categories = \App\Category::where('parent_id', '!=', 0)->inRandomOrder()->limit(4)->get();
 
-    dd(Auth::guard('customer')->user());
+    // dd(Auth::guard('customer')->user());
 
     return view('Frontend.Home.index', [
         'websiteconfig' => $websiteconfig,
@@ -173,14 +173,13 @@ Route::post('/thanh-toan', 'OrderController@storeFromWeb')->name('frontend.check
 /**
  * Khách hàng
  */
-
 Route::get('/dang-nhap','ClientLoginController@showLoginForm')->name('khachhangdangnhap');
 Route::post('/dang-nhap','ClientLoginController@login')->name('dangnhap');
 
 Route::get('/tao-tai-khoan','ClientCustomerController@create')->name('khachhangtaotaikhoan');
 Route::post('/tao-tai-khoan','ClientCustomerController@store')->name('taotaikhoan');
 Route::get('/cap-nhat-ho-so','ClientCustomerController@edit')->name('capnhathoso');
-Route::post('/cap-nhat-tai-khoan','ClientCustomerController@update')->name('capnhattaikhoan');
+Route::post('/cap-nhat-tai-khoan/{customer}','ClientCustomerController@update')->name('capnhattaikhoan');
 Route::get('/thong-tin-ca-nhan','ClientCustomerController@show')->name('thongtincanhan');
 
 

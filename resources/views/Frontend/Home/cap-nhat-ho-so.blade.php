@@ -70,7 +70,7 @@
                                 <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                     <div class="dash__pad-1">
 
-                                        <span class="dash__text u-s-m-b-16">Xin chào, HIẾU CHÓ ĐIÊN</span>
+                                        <span class="dash__text u-s-m-b-16">Xin chào, {{$customer->first_name}}</span>
                                         <ul class="dash__f-list">
 
                                             <li>
@@ -115,45 +115,46 @@
 
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <form class="dash-edit-p">
+                                                <form action="{{route('capnhattaikhoan',[$customer->id])}}" method="post" class="dash-edit-p">
+                                                    @csrf
                                                     <div class="gl-inline">
                                                         <div class="u-s-m-b-30">
 
                                                             <label class="gl-label" for="reg-fname">TÊN *</label>
 
-                                                            <input class="input-text input-text--primary-style" type="text" id="reg-fname" placeholder="Nhập tên"></div>
+                                                            <input name="first_name" value="{{$customer->first_name}}" class="input-text input-text--primary-style" type="text" id="reg-fname" placeholder="Nhập tên"></div>
 
                                                         <div class="u-s-m-b-30">
 
                                                             <label class="gl-label" for="reg-lname">HỌ ĐỆM *</label>
 
-                                                            <input class="input-text input-text--primary-style" type="text" id="reg-lname" placeholder="Nhập họ đệm"></div>
+                                                            <input name="last_name" value="{{$customer->last_name}}" class="input-text input-text--primary-style" type="text" id="reg-lname" placeholder="Nhập họ đệm"></div>
                                                     </div>
                                                     <div class="gl-inline">
                                                         <div class="u-s-m-b-30">
 
                                                             <label class="gl-label" for="reg-username">TÊN ĐĂNG NHẬP *</label>
 
-                                                            <input class="input-text input-text--primary-style" type="text" id="reg-username" placeholder="Nhập tên đăng nhập"></div>
+                                                            <input name="username" value="{{$customer->username}}" class="input-text input-text--primary-style" type="text" id="reg-username" placeholder="Nhập tên đăng nhập"></div>
 
                                                         <div class="u-s-m-b-30">
 
                                                             <label class="gl-label" for="reg-email">E-MAIL *</label>
 
-                                                            <input class="input-text input-text--primary-style" type="text" id="reg-email" placeholder="Nhập E-mail"></div>
+                                                            <input name="email" value="{{$customer->email}}" class="input-text input-text--primary-style" type="text" id="reg-email" placeholder="Nhập E-mail"></div>
                                                     </div>
                                                     <div class="gl-inline">
                                                         <div class="u-s-m-b-30">
 
                                                             <label class="gl-label" for="reg-password">PASSWORD *</label>
 
-                                                            <input class="input-text input-text--primary-style" type="text" id="reg-password" placeholder="Nhập mật khẩu"></div>
+                                                            <input name="password" class="input-text input-text--primary-style" type="text" id="reg-password" placeholder="Nhập mật khẩu"></div>
                                                         <!--====== PHONE ======-->
                                                         <div class="u-s-m-b-30">
 
                                                             <label class="gl-label" for="billing-phone">SỐ ĐIỆN THOẠI *</label>
 
-                                                            <input class="input-text input-text--primary-style" type="text"
+                                                            <input name="phone_number" value="{{$customer->phone_number}}" class="input-text input-text--primary-style" type="text"
                                                                    id="billing-phone"
                                                                    data-bill="" placeholder="Nhập số điện thoại">
                                                         </div>
@@ -167,19 +168,19 @@
                                                             <!--====== Date of Birth Select-Box ======-->
 
                                                             <span class="gl-label">ĐỊA CHỈ</span>
-                                                            <div class="gl-dob"><select class="select-box select-box--primary-style">
+                                                            <div class="gl-dob"><select name="province" value="{{$customer->province}}" class="select-box select-box--primary-style">
                                                                     <option selected>Tỉnh/Thành Phố</option>
                                                                     <option value="male">January</option>
                                                                     <option value="male">February</option>
                                                                     <option value="male">March</option>
                                                                     <option value="male">April</option>
-                                                                </select><select class="select-box select-box--primary-style">
+                                                                </select><select name="district" value="{{$customer->district}}" class="select-box select-box--primary-style">
                                                                     <option selected>Quận/Huyện</option>
                                                                     <option value="01">01</option>
                                                                     <option value="02">02</option>
                                                                     <option value="03">03</option>
                                                                     <option value="04">04</option>
-                                                                </select><select class="select-box select-box--primary-style">
+                                                                </select><select name="village" value="{{$customer->village}}" class="select-box select-box--primary-style">
                                                                     <option selected>Xã/Phường/Thị Trấn</option>
                                                                     <option value="1991">1991</option>
                                                                     <option value="1992">1992</option>
@@ -197,7 +198,7 @@
                                                     <div class="gl-inline">
                                                         <div class="u-s-m-b-30">
 
-                                                            <input class="input-text input-text--primary-style" type="text"
+                                                            <input name="street" value="{{$customer->street}}" class="input-text input-text--primary-style" type="text"
                                                                    id="billing-street"
                                                                    placeholder="Số nhà/tên đường" data-bill="">
                                                         </div>

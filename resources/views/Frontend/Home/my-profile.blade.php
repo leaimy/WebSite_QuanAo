@@ -70,7 +70,7 @@
                                 <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                     <div class="dash__pad-1">
 
-                                        <span class="dash__text u-s-m-b-16">Xin chào, HIẾU CHÓ ĐIÊN</span>
+                                        <span class="dash__text u-s-m-b-16">Xin chào, {{$customer->first_name }}</span>
                                         <ul class="dash__f-list">
 
                                             <li>
@@ -111,7 +111,7 @@
                             <div class="col-lg-9 col-md-12">
                                 <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
                                     <div class="dash__pad-2">
-                                        <h1 class="dash__h1 u-s-m-b-14">Hồ sơ của tôi</h1>
+                                        <h1 class="dash__h1 u-s-m-b-14">Hồ sơ của {{$customer->first_name}}</h1>
 
                                         <span class="dash__text u-s-m-b-30">Xem tất cả thông tin của bạn, bạn có thể tùy chỉnh hồ sơ của mình.</span>
                                         <div class="row">
