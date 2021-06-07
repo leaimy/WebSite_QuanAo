@@ -121,8 +121,7 @@
                                                 </a>
                                             </li>
                                             <li>
-
-                                                <a href="#"><i class="fas fa-lock u-s-m-r-6"></i>
+                                                <a href="{{route('dangxuat')}}"><i class="fas fa-lock u-s-m-r-6"></i>
 
                                                     <span>Đăng xuất</span>
                                                 </a>

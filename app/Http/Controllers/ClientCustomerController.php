@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Order;
+use App\OrderDetail;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -23,26 +24,26 @@ class ClientCustomerController extends Controller
     {
         $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
         $websiteconfig = \App\Website::all();
-        $orders = Order::where('customer_id',$customer->id)->get();
+        $orders = Order::where('customer_id', $customer->id)->get();
         $customer = Auth::guard("customer")->user();
-        return view('Frontend.Home.my-profile',[
+        return view('Frontend.Home.my-profile', [
             'websiteconfig' => $websiteconfig,
             'parent_categories' => $parent_categories,
             'customer' => $customer,
-            'orders'=>$orders,
-            'customer'=>$customer
+            'orders' => $orders,
+            'customer' => $customer
         ]);
     }
 
     public function create()
     {
-            $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
-            $websiteconfig = \App\Website::all();
+        $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+        $websiteconfig = \App\Website::all();
 
-            return view('Frontend.Home.signup',[
-                'websiteconfig' => $websiteconfig,
-                'parent_categories' => $parent_categories,
-            ]);
+        return view('Frontend.Home.signup', [
+            'websiteconfig' => $websiteconfig,
+            'parent_categories' => $parent_categories,
+        ]);
     }
 
     public function store(Request $request)
@@ -83,14 +84,14 @@ class ClientCustomerController extends Controller
     {
         $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
         $websiteconfig = \App\Website::all();
-        $orders = Order::where('customer_id',$customer->id)->get();
+        $orders = Order::where('customer_id', $customer->id)->get();
         $customer = Auth::guard("customer")->user();
 
-        return view('Frontend.Home.cap-nhat-ho-so',[
+        return view('Frontend.Home.cap-nhat-ho-so', [
             'websiteconfig' => $websiteconfig,
             'parent_categories' => $parent_categories,
-            'orders'=>$orders,
-            'customer'=>$customer
+            'orders' => $orders,
+            'customer' => $customer
         ]);
     }
 
@@ -122,4 +123,20 @@ class ClientCustomerController extends Controller
     }
 
 
+
+    public function thongtindonhang()
+    {
+        $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+        $websiteconfig = \App\Website::all();
+        $customer = Auth::guard('customer')->user();
+        $orders = Order::where('customer_id', $customer->id)->get();
+
+
+        return view('Frontend.Home.my-order', [
+            'websiteconfig' => $websiteconfig,
+            'parent_categories' => $parent_categories,
+            'customer'=>$customer,
+            'orders'=>$orders,
+        ]);
+    }
 }

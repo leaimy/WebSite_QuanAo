@@ -70,7 +70,7 @@
                                 <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                     <div class="dash__pad-1">
 
-                                        <span class="dash__text u-s-m-b-16">Hello, HIẾU CHÓ ĐIÊN</span>
+                                        <span class="dash__text u-s-m-b-16">Hello, {{$customer->first_name}}</span>
                                         <ul class="dash__f-list">
                                             <li>
 
@@ -116,11 +116,12 @@
                                         <span class="dash__text u-s-m-b-30">Tất cả các đơn hàng của bạn được hiển thị tại đây.</span>
                                         <div class="m-order__list">
                                             <div class="m-order__get">
+                                                @foreach($orders as $order)
                                                 <div class="manage-o__header u-s-m-b-30">
                                                     <div class="dash-l-r">
                                                         <div>
-                                                            <div class="manage-o__text-2 u-c-secondary">Mã đơn hàng #305423126</div>
-                                                            <div class="manage-o__text u-c-silver">Thời gian đặt hàng 20/10/2000 09:08:37</div>
+                                                            <div class="manage-o__text-2 u-c-secondary">Mã đơn hàng {{$order->id}}</div>
+                                                            <div class="manage-o__text u-c-silver">Thời gian đặt hàng {{$order->created_at}}</div>
                                                         </div>
                                                         <div>
                                                             <div class="dash__link dash__link--brand">
@@ -152,6 +153,7 @@
                                                                     <span class="manage-o__text-2 u-c-secondary">$16.00</span></span></div>
                                                     </div>
                                                 </div>
+                                                @endforeach
                                             </div>
 
                                         </div>

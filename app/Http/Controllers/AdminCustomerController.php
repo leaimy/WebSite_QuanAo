@@ -19,11 +19,11 @@ class AdminCustomerController extends Controller
 
     public function show(Customer $customer)
     {
-        $orders = Order::where('customer_id',$customer->id)->get();
+        $orders = Order::where('customer_id', $customer->id)->get();
 
         return view('Backend.Customer.show', [
             'customer' => $customer,
-            'orders'=>$orders
+            'orders' => $orders
         ]);
     }
 

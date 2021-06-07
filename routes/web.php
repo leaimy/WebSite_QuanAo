@@ -175,6 +175,7 @@ Route::post('/thanh-toan', 'OrderController@storeFromWeb')->name('frontend.check
  */
 Route::get('/dang-nhap','ClientLoginController@showLoginForm')->name('khachhangdangnhap');
 Route::post('/dang-nhap','ClientLoginController@login')->name('dangnhap');
+Route::get('/dang-xuat','ClientLoginController@logout')->name('dangxuat');
 
 Route::get('/tao-tai-khoan','ClientCustomerController@create')->name('khachhangtaotaikhoan');
 Route::post('/tao-tai-khoan','ClientCustomerController@store')->name('taotaikhoan');
@@ -183,15 +184,7 @@ Route::post('/cap-nhat-tai-khoan/{customer}','ClientCustomerController@update')-
 Route::get('/thong-tin-ca-nhan','ClientCustomerController@show')->name('thongtincanhan');
 
 
-Route::get('/thong-tin-don-hang',function (){
-    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
-    $websiteconfig = \App\Website::all();
-
-    return view('Frontend.Home.my-order',[
-        'websiteconfig' => $websiteconfig,
-        'parent_categories' => $parent_categories,
-    ]);
-})->name('thongtindonhang');
+Route::get('/thong-tin-don-hang','ClientCustomerController@thongtindonhang')->name('thongtindonhang');
 
 
 Route::get('/chi-tiet-don-hang',function (){
