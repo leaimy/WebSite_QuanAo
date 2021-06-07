@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Order;
+use App\OrderDetail;
+use Auth;
 use Illuminate\Http\Request;
 
 class ClientCustomerController extends Controller
@@ -22,24 +24,26 @@ class ClientCustomerController extends Controller
     {
         $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
         $websiteconfig = \App\Website::all();
-        $orders = Order::where('customer_id',$customer->id)->get();
-        return view('Frontend.Home.my-profile',[
+        $orders = Order::where('customer_id', $customer->id)->get();
+        $customer = Auth::guard("customer")->user();
+        return view('Frontend.Home.my-profile', [
             'websiteconfig' => $websiteconfig,
             'parent_categories' => $parent_categories,
             'customer' => $customer,
-            'orders'=>$orders
+            'orders' => $orders,
+            'customer' => $customer
         ]);
     }
 
     public function create()
     {
-            $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
-            $websiteconfig = \App\Website::all();
+        $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+        $websiteconfig = \App\Website::all();
 
-            return view('Frontend.Home.signup',[
-                'websiteconfig' => $websiteconfig,
-                'parent_categories' => $parent_categories,
-            ]);
+        return view('Frontend.Home.signup', [
+            'websiteconfig' => $websiteconfig,
+            'parent_categories' => $parent_categories,
+        ]);
     }
 
     public function store(Request $request)
@@ -80,10 +84,14 @@ class ClientCustomerController extends Controller
     {
         $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
         $websiteconfig = \App\Website::all();
+        $orders = Order::where('customer_id', $customer->id)->get();
+        $customer = Auth::guard("customer")->user();
 
-        return view('Frontend.Home.cap-nhat-ho-so',[
+        return view('Frontend.Home.cap-nhat-ho-so', [
             'websiteconfig' => $websiteconfig,
             'parent_categories' => $parent_categories,
+            'orders' => $orders,
+            'customer' => $customer
         ]);
     }
 
@@ -93,18 +101,13 @@ class ClientCustomerController extends Controller
         $first_name = $request->get('first_name');
         $last_name = $request->get('last_name');
 
+
         $update_array = [
             'email' => $email,
             'first_name' => $first_name,
             'last_name' => $last_name
         ];
 
-        if ($request->has('username')) {
-            $username = $request->get('username');
-
-            if ($username != null)
-                $update_array['username'] = $username;
-        }
 
         if ($request->has('password')) {
             $password = $request->get('password');
@@ -116,8 +119,24 @@ class ClientCustomerController extends Controller
 
         $customer->update($update_array);
 
-        return redirect()->route('frontend.index');
+        return redirect()->route('thongtincanhan');
     }
 
 
+
+    public function thongtindonhang()
+    {
+        $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+        $websiteconfig = \App\Website::all();
+        $customer = Auth::guard('customer')->user();
+        $orders = Order::where('customer_id', $customer->id)->get();
+
+
+        return view('Frontend.Home.my-order', [
+            'websiteconfig' => $websiteconfig,
+            'parent_categories' => $parent_categories,
+            'customer'=>$customer,
+            'orders'=>$orders,
+        ]);
+    }
 }

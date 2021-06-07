@@ -83,8 +83,16 @@
 
                             <!--====== List ======-->
                             <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
-                                <li class="has-dropdown" data-tooltip="tooltip" data-placement="left"
-                                    title="Tài khoản khách hàng">
+                                <li
+                                    class="has-dropdown"
+                                    data-tooltip="tooltip"
+                                    data-placement="left"
+                                    @if (Auth::guard('customer')->user() == null)
+                                    title="Tài khoản khách hàng"
+                                    @else
+                                    title="Chào mừng {{Auth::guard('customer')->user()->first_name}} 🎊🎊🎊"
+                                    @endif
+                                >
 
                                     <a><i class="far fa-user-circle"></i></a>
 
@@ -92,22 +100,41 @@
 
                                     <span class="js-menu-toggle"></span>
                                     <ul style="width:200px">
+
+                                        @if (Auth::guard('customer')->user() == null)
+
+                                            <li>
+
+                                                <a href="{{route('khachhangdangnhap')}}"><i
+                                                        class="fas fa-lock u-s-m-r-6"></i>
+
+                                                    <span>Đăng nhập</span>
+                                                </a>
+                                            </li>
+                                        @else
+                                            <li>
+
+                                                <a href="{{route('thongtincanhan')}}"><i
+                                                        class="fas fa-user-circle u-s-m-r-6"></i>
+
+                                                    <span>Thông tin của {{Auth::guard('customer')->user()->first_name}}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{route('dangxuat')}}"><i class="fas fa-lock u-s-m-r-6"></i>
+
+                                                    <span>Đăng xuất</span>
+                                                </a>
+                                            </li>
+                                        @endif
                                         <li>
 
-                                            <a href="{{route('thongtincanhan')}}"><i class="fas fa-user-circle u-s-m-r-6"></i>
+                                            <a href="{{route('khachhangtaotaikhoan')}}"><i
+                                                    class="fas fa-user-plus u-s-m-r-6"></i>
 
-                                                <span>Thông tin khách hàng</span></a></li>
-                                        <li>
-
-                                            <a href="{{route('khachhangtaotaikhoan')}}"><i class="fas fa-user-plus u-s-m-r-6"></i>
-
-                                                <span>Tạo tài khoản</span></a></li>
-                                        <li>
-
-                                            <a href="{{route('khachhangdangnhap')}}"><i class="fas fa-lock u-s-m-r-6"></i>
-
-                                                <span>Đăng nhập</span></a></li>
-
+                                                <span>Tạo tài khoản</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                     <!--====== End - Dropdown ======-->
                                 </li>
@@ -182,15 +209,18 @@
                             <ul class="ah-list ah-list--design2 ah-list--link-color-secondary">
 
                                 <li>
-                                    <a href="@if(url()->current() === route('frontend.index')) #product-trending @else {{ route('frontend.index') . '#product-trending' }} @endif">XU HƯỚNG</a>
+                                    <a href="@if(url()->current() === route('frontend.index')) #product-trending @else {{ route('frontend.index') . '#product-trending' }} @endif">XU
+                                        HƯỚNG</a>
                                 </li>
 
                                 <li>
-                                    <a href="@if(url()->current() === route('frontend.index')) #new-products @else {{ route('frontend.index') . '#new-products' }} @endif">SẢN PHẨM MỚI</a>
+                                    <a href="@if(url()->current() === route('frontend.index')) #new-products @else {{ route('frontend.index') . '#new-products' }} @endif">SẢN
+                                        PHẨM MỚI</a>
                                 </li>
 
                                 <li>
-                                    <a href="@if(url()->current() === route('frontend.index')) #top-selling-product @else {{ route('frontend.index') . '#top-selling-product' }} @endif">SẢN PHẨM BÁN CHẠY</a>
+                                    <a href="@if(url()->current() === route('frontend.index')) #top-selling-product @else {{ route('frontend.index') . '#top-selling-product' }} @endif">SẢN
+                                        PHẨM BÁN CHẠY</a>
                                 </li>
 
                                 @foreach($parent_categories as $parent_category)
@@ -278,10 +308,12 @@
                                                         id="mini-cart-subtotal"></span> VND</span></div>
                                             <div class="mini-action">
 
-                                                <a class="mini-link btn--e-brand-b-2" href="{{ route('frontend.checkout') }}">THANH
+                                                <a class="mini-link btn--e-brand-b-2"
+                                                   href="{{ route('frontend.checkout') }}">THANH
                                                     TOÁN</a>
 
-                                                <a class="mini-link btn--e-transparent-secondary-b-2" href="{{ route('frontend.cart') }}">XEM
+                                                <a class="mini-link btn--e-transparent-secondary-b-2"
+                                                   href="{{ route('frontend.cart') }}">XEM
                                                     GIỎ HÀNG 🛒</a></div>
                                         </div>
                                         <!--====== End - Mini Product Statistics ======-->
