@@ -197,8 +197,38 @@ Route::get('/chi-tiet-don-hang',function (){
     ]);
 })->name('chitietdonhang');
 
+/**
+ * API Route
+ */
+Route::get('/api/v1/tinh', function () {
+    // Read File
+    $jsonString = file_get_contents(base_path('api_data/tinh_tp.json'));
+    return json_decode($jsonString, true);
+});
 
+Route::get('/api/v1/quan-huyen/{tinh_id}', function ($tinh_id) {
+    // Read File
+    $jsonString = file_get_contents(base_path('api_data/quan_huyen.json'));
 
+    $data = json_decode($jsonString, true);
+
+    $final_data = [];
+
+    foreach ($data as $item) {
+        if ($item['parent_code'] == $tinh_id) {
+            array_push($final_data, $item);
+        }
+    }
+
+    return $final_data;
+});
+
+Route::get('/api/v1/xa-phuong/{quan_huyen_id}', function ($quan_huyen_id) {
+    // Read File
+    $jsonString = file_get_contents(base_path('api_data/xa-phuong/' . $quan_huyen_id . '.json'));
+
+    return json_decode($jsonString, true);
+});
 
 
 /**

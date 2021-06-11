@@ -10,10 +10,8 @@ use Illuminate\Http\Request;
 
 class ClientCustomerController extends Controller
 {
-
     public function index()
     {
-
         $customers = Customer::all();
         return view('Backend.Customer.index', [
             'customers' => $customers,
@@ -48,8 +46,6 @@ class ClientCustomerController extends Controller
 
     public function store(Request $request)
     {
-
-
         $first_name = $request->get('first_name');
         $last_name = $request->get('last_name');
         $phone_number = $request->get('phone_number');
@@ -62,7 +58,6 @@ class ClientCustomerController extends Controller
         $password = $request->get('password');
 
         $password = \Hash::make($password);
-
 
         Customer::create([
             'username' => $username,
