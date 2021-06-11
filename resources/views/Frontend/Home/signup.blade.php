@@ -68,7 +68,6 @@
                                 fetch(xaphuong_api_url)
                                 .then(res => res.json())
                                 .then(results => {
-                                    console.log(results);
                                     const allKeys = Object.keys(results);
                                      xaPhuongOption.innerHTML = allKeys.map((key, idx) => {
                                         const {code, name_with_type} = results[key];
