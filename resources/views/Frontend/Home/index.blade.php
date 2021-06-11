@@ -72,31 +72,31 @@
         <div class="section__content">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-5 col-md-5 u-s-m-b-30">
+                    <div class="col-lg-4 col-md-4 u-s-m-b-30">
 
                         <a class="collection" href="shop-side-version-2.html">
                             <div class="aspect aspect--bg-grey aspect--square">
 
                                 <img class="aspect__img collection__img"
-                                     src="{{ asset('images/anhbia/category1.jpg') }}" alt=""></div>
+                                     src="{{ asset('images/anhbia/category_sua.jpg') }}" alt=""></div>
                         </a>
                     </div>
-                    <div style="margin-left: auto; margin-right: auto;" class="col-lg-7 col-md-7 u-s-m-b-30">
+                    <div  class="col-lg-4 col-md-4 u-s-m-b-30">
 
                         <a class="collection" href="shop-side-version-2.html">
-                            <div class="aspect aspect--bg-grey aspect--1286-890">
+                            <div class="aspect aspect--bg-grey aspect--square">
 
                                 <img class="aspect__img collection__img"
-                                     src="{{ asset('images/anhbia/category2.jpg') }}" alt=""></div>
+                                     src="{{ asset('images/anhbia/category2_sua.jpg') }}" alt=""></div>
                         </a>
                     </div>
-                    <div style="margin-left: auto; margin-right: auto;" class="col-lg-7 col-md-7 u-s-m-b-30">
+                    <div  class="col-lg-4 col-md-4 u-s-m-b-30">
 
                         <a class="collection" href="shop-side-version-2.html">
-                            <div class="aspect aspect--bg-grey aspect--1286-890">
+                            <div class="aspect aspect--bg-grey aspect--square">
 
                                 <img class="aspect__img collection__img"
-                                     src="{{ asset('images/anhbia/category3.jpg') }}" alt=""></div>
+                                     src="{{ asset('images/anhbia/category3_sua.jpg') }}" alt=""></div>
                         </a>
                     </div>
 
