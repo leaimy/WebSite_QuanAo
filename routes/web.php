@@ -213,9 +213,7 @@ Route::middleware('auth')->group(function () {
     /**
      * Trang quản lý tổng quan
      */
-    Route::get('/admin', function () {
-        return view('Backend.Dashboard.index');
-    })->name('Admin.home');
+    Route::get('/admin', 'DashboardController@index')->name('Admin.home');
 
     /**
      * Quản lý cửa hàng
