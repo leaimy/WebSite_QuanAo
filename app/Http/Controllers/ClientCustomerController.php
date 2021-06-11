@@ -82,11 +82,18 @@ class ClientCustomerController extends Controller
         $orders = Order::where('customer_id', $customer->id)->get();
         $customer = Auth::guard("customer")->user();
 
+        $province = $customer->province;
+        $district = $customer->district;
+        $village = $customer->village;
+
         return view('Frontend.Home.cap-nhat-ho-so', [
             'websiteconfig' => $websiteconfig,
             'parent_categories' => $parent_categories,
             'orders' => $orders,
-            'customer' => $customer
+            'customer' => $customer,
+            'province' => $province,
+            'district' => $district,
+            'village' => $village
         ]);
     }
 

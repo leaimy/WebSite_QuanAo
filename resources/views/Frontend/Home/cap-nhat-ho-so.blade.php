@@ -25,6 +25,10 @@
         const districtElement = document.getElementById('district');
         const villageElement = document.getElementById('village');
 
+        const userTinh = '{{$province}}';
+        const userHuyen = '{{$district}}';
+        const userXa = '{{$village}}';
+
         fetch(api_url)
             .then(res => res.json())
             .then(data => {
@@ -39,6 +43,11 @@
                     else
                         return `<option value="${code}"">${name_with_type}</option>`;
                 }).join('');
+
+                Array.from(tinhOption.querySelectorAll('option')).map(option => {
+                    if (option.innerHTML === userTinh)
+                        option.selected = true;
+                });
 
                 tinhOption.addEventListener('change', e => {
                     const tinhID = e.target.value;
@@ -59,6 +68,11 @@
                                     return `<option value="${code}"">${name_with_type}</option>`;
                             }).join('');
 
+                            Array.from(quanHuyenOption.querySelectorAll('option')).map(option => {
+                                if (option.innerHTML === userHuyen)
+                                    option.selected = true;
+                            });
+
                             quanHuyenOption.addEventListener('change', e => {
                                 const quanHuyenID = e.target.value;
                                 const selectedElement = e.target.querySelector(`option[value='${quanHuyenID}']`);
@@ -78,6 +92,11 @@
                                             else
                                                 return `<option value="${code}"">${name_with_type}</option>`;
                                         }).join('');
+
+                                        Array.from(xaPhuongOption.querySelectorAll('option')).map(option => {
+                                            if (option.innerHTML === userXa)
+                                                option.selected = true;
+                                        });
 
                                         xaPhuongOption.addEventListener('change', e => {
                                             const xaPhuongID = e.target.value;
