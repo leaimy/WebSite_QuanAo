@@ -6,6 +6,8 @@ use App\Customer;
 use App\Order;
 use App\OrderDetail;
 use App\OrderStatus;
+use App\Product;
+use App\ProductDetail;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -162,6 +164,43 @@ class ClientCustomerController extends Controller
             'parent_categories' => $parent_categories,
             'customer'=>$customer,
             'orders'=>$orders,
+            'number_of_orders' => $numberOfOrders,
+            'number_of_canceled_orders' => $numberOfCanceledOrders
+        ]);
+    }
+
+    public function ChiTietDonHang(Order $order) {
+        $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
+        $websiteconfig = \App\Website::all();
+        $customer = Auth::guard('customer')->user();
+
+        $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+
+        foreach ($orderDetails as $detail) {
+            $detail->product = ProductDetail::find($detail->product_detail_id);
+
+            $parentProduct = Product::find($detail->product->product_id);
+            $detail->product->custom_name = $parentProduct->name . ' - ' . $detail->product->color . ' - ' . $detail->product->size;
+            $detail->product->preview_image_path = $parentProduct->preview_image_path;
+            $detail->product->sub_price = $parentProduct->sale_price * $detail->quantity;
+        }
+
+        $numberOfOrders = Order::where([
+            ['customer_id', '=', $customer->id],
+            ['current_status', '<>', OrderStatus::$CANCEL],
+        ])->count();
+
+        $numberOfCanceledOrders = Order::where([
+            ['customer_id', '=', $customer->id],
+            ['current_status', '=', OrderStatus::$CANCEL],
+        ])->count();
+
+        return view('Frontend.Home.chi-tiet-don-hang',[
+            'websiteconfig' => $websiteconfig,
+            'parent_categories' => $parent_categories,
+            'order' => $order,
+            'order_details' => $orderDetails,
+            'customer' => $customer,
             'number_of_orders' => $numberOfOrders,
             'number_of_canceled_orders' => $numberOfCanceledOrders
         ]);

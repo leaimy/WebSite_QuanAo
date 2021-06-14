@@ -185,19 +185,8 @@ Route::get('/cap-nhat-ho-so','ClientCustomerController@edit')->name('capnhathoso
 Route::post('/cap-nhat-tai-khoan/{customer}','ClientCustomerController@update')->name('capnhattaikhoan');
 Route::get('/thong-tin-ca-nhan','ClientCustomerController@show')->name('thongtincanhan');
 
-
 Route::get('/thong-tin-don-hang','ClientCustomerController@thongtindonhang')->name('thongtindonhang');
-
-
-Route::get('/chi-tiet-don-hang',function (){
-    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
-    $websiteconfig = \App\Website::all();
-
-    return view('Frontend.Home.chi-tiet-don-hang',[
-        'websiteconfig' => $websiteconfig,
-        'parent_categories' => $parent_categories,
-    ]);
-})->name('chitietdonhang');
+Route::get('/chi-tiet-don-hang/{order}', 'ClientCustomerController@ChiTietDonHang')->name('chitietdonhang');
 
 /**
  * API Route

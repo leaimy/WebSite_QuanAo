@@ -116,7 +116,7 @@
                                                         <div>
                                                             <div class="dash__link dash__link--brand">
 
-                                                                <a href="{{route('chitietdonhang')}}">Chi tiết đơn hàng</a></div>
+                                                                <a href="{{route('chitietdonhang', [ $order ])}}">Chi tiết đơn hàng</a></div>
                                                         </div>
                                                     </div>
                                                 </div>
