@@ -56,7 +56,7 @@
                                 <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                     <div class="dash__pad-1">
 
-                                        <span class="dash__text u-s-m-b-16">Xin chào, {{$customer->first_name }}</span>
+                                        <span class="dash__text u-s-m-b-16">Xin chào {{ $customer->last_name . ' ' . $customer->first_name }}</span>
                                         <ul class="dash__f-list">
 
                                             <li>

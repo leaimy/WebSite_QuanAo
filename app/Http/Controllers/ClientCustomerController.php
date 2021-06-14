@@ -101,6 +101,16 @@ class ClientCustomerController extends Controller
         $district = $customer->district;
         $village = $customer->village;
 
+        $numberOfOrders = Order::where([
+            ['customer_id', '=', $customer->id],
+            ['current_status', '<>', OrderStatus::$CANCEL],
+        ])->count();
+
+        $numberOfCanceledOrders = Order::where([
+            ['customer_id', '=', $customer->id],
+            ['current_status', '=', OrderStatus::$CANCEL],
+        ])->count();
+
         return view('Frontend.Home.cap-nhat-ho-so', [
             'websiteconfig' => $websiteconfig,
             'parent_categories' => $parent_categories,
@@ -108,7 +118,9 @@ class ClientCustomerController extends Controller
             'customer' => $customer,
             'province' => $province,
             'district' => $district,
-            'village' => $village
+            'village' => $village,
+            'number_of_orders' => $numberOfOrders,
+            'number_of_canceled_orders' => $numberOfCanceledOrders
         ]);
     }
 

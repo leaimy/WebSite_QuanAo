@@ -57,7 +57,7 @@
                                     <div class="dash__pad-1">
 
                                         <span
-                                            class="dash__text u-s-m-b-16">Xin chào {{ Auth::guard('customer')->user()->username }}</span>
+                                            class="dash__text u-s-m-b-16">Xin chào {{ $customer->last_name . ' ' . $customer->first_name }}</span>
                                         <ul class="dash__f-list">
                                             <li>
 
