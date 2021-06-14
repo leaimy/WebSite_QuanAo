@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\Order;
 use App\OrderDetail;
+use App\OrderStatus;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -24,12 +25,24 @@ class ClientCustomerController extends Controller
         $websiteconfig = \App\Website::all();
         $orders = Order::where('customer_id', $customer->id)->get();
         $customer = Auth::guard("customer")->user();
+
+        $numberOfOrders = Order::where([
+            ['customer_id', '=', $customer->id],
+            ['current_status', '<>', OrderStatus::$CANCEL],
+        ])->count();
+
+        $numberOfCanceledOrders = Order::where([
+            ['customer_id', '=', $customer->id],
+            ['current_status', '=', OrderStatus::$CANCEL],
+        ])->count();
+
         return view('Frontend.Home.my-profile', [
             'websiteconfig' => $websiteconfig,
             'parent_categories' => $parent_categories,
             'customer' => $customer,
             'orders' => $orders,
-            'customer' => $customer
+            'number_of_orders' => $numberOfOrders,
+            'number_of_canceled_orders' => $numberOfCanceledOrders
         ]);
     }
 
@@ -133,12 +146,24 @@ class ClientCustomerController extends Controller
         $customer = Auth::guard('customer')->user();
         $orders = Order::where('customer_id', $customer->id)->get();
 
+        $numberOfOrders = Order::where([
+            ['customer_id', '=', $customer->id],
+            ['current_status', '<>', OrderStatus::$CANCEL],
+        ])->count();
+
+        $numberOfCanceledOrders = Order::where([
+            ['customer_id', '=', $customer->id],
+            ['current_status', '=', OrderStatus::$CANCEL],
+        ])->count();
+
 
         return view('Frontend.Home.my-order', [
             'websiteconfig' => $websiteconfig,
             'parent_categories' => $parent_categories,
             'customer'=>$customer,
             'orders'=>$orders,
+            'number_of_orders' => $numberOfOrders,
+            'number_of_canceled_orders' => $numberOfCanceledOrders
         ]);
     }
 }

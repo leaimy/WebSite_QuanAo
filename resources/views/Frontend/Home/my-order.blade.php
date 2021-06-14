@@ -10,20 +10,6 @@
 @endsection
 
 @section('script')
-    <script>
-        // self executing function here
-        (function () {
-            const filterItems = Array.from(document.querySelectorAll('.filter__item'));
-            const heights = filterItems.map(i => i.clientHeight);
-            const maxHeight = Math.max(...heights);
-
-            filterItems.forEach(item => item.setAttribute('style', `${item.getAttribute('style')} height: ${maxHeight}px;`));
-
-            document.getElementById('cat-2').click();
-            document.getElementById('cat-all').click();
-        })();
-    </script>
-
     <!--===== Cart ====-->
     <script src="{{ asset('frontend/js/cart.js') }}"></script>
 @endsection
@@ -89,7 +75,9 @@
 
                                                     <span class="dash__w-icon dash__w-icon-style-1"><i class="fas fa-cart-arrow-down"></i></span>
 
-                                                    <span class="dash__w-text">4</span>
+                                                    <span class="dash__w-text">
+                                                        {{ $number_of_orders }}
+                                                    </span>
 
                                                     <span class="dash__w-name">Đặt hàng</span></div>
                                             </li>
@@ -98,7 +86,9 @@
 
                                                     <span class="dash__w-icon dash__w-icon-style-2"><i class="fas fa-times"></i></span>
 
-                                                    <span class="dash__w-text">0</span>
+                                                    <span class="dash__w-text">
+                                                        {{ $number_of_canceled_orders }}
+                                                    </span>
 
                                                     <span class="dash__w-name">Hủy đơn hàng</span></div>
                                             </li>
@@ -117,7 +107,7 @@
                                         <div class="m-order__list">
                                             <div class="m-order__get">
                                                 @foreach($orders as $order)
-                                                <div class="manage-o__header u-s-m-b-30">
+                                                <div class="manage-o__header">
                                                     <div class="dash-l-r">
                                                         <div>
                                                             <div class="manage-o__text-2 u-c-secondary">Mã đơn hàng {{$order->id}}</div>
@@ -128,29 +118,6 @@
 
                                                                 <a href="{{route('chitietdonhang')}}">Chi tiết đơn hàng</a></div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="manage-o__description">
-                                                    <div class="description__container">
-                                                        <div class="description__img-wrap">
-
-                                                            <img class="u-img-fluid" src="images/product/electronic/product3.jpg" alt=""></div>
-                                                        <div class="description-title">Áo sơ mi sát nách</div>
-                                                    </div>
-                                                    <div class="description__info-wrap">
-                                                        <div>
-
-                                                            <span class="manage-o__badge badge--processing">Đã nhận</span></div>
-                                                        <div>
-
-                                                                <span class="manage-o__text-2 u-c-silver">Số lượng:
-
-                                                                    <span class="manage-o__text-2 u-c-secondary">1</span></span></div>
-                                                        <div>
-
-                                                                <span class="manage-o__text-2 u-c-silver">Tổng tiền:
-
-                                                                    <span class="manage-o__text-2 u-c-secondary">$16.00</span></span></div>
                                                     </div>
                                                 </div>
                                                 @endforeach
