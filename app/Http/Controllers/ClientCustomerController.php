@@ -160,6 +160,16 @@ class ClientCustomerController extends Controller
         $customer = Auth::guard('customer')->user();
         $orders = Order::where('customer_id', $customer->id)->get();
 
+        foreach ($orders as $order) {
+            $firstOrderDetail = OrderDetail::where('order_id', $order->id)->first();
+            $order->first_detail = $firstOrderDetail;
+
+            $modelID = $firstOrderDetail->product_detail_id;
+            $productID = ProductDetail::find($modelID)->product_id;
+            $order->preview_image_path = Product::find($productID)->preview_image_path;
+            $order->product_name = Product::find($productID)->name;
+        }
+
         $numberOfOrders = Order::where([
             ['customer_id', '=', $customer->id],
             ['current_status', '<>', OrderStatus::$CANCEL],
