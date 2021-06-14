@@ -160,10 +160,12 @@ Route::get('/gio-hang', function () {
 Route::get('/thanh-toan', function () {
     $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
     $websiteconfig = \App\Website::all();
+    $customer = Auth::guard('customer')->user();
 
     return view('Frontend.checkout', [
         'websiteconfig' => $websiteconfig,
         'parent_categories' => $parent_categories,
+        'customer' => $customer
     ]);
 })->name('frontend.checkout');
 
