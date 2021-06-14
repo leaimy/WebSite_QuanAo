@@ -119,7 +119,7 @@
 
                                             <label class="gl-label" for="login-password">MẬT KHẨU *</label>
 
-                                            <input name="password" class="input-text input-text--primary-style" type="text"
+                                            <input name="password" class="input-text input-text--primary-style" type="password"
                                                    id="login-password" placeholder="Vui lòng nhập mật khẩu"></div>
                                         <div class="gl-inline">
                                             <div class="u-s-m-b-30">

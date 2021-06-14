@@ -231,7 +231,7 @@
                                                 <label class="gl-label" for="reg-password">PASSWORD *</label>
 
                                                 <input name="password" class="input-text input-text--primary-style"
-                                                       type="text"
+                                                       type="password"
                                                        id="reg-password" placeholder="Nhập mật khẩu"></div>
 
                                             <!--====== PHONE ======-->
