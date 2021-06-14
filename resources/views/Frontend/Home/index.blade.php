@@ -74,7 +74,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 u-s-m-b-30">
 
-                        <a class="collection" href="shop-side-version-2.html">
+                        <a class="collection" href="{{ route('danhsachsanpham', ['id' => 2]) }}">
                             <div class="aspect aspect--bg-grey aspect--square">
 
                                 <img class="aspect__img collection__img"
@@ -83,7 +83,7 @@
                     </div>
                     <div  class="col-lg-4 col-md-4 u-s-m-b-30">
 
-                        <a class="collection" href="shop-side-version-2.html">
+                        <a class="collection" href="{{ route('danhsachsanpham', ['id' => 1]) }}">
                             <div class="aspect aspect--bg-grey aspect--square">
 
                                 <img class="aspect__img collection__img"
@@ -92,7 +92,7 @@
                     </div>
                     <div  class="col-lg-4 col-md-4 u-s-m-b-30">
 
-                        <a class="collection" href="shop-side-version-2.html">
+                        <a class="collection" href="{{ route('danhsachsanpham', ['id' => 3]) }}">
                             <div class="aspect aspect--bg-grey aspect--square">
 
                                 <img class="aspect__img collection__img"

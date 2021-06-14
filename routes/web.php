@@ -197,9 +197,10 @@ Route::get('/chi-tiet-don-hang',function (){
     ]);
 })->name('chitietdonhang');
 
-
-
-
+/**
+ * Danh sách sản phẩm
+ */
+Route::get('/danh-sach-san-pham/{id}','ClientProductController@index')->name('danhsachsanpham');
 
 /**
  * Authenticate người dùng
