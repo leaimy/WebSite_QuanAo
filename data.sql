@@ -51,8 +51,63 @@ VALUES ('YOUTUBE', 'https://www.youtube.com/channel/UCOmHUn--16B90oW2L6FRR3A');
 INSERT INTO websiteconfigs(config_key, config_value)
 VALUES ('INSTAGRAM', 'https://www.instagram.com/nancyjewel_mcdonie_');
 
-INSERT INTO customer(first_name, last_name, username, email, password, phone_number, street, village, district, province)
-VALUES ('Hà', 'Nguyễn Thị', 'hanguyen', 'hantctk42@gmail.com', '$2y$10$eaPpBkfzt7f0tM5/j8CYZ.j4h1CTc4c2OqQU59383vLKhl.cqKPjS', '0702383675', '1 Phù Đổng Thiên Vương', 'Phường 8', 'Thành phố Đà Lạt', 'Lâm Đồng');
-INSERT INTO customer(first_name, last_name, username, email, password, phone_number, street, village, district, province)
-VALUES ('Hiếu', 'Nguyễn Trọng', 'hieunguyen', 'hieunctk42@gmail.com', '$2y$10$BFgwu66Ddc1fDwtJ0xxiiuIMbzzDroe1L8sTH27ZnXNLJ7ZShO/g6', '0374408253', '1 Phù Đổng Thiên Vương', 'Phường 8', 'Thành phố Đà Lạt', 'Lâm Đồng');
+INSERT INTO `customers` (`id`, `first_name`, `last_name`, `username`, `email`, `password`, `phone_number`, `street`, `village`, `district`, `province`, `created_at`, `updated_at`, `remember_token`, `deleted_at`) VALUES
+(1, 'Hiếu', 'Nguyễn Trọng', 'hieunguyen', 'hieuntctk42@gmail.com', '$2y$10$3CIEQ8zNpdNi6DA.hLleQe2weNg8MdCGOlzBC5JNtnE7vr8slhUKq', '0374408253', '1 Phù Đổng Thiên Vương', 'Phường 8', 'Thành phố Đà Lạt', 'Tỉnh Lâm Đồng', '2021-06-05 17:07:02', '2021-06-07 05:58:37', NULL, NULL),
+(2, 'Hà', 'Nguyễn Thị', 'hanguyen', 'hantctk42@gmail.com', '$2y$10$3CIEQ8zNpdNi6DA.hLleQe2weNg8MdCGOlzBC5JNtnE7vr8slhUKq', '0701383675', '1 Phù Đổng Thiên Vương', 'Phường 8', 'Thành phố Đà Lạt', 'Tỉnh Lâm Đồng', '2021-06-07 05:54:09', '2021-06-07 05:54:09', NULL, NULL),
+(3, 'Danh', 'Nguyễn', 'danhnguyen', 'danhnguyen@gmail.com', '$2y$10$3CIEQ8zNpdNi6DA.hLleQe2weNg8MdCGOlzBC5JNtnE7vr8slhUKq', '0121456789', '1 Phù Đổng Thiên Vương', 'Phường 8', 'Thành phố Đà Lạt', 'Tỉnh Lâm Đồng', '2021-06-07 05:54:09', '2021-06-07 05:54:09', NULL, NULL),
+(4, 'Long', 'Nguyễn Bảo', 'longnguyen', 'longnguyen@gmail.com', '$2y$10$3CIEQ8zNpdNi6DA.hLleQe2weNg8MdCGOlzBC5JNtnE7vr8slhUKq', '0131456789', '1 Phù Đổng Thiên Vương', 'Phường 8', 'Thành phố Đà Lạt', 'Tỉnh Lâm Đồng', '2021-06-07 05:55:42', '2021-06-07 05:55:42', NULL, NULL),
+(5, 'Nhật', 'Lê Hoàng', 'nhatle', 'nhatle@gmail.com', '$2y$10$3CIEQ8zNpdNi6DA.hLleQe2weNg8MdCGOlzBC5JNtnE7vr8slhUKq', '0141456789', '1 Phù Đổng Thiên Vương', 'Phường 8', 'Thành phố Đà Lạt', 'Tỉnh Lâm Đồng', '2021-06-07 05:55:42', '2021-06-07 05:55:42', NULL, NULL),
+(6, 'Quang', 'Nguyễn Ngọc', 'quangnguyen', 'quangnguyen@gmail.com', '$2y$10$3CIEQ8zNpdNi6DA.hLleQe2weNg8MdCGOlzBC5JNtnE7vr8slhUKq', '0151456789', '1 Phù Đổng Thiên Vương', 'Phường 8', 'Thành phố Đà Lạt', 'Tỉnh Lâm Đồng', '2021-06-07 05:57:11', '2021-06-07 05:57:11', NULL, NULL),
+(7, 'Trung', 'Phan Quốc', 'trungphan', 'trungphan@gmail.com', '$2y$10$3CIEQ8zNpdNi6DA.hLleQe2weNg8MdCGOlzBC5JNtnE7vr8slhUKq', '0171456789', '1 Phù Đổng Thiên Vương', 'Phường 8', 'Thành phố Đà Lạt', 'Tỉnh Lâm Đồng', '2021-06-07 05:57:11', '2021-06-07 05:57:11', NULL, NULL),
+(8, 'Hiếu', 'Nguyễn Trọng', 'tronghieuvjp', 'hieuntctak42@gmail.com', '$2y$10$I//EzZz5MUB5tuTix.abJOip7Re2NxNS.yXA0WQDUNoAZKwBs8DlC', '0374409254', '1 Phù Đổng Thiên Vương', 'Phường 8', 'Thành phố Đà Lạt', 'Tỉnh Lâm Đồng', '2021-06-10 19:25:13', '2021-06-10 19:25:13', NULL, NULL);
+
+INSERT INTO `orders` (`id`, `customer_id`, `total_price`, `discount_percent`, `current_status`, `order_option`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 710000, 0, 'shipped', 'shipping', '2021-06-07 06:11:45', '2021-06-07 06:35:38', NULL),
+(2, 2, 1021000, 0, 'approved', 'shipping', '2021-06-07 06:12:29', '2021-06-07 06:26:38', NULL),
+(3, 2, 390000, 0, 'approved', 'buy at store', '2021-06-07 06:13:32', '2021-06-07 06:35:14', NULL),
+(4, 3, 508000, 0, 'approved', 'buy at store', '2021-06-07 06:14:04', '2021-06-13 22:25:07', NULL),
+(5, 4, 810000, 0, 'new web order', 'buy at store', '2021-06-07 06:14:43', '2021-06-07 13:17:41', NULL),
+(6, 5, 1669088, 0, 'new web order', 'shipping', '2021-06-07 06:15:35', '2021-06-07 13:17:43', NULL),
+(7, 6, 565000, 0, 'new web order', 'shipping', '2021-06-07 06:15:47', '2021-06-07 13:17:45', NULL),
+(8, 7, 575000, 0, 'new web order', 'shipping', '2021-06-07 06:16:27', '2021-06-07 13:17:48', NULL),
+(9, 8, 170000, 0, 'new web order', 'shipping', '2021-06-10 20:35:13', '2021-06-10 20:35:13', NULL);
+
+
+INSERT INTO `order_details` (`id`, `order_id`, `product_detail_id`, `quantity`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 44968548442, 2, '2021-06-07 06:11:45', '2021-06-07 06:11:45', NULL),
+(2, 1, 3255190245, 1, '2021-06-07 06:11:45', '2021-06-07 06:11:45', NULL),
+(3, 2, 81091067185, 1, '2021-06-07 06:12:29', '2021-06-07 06:12:29', NULL),
+(4, 2, 63949411125, 2, '2021-06-07 06:12:29', '2021-06-07 06:12:29', NULL),
+(5, 3, 52922177345, 1, '2021-06-07 06:13:32', '2021-06-07 06:13:32', NULL),
+(6, 3, 54065512585, 1, '2021-06-07 06:13:32', '2021-06-07 06:13:32', NULL),
+(7, 3, 14613645690, 1, '2021-06-07 06:13:32', '2021-06-07 06:13:32', NULL),
+(8, 4, 15547700619, 2, '2021-06-07 06:14:04', '2021-06-07 06:14:04', NULL),
+(9, 4, 34715119014, 1, '2021-06-07 06:14:04', '2021-06-07 06:14:04', NULL),
+(10, 5, 21920705725, 3, '2021-06-07 06:14:43', '2021-06-07 06:14:43', NULL),
+(11, 6, 43095965970, 3, '2021-06-07 06:15:35', '2021-06-07 06:15:35', NULL),
+(12, 6, 71418136881, 3, '2021-06-07 06:15:35', '2021-06-07 06:15:35', NULL),
+(13, 7, 81615442602, 2, '2021-06-07 06:15:47', '2021-06-07 06:15:47', NULL),
+(14, 8, 16804586938, 3, '2021-06-07 06:16:27', '2021-06-07 06:16:27', NULL),
+(15, 9, 18371621986, 1, '2021-06-10 20:35:13', '2021-06-10 20:35:13', NULL);
+
+
+INSERT INTO `order_notes` (`id`, `order_id`, `user_id`, `order_status`, `note`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 0, 'new web order', 'Đơn hàng mới được tạo bởi khách hàng: hieunguyen', '2021-06-01 06:11:45', '2021-06-07 13:37:12', NULL),
+(2, 2, 0, 'new web order', 'Đơn hàng mới được tạo bởi khách hàng: hieunguyen', '2021-06-07 06:12:29', '2021-06-07 06:12:29', NULL),
+(3, 3, 0, 'new web order', 'Đơn hàng mới được tạo bởi khách hàng: hieunguyen', '2021-06-07 06:13:32', '2021-06-07 06:13:32', NULL),
+(4, 4, 0, 'new web order', 'Đơn hàng mới được tạo bởi khách hàng: hieunguyen', '2021-06-07 06:14:04', '2021-06-07 06:14:04', NULL),
+(5, 5, 0, 'new web order', 'Đơn hàng mới được tạo bởi khách hàng: hieunguyen', '2021-06-07 06:14:43', '2021-06-07 06:14:43', NULL),
+(6, 6, 0, 'new web order', 'Đơn hàng mới được tạo bởi khách hàng: hieunguyen', '2021-06-07 06:15:35', '2021-06-07 06:15:35', NULL),
+(7, 7, 0, 'new web order', 'Đơn hàng mới được tạo bởi khách hàng: hieunguyen', '2021-06-07 06:15:47', '2021-06-07 06:15:47', NULL),
+(8, 8, 0, 'new web order', 'Đơn hàng mới được tạo bởi khách hàng: hieunguyen', '2021-06-07 06:16:27', '2021-06-07 06:16:27', NULL),
+(9, 1, 1, 'approved', NULL, '2021-06-01 06:26:11', '2021-06-07 13:37:34', NULL),
+(10, 1, 1, 'packed', NULL, '2021-06-02 06:26:20', '2021-06-07 13:37:37', NULL),
+(11, 1, 1, 'ready for delivery', NULL, '2021-06-02 06:26:28', '2021-06-07 13:37:52', NULL),
+(12, 2, 1, 'approved', NULL, '2021-06-03 06:26:38', '2021-06-07 13:38:04', NULL),
+(13, 3, 1, 'approved', 'Đơn hàng này đã được xác nhận', '2021-06-07 06:35:14', '2021-06-07 06:35:14', NULL),
+(14, 1, 1, 'processing', NULL, '2021-06-03 06:35:29', '2021-06-07 13:38:12', NULL),
+(15, 1, 1, 'shipped', NULL, '2021-06-07 06:35:38', '2021-06-07 06:35:38', NULL),
+(16, 9, 0, 'new web order', 'Đơn hàng mới được tạo bởi khách hàng: tronghieuvjp', '2021-06-10 20:35:13', '2021-06-10 20:35:13', NULL),
+(17, 4, 1, 'approved', NULL, '2021-06-13 22:25:07', '2021-06-13 22:25:07', NULL);
+
 
