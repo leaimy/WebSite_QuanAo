@@ -191,7 +191,7 @@
                                                     <label class="gl-label" for="login-email">Tên người dùng *</label>
 
                                                     <input class="input-text input-text--primary-style" type="text"
-                                                           id="login-email" placeholder="Tên người dùng của bạn...">
+                                                           id="login-email" value="{{ $customer->user_name }}" placeholder="Tên người dùng của bạn...">
                                                 </div>
                                                 <div class="u-s-m-b-15">
 
@@ -257,14 +257,14 @@
 
                                             <label class="gl-label" for="billing-fname">TÊN *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text"
+                                            <input readonly value="{{ $customer->first_name }}" class="input-text input-text--primary-style" type="text"
                                                    id="billing-fname" data-bill="">
                                         </div>
                                         <div class="u-s-m-b-15">
 
                                             <label class="gl-label" for="billing-lname">HỌ ĐỆM *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text"
+                                            <input readonly value="{{ $customer->last_name }}" class="input-text input-text--primary-style" type="text"
                                                    id="billing-lname" data-bill="">
                                         </div>
                                     </div>
@@ -276,7 +276,7 @@
 
                                         <label class="gl-label" for="billing-email">ĐỊA CHỈ EMAIL *</label>
 
-                                        <input class="input-text input-text--primary-style" type="text"
+                                        <input value="{{ $customer->email }}" readonly class="input-text input-text--primary-style" type="text"
                                                id="billing-email"
                                                data-bill="">
                                     </div>
@@ -288,7 +288,7 @@
 
                                         <label class="gl-label" for="billing-phone">SỐ ĐIỆN THOẠI *</label>
 
-                                        <input class="input-text input-text--primary-style" type="text"
+                                        <input readonly value="{{ $customer->phone_number }}" class="input-text input-text--primary-style" type="text"
                                                id="billing-phone"
                                                data-bill="">
                                     </div>
@@ -300,14 +300,9 @@
                                         <!--====== Select Box ======-->
 
                                         <label class="gl-label" for="billing-state">TỈNH/ THÀNH PHỐ *</label>
-                                        <select
-                                            class="select-box select-box--primary-style" id="billing-tinhthanhpho"
-                                            data-bill="">
-                                            <option selected value="">Chọn Tỉnh/Thành Phố</option>
-                                            <option value="al">Alabama</option>
-                                            <option value="al">Alaska</option>
-                                            <option value="ny">New York</option>
-                                        </select>
+                                        <input readonly value="{{ $customer->province }}" class="input-text input-text--primary-style" type="text"
+                                               id="billing"
+                                               data-bill="">
                                         <!--====== End - Select Box ======-->
                                     </div>
                                     <!--====== End - STATE/PROVINCE ======-->
@@ -318,14 +313,9 @@
                                         <!--====== Select Box ======-->
 
                                         <label class="gl-label" for="billing-state">QUẬN/HUYỆN *</label>
-                                        <select
-                                            class="select-box select-box--primary-style" id="billing-quanhuyen"
-                                            data-bill="">
-                                            <option selected value="">Chọn Quận/Huyện</option>
-                                            <option value="al">Alabama</option>
-                                            <option value="al">Alaska</option>
-                                            <option value="ny">New York</option>
-                                        </select>
+                                        <input readonly value="{{ $customer->district }}" class="input-text input-text--primary-style" type="text"
+                                               id="billing-state"
+                                               data-bill="">
                                         <!--====== End - Select Box ======-->
                                     </div>
                                     <!--====== End - STATE/PROVINCE ======-->
@@ -335,14 +325,10 @@
 
                                         <!--====== Select Box ======-->
 
-                                        <label class="gl-label" for="billing-state">PHƯỜNG/XÃ *</label><select
-                                            class="select-box select-box--primary-style" id="billing-phuongxa"
-                                            data-bill="">
-                                            <option selected value="">Chọn Phường/Xã</option>
-                                            <option value="al">Alabama</option>
-                                            <option value="al">Alaska</option>
-                                            <option value="ny">New York</option>
-                                        </select>
+                                        <label class="gl-label" for="billing-state">PHƯỜNG/XÃ *</label>
+                                        <input readonly value="{{ $customer->village }}" class="input-text input-text--primary-style" type="text"
+                                               id="billing-state"
+                                               data-bill="">
                                         <!--====== End - Select Box ======-->
                                     </div>
                                     <!--====== End - STATE/PROVINCE ======-->
@@ -352,7 +338,7 @@
 
                                         <label class="gl-label" for="billing-street">TOÀ NHÀ/TÊN ĐƯỜNG *</label>
 
-                                        <input class="input-text input-text--primary-style" type="text"
+                                        <input readonly value="{{ $customer->street }}" class="input-text input-text--primary-style" type="text"
                                                id="billing-street"
                                                placeholder="Địa chỉ toà nhà/tên đường" data-bill="">
                                     </div>
@@ -367,94 +353,6 @@
                             <div class="o-summary">
                                 <div class="o-summary__section u-s-m-b-30">
                                     <div class="o-summary__item-wrap gl-scroll" id="list-sold-items">
-                                        <div class="o-card">
-                                            <div class="o-card__flex">
-                                                <div class="o-card__img-wrap">
-
-                                                    <img class="u-img-fluid"
-                                                         src="{{ asset('frontend/images/product/electronic/product3.jpg') }}"
-                                                         alt="">
-                                                </div>
-                                                <div class="o-card__info-wrap">
-
-                                                <span class="o-card__name">
-
-                                                    <a href="product-detail.html">Yellow Wireless Headphone</a></span>
-
-                                                    <span class="o-card__quantity">Quantity x 1</span>
-
-                                                    <span class="o-card__price">$150.00</span>
-                                                </div>
-                                            </div>
-
-                                            <a class="o-card__del far fa-trash-alt"></a>
-                                        </div>
-                                        <div class="o-card">
-                                            <div class="o-card__flex">
-                                                <div class="o-card__img-wrap">
-
-                                                    <img class="u-img-fluid"
-                                                         src="{{ asset('frontend/images/product/electronic/product18.jpg') }}"
-                                                         alt="">
-                                                </div>
-                                                <div class="o-card__info-wrap">
-
-                                                <span class="o-card__name">
-
-                                                    <a href="product-detail.html">Nikon DSLR Camera 4k</a></span>
-
-                                                    <span class="o-card__quantity">Quantity x 1</span>
-
-                                                    <span class="o-card__price">$150.00</span>
-                                                </div>
-                                            </div>
-
-                                            <a class="o-card__del far fa-trash-alt"></a>
-                                        </div>
-                                        <div class="o-card">
-                                            <div class="o-card__flex">
-                                                <div class="o-card__img-wrap">
-
-                                                    <img class="u-img-fluid"
-                                                         src="{{ asset('frontend/images/product/women/product8.jpg') }}"
-                                                         alt="">
-                                                </div>
-                                                <div class="o-card__info-wrap">
-
-                                                <span class="o-card__name">
-
-                                                    <a href="product-detail.html">New Dress D Nice Elegant</a></span>
-
-                                                    <span class="o-card__quantity">Quantity x 1</span>
-
-                                                    <span class="o-card__price">$150.00</span>
-                                                </div>
-                                            </div>
-
-                                            <a class="o-card__del far fa-trash-alt"></a>
-                                        </div>
-                                        <div class="o-card">
-                                            <div class="o-card__flex">
-                                                <div class="o-card__img-wrap">
-
-                                                    <img class="u-img-fluid"
-                                                         src="{{ asset('frontend/images/product/men/product8.jpg') }}"
-                                                         alt="">
-                                                </div>
-                                                <div class="o-card__info-wrap">
-
-                                                <span class="o-card__name">
-
-                                                    <a href="product-detail.html">New Fashion D Nice Elegant</a></span>
-
-                                                    <span class="o-card__quantity">Quantity x 1</span>
-
-                                                    <span class="o-card__price">$150.00</span>
-                                                </div>
-                                            </div>
-
-                                            <a class="o-card__del far fa-trash-alt"></a>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="o-summary__section u-s-m-b-30">
@@ -477,7 +375,7 @@
                                         </table>
                                         <form id="submitForm" action="{{ route('frontend.checkout.create') }}" method="post">
                                             @csrf
-                                            <input type="hidden" name="customer_id" value="1">
+                                            <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                                             <div>
                                                 <button class="btn btn--e-brand-b-2" type="submit">ĐẶT HÀNG</button>
                                             </div>

@@ -10,22 +10,132 @@
 @endsection
 
 @section('script')
-    <script>
-        // self executing function here
-        (function () {
-            const filterItems = Array.from(document.querySelectorAll('.filter__item'));
-            const heights = filterItems.map(i => i.clientHeight);
-            const maxHeight = Math.max(...heights);
-
-            filterItems.forEach(item => item.setAttribute('style', `${item.getAttribute('style')} height: ${maxHeight}px;`));
-
-            document.getElementById('cat-2').click();
-            document.getElementById('cat-all').click();
-        })();
-    </script>
-
     <!--===== Cart ====-->
     <script src="{{ asset('frontend/js/cart.js') }}"></script>
+
+    <script>
+        const base_url = window.location.origin;
+        const api_url = `${base_url}/api/v1/tinh`;
+
+        const tinhOption = document.getElementById('tinh');
+        const quanHuyenOption = document.getElementById('quanhuyen');
+        const xaPhuongOption = document.getElementById('xaphuong');
+
+        const provinceElement = document.getElementById('province');
+        const districtElement = document.getElementById('district');
+        const villageElement = document.getElementById('village');
+
+        const userTinh = '{{$province}}';
+        const userHuyen = '{{$district}}';
+        const userXa = '{{$village}}';
+
+        fetch(api_url)
+            .then(res => res.json())
+            .then(data => {
+                const allKeys = Object.keys(data);
+
+                tinhOption.innerHTML = allKeys.map((key, idx) => {
+                    const {code, name_with_type} = data[key];
+                    if (idx === 0) {
+                        tinhOption.value = code;
+                        return `<option selected value="${code}"">${name_with_type}</option>`;
+                    }
+                    else
+                        return `<option value="${code}"">${name_with_type}</option>`;
+                }).join('');
+
+                Array.from(tinhOption.querySelectorAll('option')).map(option => {
+                    if (option.innerHTML === userTinh)
+                        option.selected = true;
+                });
+
+                tinhOption.addEventListener('change', e => {
+                    const tinhID = e.target.value;
+                    const selectedElement = e.target.querySelector(`option[value='${tinhID}']`);
+                    provinceElement.value = selectedElement.innerHTML;
+
+                    const quanhuyen_api_url = `${base_url}/api/v1/quan-huyen/${tinhID}`;
+                    fetch(quanhuyen_api_url)
+                        .then(res => res.json())
+                        .then(quanhuyen_data => {
+                            quanHuyenOption.innerHTML = quanhuyen_data.map((item, idx) => {
+                                const {code, name_with_type} = item;
+                                if (idx === 0) {
+                                    quanHuyenOption.value = code;
+                                    return `<option selected value="${code}"">${name_with_type}</option>`;
+                                }
+                                else
+                                    return `<option value="${code}"">${name_with_type}</option>`;
+                            }).join('');
+
+                            Array.from(quanHuyenOption.querySelectorAll('option')).map(option => {
+                                if (option.innerHTML === userHuyen)
+                                    option.selected = true;
+                            });
+
+                            quanHuyenOption.addEventListener('change', e => {
+                                const quanHuyenID = e.target.value;
+                                const selectedElement = e.target.querySelector(`option[value='${quanHuyenID}']`);
+                                districtElement.value = selectedElement.innerHTML;
+
+                                const xaphuong_api_url = `${base_url}/api/v1/xa-phuong/${quanHuyenID}`;
+                                fetch(xaphuong_api_url)
+                                    .then(res => res.json())
+                                    .then(results => {
+                                        const allKeys = Object.keys(results);
+                                        xaPhuongOption.innerHTML = allKeys.map((key, idx) => {
+                                            const {code, name_with_type} = results[key];
+                                            if (idx === 0) {
+                                                xaPhuongOption.value = code;
+                                                return `<option selected value="${code}"">${name_with_type}</option>`;
+                                            }
+                                            else
+                                                return `<option value="${code}"">${name_with_type}</option>`;
+                                        }).join('');
+
+                                        Array.from(xaPhuongOption.querySelectorAll('option')).map(option => {
+                                            if (option.innerHTML === userXa)
+                                                option.selected = true;
+                                        });
+
+                                        xaPhuongOption.addEventListener('change', e => {
+                                            const xaPhuongID = e.target.value;
+                                            const selectedElement = e.target.querySelector(`option[value='${xaPhuongID}']`);
+                                            villageElement.value = selectedElement.innerHTML;
+                                        })
+
+                                        if ("createEvent" in document) {
+                                            var evt = document.createEvent("HTMLEvents");
+                                            evt.initEvent("change", false, true);
+                                            xaPhuongOption.dispatchEvent(evt);
+                                        }
+                                        else
+                                            xaPhuongOption.fireEvent("onchange");
+                                    })
+                                    .catch(err => console.log(err));
+                            });
+
+                            if ("createEvent" in document) {
+                                var evt = document.createEvent("HTMLEvents");
+                                evt.initEvent("change", false, true);
+                                quanHuyenOption.dispatchEvent(evt);
+                            }
+                            else
+                                quanHuyenOption.fireEvent("onchange");
+                        })
+                        .catch(err => console.log(err));
+                });
+
+                if ("createEvent" in document) {
+                    var evt = document.createEvent("HTMLEvents");
+                    evt.initEvent("change", false, true);
+                    tinhOption.dispatchEvent(evt);
+                }
+                else
+                    tinhOption.fireEvent("onchange");
+            })
+            .catch(err => console.log(err));
+    </script>
 @endsection
 
 @section('content')
@@ -70,7 +180,7 @@
                                 <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                     <div class="dash__pad-1">
 
-                                        <span class="dash__text u-s-m-b-16">Xin chào, {{$customer->first_name}}</span>
+                                        <span class="dash__text u-s-m-b-16">Xin chào {{ $customer->last_name . ' ' . $customer->first_name }}</span>
                                         <ul class="dash__f-list">
 
                                             <li>
@@ -148,7 +258,7 @@
 
                                                             <label class="gl-label" for="reg-password">PASSWORD *</label>
 
-                                                            <input name="password" class="input-text input-text--primary-style" type="text" id="reg-password" placeholder="Nhập mật khẩu"></div>
+                                                            <input name="password" class="input-text input-text--primary-style" type="password" id="reg-password" placeholder="Nhập mật khẩu"></div>
                                                         <!--====== PHONE ======-->
                                                         <div class="u-s-m-b-30">
 
@@ -168,19 +278,27 @@
                                                             <!--====== Date of Birth Select-Box ======-->
 
                                                             <span class="gl-label">ĐỊA CHỈ</span>
-                                                            <div class="gl-dob"><select name="province" value="{{$customer->province}}" class="select-box select-box--primary-style">
+                                                            <input type="hidden" name="province" value="" id="province">
+                                                            <input type="hidden" name="district" value="" id="district">
+                                                            <input type="hidden" name="village" value="" id="village">
+                                                            <div class="gl-dob">
+                                                                <select
+                                                                    class="select-box select-box--primary-style"
+                                                                    id="tinh"
+                                                                >
                                                                     <option selected>Tỉnh/Thành Phố</option>
-                                                                    <option value="male">January</option>
-                                                                    <option value="male">February</option>
-                                                                    <option value="male">March</option>
-                                                                    <option value="male">April</option>
-                                                                </select><select name="district" value="{{$customer->district}}" class="select-box select-box--primary-style">
+
+                                                                </select>
+                                                                <select id="quanhuyen"
+                                                                        class="select-box select-box--primary-style">
                                                                     <option selected>Quận/Huyện</option>
                                                                     <option value="01">01</option>
                                                                     <option value="02">02</option>
                                                                     <option value="03">03</option>
                                                                     <option value="04">04</option>
-                                                                </select><select name="village" value="{{$customer->village}}" class="select-box select-box--primary-style">
+                                                                </select>
+                                                                <select id="xaphuong"
+                                                                        class="select-box select-box--primary-style">
                                                                     <option selected>Xã/Phường/Thị Trấn</option>
                                                                     <option value="1991">1991</option>
                                                                     <option value="1992">1992</option>
@@ -188,7 +306,6 @@
                                                                     <option value="1994">1994</option>
                                                                 </select>
                                                             </div>
-
 
 
                                                             <!--====== End - Date of Birth Select-Box ======-->

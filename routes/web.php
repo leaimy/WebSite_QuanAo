@@ -160,10 +160,12 @@ Route::get('/gio-hang', function () {
 Route::get('/thanh-toan', function () {
     $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
     $websiteconfig = \App\Website::all();
+    $customer = Auth::guard('customer')->user();
 
     return view('Frontend.checkout', [
         'websiteconfig' => $websiteconfig,
         'parent_categories' => $parent_categories,
+        'customer' => $customer
     ]);
 })->name('frontend.checkout');
 
@@ -183,24 +185,46 @@ Route::get('/cap-nhat-ho-so','ClientCustomerController@edit')->name('capnhathoso
 Route::post('/cap-nhat-tai-khoan/{customer}','ClientCustomerController@update')->name('capnhattaikhoan');
 Route::get('/thong-tin-ca-nhan','ClientCustomerController@show')->name('thongtincanhan');
 
-
 Route::get('/thong-tin-don-hang','ClientCustomerController@thongtindonhang')->name('thongtindonhang');
-
-
-Route::get('/chi-tiet-don-hang',function (){
-    $parent_categories = \App\Category::where('status', 1)->where('parent_id', 0)->get();
-    $websiteconfig = \App\Website::all();
-
-    return view('Frontend.Home.chi-tiet-don-hang',[
-        'websiteconfig' => $websiteconfig,
-        'parent_categories' => $parent_categories,
-    ]);
-})->name('chitietdonhang');
+Route::get('/chi-tiet-don-hang/{order}', 'ClientCustomerController@ChiTietDonHang')->name('chitietdonhang');
 
 /**
- * Danh sách sản phẩm
+ * API Route
  */
+Route::get('/api/v1/tinh', function () {
+    // Read File
+    $jsonString = file_get_contents(base_path('api_data/tinh_tp.json'));
+    return json_decode($jsonString, true);
+});
+/**
+* Danh sách sản phẩm
+*/
 Route::get('/danh-sach-san-pham/{id}','ClientProductController@index')->name('danhsachsanpham');
+
+Route::get('/api/v1/quan-huyen/{tinh_id}', function ($tinh_id) {
+    // Read File
+    $jsonString = file_get_contents(base_path('api_data/quan_huyen.json'));
+
+    $data = json_decode($jsonString, true);
+    
+    $final_data = [];
+
+    foreach ($data as $item) {
+        if ($item['parent_code'] == $tinh_id) {
+            array_push($final_data, $item);
+        }
+    }
+
+    return $final_data;
+});
+
+Route::get('/api/v1/xa-phuong/{quan_huyen_id}', function ($quan_huyen_id) {
+    // Read File
+    $jsonString = file_get_contents(base_path('api_data/xa-phuong/' . $quan_huyen_id . '.json'));
+
+    return json_decode($jsonString, true);
+});
+
 
 /**
  * Authenticate người dùng

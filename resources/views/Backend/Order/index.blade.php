@@ -264,12 +264,12 @@
     <div class="row">
         <div class="col-12 mb-2">
             <a href="{{ route('AdminCategory.create') }}"
-               class="float-right btn btn-primary">Thêm nhóm sản phẩm mới</a>
+               class="float-right btn btn-primary">Thêm đơn hàng mới</a>
         </div>
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Danh sách nhóm sản phẩm</h3>
+                    <h3 class="card-title">Danh sách đơn hàng</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -348,3 +348,47 @@
     </div>
 @endsection
 
+@section('modal')
+    <div class="modal fade" id="modal-lg">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Thay đổi trạng thái đơn hàng</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row justify-content-between">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Trạng thái đơn hàng *</label>
+                                <select class="form-control select2bs4" style="width: 100%;" id="new-order-status">
+                                    <option selected="selected" value="-1">Chọn trạng thái mới</option>
+
+                                    @foreach($list_of_orders as $orderStatus)
+                                        <option name="new-order-status" value="{{ $orderStatus['value'] }}">{{ $orderStatus['render'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Ghi chú</label>
+                                <textarea class="form-control" rows="3" placeholder="Nhập ghi chú ..." id="new-order-note"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form id="frm-change-order-status" action="" class="modal-footer justify-content-between" method="post">
+                    @csrf
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button onclick="handleOnBtnSubmitClick()" type="button" class="btn btn-primary">Lưu thay đổi</button>
+                    <input style="display: none" type="submit" value="" id="frm-submit-button">
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+@endsection

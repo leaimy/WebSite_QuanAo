@@ -35,9 +35,11 @@ class DashboardController extends Controller
 
             if ($orderID < 10) {
                 $order->id = 'ORDER0' . $orderID;
+                $order->custom_id = 'ORDER0' . $orderID;
             }
             else {
                 $order->id = 'ORDER' . $order;
+                $order->custom_id = 'ORDER' . $order;
             }
         }
 

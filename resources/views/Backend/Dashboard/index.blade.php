@@ -142,7 +142,7 @@
                             <tbody>
                             @foreach($orders as $order)
                             <tr>
-                                <td><a href="">{{ $order->id }}</a></td>
+                                <td><a href="">{{ $order->custom_id }}</a></td>
                                 <td>{{ \App\Customer::find($order->customer_id)->username }}</td>
                                 <td>
                                     <span class="{{ \App\OrderHelpers::getClasses($order->current_status) }}">
