@@ -206,7 +206,7 @@ Route::get('/api/v1/quan-huyen/{tinh_id}', function ($tinh_id) {
     $jsonString = file_get_contents(base_path('api_data/quan_huyen.json'));
 
     $data = json_decode($jsonString, true);
-    
+
     $final_data = [];
 
     foreach ($data as $item) {
