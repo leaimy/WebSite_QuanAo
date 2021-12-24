@@ -1,5 +1,6 @@
 <?php
 
+use App\Customer;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -162,6 +163,9 @@ Route::get('/thanh-toan', function () {
     $websiteconfig = \App\Website::all();
     $customer = Auth::guard('customer')->user();
 
+    if (!$customer instanceof Customer)
+        return redirect('/dang-nhap');
+
     return view('Frontend.checkout', [
         'websiteconfig' => $websiteconfig,
         'parent_categories' => $parent_categories,
@@ -175,17 +179,17 @@ Route::post('/thanh-toan', 'OrderController@storeFromWeb')->name('frontend.check
 /**
  * Khách hàng
  */
-Route::get('/dang-nhap','ClientLoginController@showLoginForm')->name('khachhangdangnhap');
-Route::post('/dang-nhap','ClientLoginController@login')->name('dangnhap');
-Route::get('/dang-xuat','ClientLoginController@logout')->name('dangxuat');
+Route::get('/dang-nhap', 'ClientLoginController@showLoginForm')->name('khachhangdangnhap');
+Route::post('/dang-nhap', 'ClientLoginController@login')->name('dangnhap');
+Route::get('/dang-xuat', 'ClientLoginController@logout')->name('dangxuat');
 
-Route::get('/tao-tai-khoan','ClientCustomerController@create')->name('khachhangtaotaikhoan');
-Route::post('/tao-tai-khoan','ClientCustomerController@store')->name('taotaikhoan');
-Route::get('/cap-nhat-ho-so','ClientCustomerController@edit')->name('capnhathoso');
-Route::post('/cap-nhat-tai-khoan/{customer}','ClientCustomerController@update')->name('capnhattaikhoan');
-Route::get('/thong-tin-ca-nhan','ClientCustomerController@show')->name('thongtincanhan');
+Route::get('/tao-tai-khoan', 'ClientCustomerController@create')->name('khachhangtaotaikhoan');
+Route::post('/tao-tai-khoan', 'ClientCustomerController@store')->name('taotaikhoan');
+Route::get('/cap-nhat-ho-so', 'ClientCustomerController@edit')->name('capnhathoso');
+Route::post('/cap-nhat-tai-khoan/{customer}', 'ClientCustomerController@update')->name('capnhattaikhoan');
+Route::get('/thong-tin-ca-nhan', 'ClientCustomerController@show')->name('thongtincanhan');
 
-Route::get('/thong-tin-don-hang','ClientCustomerController@thongtindonhang')->name('thongtindonhang');
+Route::get('/thong-tin-don-hang', 'ClientCustomerController@thongtindonhang')->name('thongtindonhang');
 Route::get('/chi-tiet-don-hang/{order}', 'ClientCustomerController@ChiTietDonHang')->name('chitietdonhang');
 
 /**
@@ -197,9 +201,9 @@ Route::get('/api/v1/tinh', function () {
     return json_decode($jsonString, true);
 });
 /**
-* Danh sách sản phẩm
-*/
-Route::get('/danh-sach-san-pham/{id}','ClientProductController@index')->name('danhsachsanpham');
+ * Danh sách sản phẩm
+ */
+Route::get('/danh-sach-san-pham/{id}', 'ClientProductController@index')->name('danhsachsanpham');
 
 Route::get('/api/v1/quan-huyen/{tinh_id}', function ($tinh_id) {
     // Read File
@@ -352,6 +356,7 @@ Route::middleware('auth')->group(function () {
      */
     Route::prefix('/admin/orders')->group(function () {
         Route::get('/', 'OrderController@index')->name('Order.index');
+        Route::get('/create', 'OrderController@create')->name('Order.create');
         Route::post('/store-web', 'OrderController@storeFromWeb')->name('Order.store.web');
         Route::post('/store-user', 'OrderController@storeFromUser')->name('Order.store.user');
         Route::post('/status/{order}', 'OrderController@changeStatus')->name('AdminOrder.status');
