@@ -356,7 +356,6 @@ Route::middleware('auth')->group(function () {
      */
     Route::prefix('/admin/orders')->group(function () {
         Route::get('/', 'OrderController@index')->name('Order.index');
-        Route::get('/create', 'OrderController@create')->name('Order.create');
         Route::post('/store-web', 'OrderController@storeFromWeb')->name('Order.store.web');
         Route::post('/store-user', 'OrderController@storeFromUser')->name('Order.store.user');
         Route::post('/status/{order}', 'OrderController@changeStatus')->name('AdminOrder.status');
