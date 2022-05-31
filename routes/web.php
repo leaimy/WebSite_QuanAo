@@ -76,76 +76,87 @@ Route::get('/chi-tiet-san-pham/{slug}', function ($slug) {
     ]);
 })->name('chitietsanpham');
 
-function LaySanPhamNgauNhien($array, $id)
+if (!function_exists('LaySanPhamNgauNhien'))
 {
-    $newarray = [];
-    foreach ($array as $item) {
-        if ($item->id != $id) {
-            array_push($newarray, $item);
+    function LaySanPhamNgauNhien($array, $id)
+    {
+        $newarray = [];
+        foreach ($array as $item) {
+            if ($item->id != $id) {
+                array_push($newarray, $item);
+            }
         }
-    }
 
-    shuffle($newarray);
+        shuffle($newarray);
 
-    $results = [];
-    $i = 0;
+        $results = [];
+        $i = 0;
 
-    foreach ($newarray as $item) {
-        array_push($results, $item);
-        $i++;
+        foreach ($newarray as $item) {
+            array_push($results, $item);
+            $i++;
 
-        if ($i == 6) break;
-    }
-
-    return $results;
-}
-
-function TrichXuatColor($array)
-{
-    $colors = [];
-    $unique_colors = [];
-    foreach ($array as $item) {
-        $color = $item->color;
-        array_push($colors, $color);
-    }
-
-    foreach ($colors as $mau) {
-        $kiemtra = KiemTraTonTai($unique_colors, $mau);
-        if ($kiemtra == false)
-            array_push($unique_colors, $mau);
-    }
-
-    return $unique_colors;
-}
-
-function TrichXuatSize($array)
-{
-    $sizes = [];
-    $unique_sizes = [];
-    foreach ($array as $item) {
-        $size = $item->size;
-        array_push($sizes, $size);
-    }
-
-    foreach ($sizes as $kichthuoc) {
-        $kiemtra = KiemTraTonTai($unique_sizes, $kichthuoc);
-        if ($kiemtra == false)
-            array_push($unique_sizes, $kichthuoc);
-    }
-
-    return $unique_sizes;
-}
-
-function KiemTraTonTai($array, $str)
-{
-    $tontai = false;
-    foreach ($array as $newstr) {
-        if ($newstr == $str) {
-            $tontai = true;
-            break;
+            if ($i == 6) break;
         }
+
+        return $results;
     }
-    return $tontai;
+}
+
+if (!function_exists('TrichXuatColor'))
+{
+    function TrichXuatColor($array)
+    {
+        $colors = [];
+        $unique_colors = [];
+        foreach ($array as $item) {
+            $color = $item->color;
+            array_push($colors, $color);
+        }
+
+        foreach ($colors as $mau) {
+            $kiemtra = KiemTraTonTai($unique_colors, $mau);
+            if ($kiemtra == false)
+                array_push($unique_colors, $mau);
+        }
+
+        return $unique_colors;
+    }
+}
+
+if (!function_exists('TrichXuatSize'))
+{
+    function TrichXuatSize($array)
+    {
+        $sizes = [];
+        $unique_sizes = [];
+        foreach ($array as $item) {
+            $size = $item->size;
+            array_push($sizes, $size);
+        }
+
+        foreach ($sizes as $kichthuoc) {
+            $kiemtra = KiemTraTonTai($unique_sizes, $kichthuoc);
+            if ($kiemtra == false)
+                array_push($unique_sizes, $kichthuoc);
+        }
+
+        return $unique_sizes;
+    }
+}
+
+if (!function_exists('KiemTraTonTai')) {
+    function KiemTraTonTai($array, $str)
+    {
+        $tontai = false;
+        foreach ($array as $newstr) {
+            if ($newstr == $str) {
+                $tontai = true;
+                break;
+            }
+        }
+        return $tontai;
+    }
 }
 
 Route::get('/gio-hang', function () {
