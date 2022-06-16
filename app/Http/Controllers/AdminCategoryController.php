@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 
 class AdminCategoryController extends Controller {
 
+
     public function index()
     {
         $tableCategory = Category::all();
@@ -28,7 +29,6 @@ class AdminCategoryController extends Controller {
 
     public function store(Request $request)
     {
-
         $name = $request['name'];
         $parent_id = $request['parent_id'];
         $slug = Str::slug($name, '-');
